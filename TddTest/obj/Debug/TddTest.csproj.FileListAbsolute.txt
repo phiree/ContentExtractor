@@ -1,0 +1,15 @@
+D:\workspace\ScenicCm\TddTest\bin\Debug\TddTest.dll
+D:\workspace\ScenicCm\TddTest\bin\Debug\TddTest.pdb
+D:\workspace\ScenicCm\TddTest\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\ScenicCm\TddTest\obj\Debug\TddTest.dll
+D:\workspace\ScenicCm\TddTest\obj\Debug\TddTest.pdb
+D:\workspace\ContentExtractor\TddTest\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\ContentExtractor\TddTest\obj\Debug\TddTest.dll
+D:\workspace\ContentExtractor\TddTest\bin\Debug\TddTest.dll
+D:\workspace\ContentExtractor\TddTest\bin\Debug\TddTest.pdb
+D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.BLL.dll
+D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.Model.dll
+D:\workspace\ContentExtractor\TddTest\bin\Debug\nunit.framework.dll
+D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.BLL.pdb
+D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.Model.pdb
+D:\workspace\ContentExtractor\TddTest\obj\Debug\TddTest.pdb

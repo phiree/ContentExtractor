@@ -1,0 +1,5 @@
+D:\workspace\ContentExtractor\CE.Model\bin\Debug\CE.Model.dll
+D:\workspace\ContentExtractor\CE.Model\bin\Debug\CE.Model.pdb
+D:\workspace\ContentExtractor\CE.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\ContentExtractor\CE.Model\obj\Debug\CE.Model.dll
+D:\workspace\ContentExtractor\CE.Model\obj\Debug\CE.Model.pdb
