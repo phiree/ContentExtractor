@@ -10,6 +10,6 @@ namespace CE.Model.Rule
    /// </summary>
     public class RuleSet
     {
-
+         
     }
 }
