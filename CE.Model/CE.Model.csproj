@@ -44,6 +44,7 @@
     <Compile Include="Rule\BaseRule.cs" />
     <Compile Include="Rule\BeginEndRule.cs" />
     <Compile Include="Rule\IRule.cs" />
+    <Compile Include="Rule\RuleSet.cs" />
     <Compile Include="TargetSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
