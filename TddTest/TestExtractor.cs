@@ -18,10 +18,10 @@ namespace TddTest
         ///從url獲取網頁內容(webrequest)
         /// </summary>
         [Test]
-        public void t_GetContentFromUrl()
+        public void GetContentFromUrlTest()
         {
-            Assert.IsTrue( Extractor
-                .getDataFromUrl("http://www.163.com")
+            Assert.IsTrue( ResponseHandler
+                .GetResponseHtml("http://www.163.com")
                 .IndexOf("网易,邮箱,游戏,新闻,体育,娱乐,女性,亚运,论坛,短信,数码,汽车,手机,财经,科技,相册")
                 > 0);
         }

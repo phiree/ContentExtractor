@@ -1,0 +1,9 @@
+﻿问题
+  提取多条同类信息-->使用正则表达式
+
+
+1 单条规则测试
+  规则类型:
+	简单
+	包含beginmark(endmark)
+	是excludecontent

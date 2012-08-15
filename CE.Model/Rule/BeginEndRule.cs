@@ -19,9 +19,17 @@ namespace CE.Model.Rule
         //是否包含用于定位的字符串
         public bool IncludeBeginMark { get; set; }
         public bool IncludeEndMark { get; set; }
-  
+
+        public BeginEndRule(string beginmark,string endmark,bool includeBegin,bool includeEnd)
+            :base(1,string.Empty,string.Empty)
+        {
+            BeginMark = beginmark;
+            EndMark = endmark;
+            IncludeBeginMark = includeBegin;
+            IncludeEndMark = includeEnd;
+        }
        
-        public new string FilterUsingRule(string rawContent)
+        public override string FilterUsingRule(string rawContent)
         {
             string filteredContent = rawContent;
             if (!this.Enabled)
@@ -35,6 +43,7 @@ namespace CE.Model.Rule
             if (startIndex == -1 || endIndex == -1)
                 return filteredContent;
             filteredContent = rawContent.Substring(startIndex + this.BeginMark.Length, endIndex - startIndex - this.BeginMark.Length);
+           
             if (this.IncludeBeginMark)
             {
                 filteredContent = BeginMark + filteredContent;
@@ -43,6 +52,8 @@ namespace CE.Model.Rule
             {
                 filteredContent += EndMark;
             }
+           
+          
             FixFilteredContent(filteredContent);
             return filteredContent;
         }

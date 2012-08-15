@@ -126,9 +126,6 @@ namespace CE.Model
 			get {return _enabled;}
 			set {_enabled = value;}
 		}
-
-	
-
 		public string RuleName
 		{
 			get {return _ruleName;}

@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="BLL\ImageLocalizerTest.cs" />
     <Compile Include="BLL\ExtractorTest.cs" />
+    <Compile Include="Model\Rule\BeginEndRuleTest.cs" />
+    <Compile Include="Model\Rule\RuleSetTest.cs" />
     <Compile Include="TestExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +56,7 @@
     <Content Include="docs\todo.txt" />
     <Content Include="docs\userstory.txt" />
     <Content Include="docs\資料.txt" />
+    <Content Include="Todo.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CE.BLL\CE.BLL.csproj">
@@ -64,6 +67,9 @@
       <Project>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</Project>
       <Name>CE.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
