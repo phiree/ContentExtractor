@@ -12,21 +12,25 @@ namespace CE.Model.Rule
         /// <summary>
         /// 规则的序号.多个规则服役时,按照序号一次执行.
         /// </summary>
-        public int OrderNumber { get; set; }
+        public int RuleNo { get; set; }
         //是需要移除的内容?
         //补全不完整的tag
         public string PreAppenddBefore { get; set; }
         public string AppendAfter { get; set; }
         public bool Enabled { get; set; }
-        public virtual  string FilterUsingRule(string rawContent){return string.Empty;}
+        public virtual  string FilterUsingRule(ref string rawContent){return string.Empty;}
         public BaseRule(int orderNumber,string preappendBefore
             ,string appendAfter)
         {
-            OrderNumber = orderNumber;
+            RuleNo = orderNumber;
             PreAppenddBefore = preappendBefore;
             AppendAfter = appendAfter;
             Enabled = true;
            
+        }
+        public void RemoveFilteredFromRaw()
+        { 
+            
         }
         
         protected void FixFilteredContent(string filteredContent)

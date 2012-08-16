@@ -48,7 +48,7 @@
     <Compile Include="BLL\ExtractorTest.cs" />
     <Compile Include="Model\Rule\BeginEndRuleTest.cs" />
     <Compile Include="Model\Rule\RuleSetTest.cs" />
-    <Compile Include="TestExtractor.cs" />
+    <Compile Include="Model\Rule\RuleAssemblyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

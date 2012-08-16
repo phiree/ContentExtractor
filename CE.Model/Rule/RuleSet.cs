@@ -13,6 +13,7 @@ namespace CE.Model.Rule
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int SetNo { get; set; }
         /// <summary>
         /// 目标对象的属性.
         /// </summary>
@@ -30,32 +31,35 @@ namespace CE.Model.Rule
         /// <summary>
         /// 最终结果
         /// </summary>
-        string completeResult = string.Empty;
+       
         /// <summary>
         /// 按照order,使用rule过滤.
         /// </summary>
         /// <param name="rawContent"></param>
         /// <returns></returns>
-        public string FilterUsingRuleSet(string rawContent, bool returnJsonFormat)
+        public string FilterUsingRuleSet(ref string rawContent, bool returnJsonFormat)
         {
+            string completeResult = string.Empty;
             Rules.Sort(SortCompare);
             foreach (BaseRule rule in Rules)
             {
 
-                completeResult += rule.FilterUsingRule(rawContent);
-
+               string filtered= rule.FilterUsingRule(ref rawContent);
+                
+               completeResult += filtered;
+                
             }
             if (returnJsonFormat)
             {
-                completeResult = "{" + Code + ":\"" + completeResult + "\"}";
+                completeResult =  Code + ":\"" + completeResult+"\"";
             }
-
+            
             return completeResult;
         }
 
         private int SortCompare(BaseRule rule1, BaseRule rule2)
         {
-            return rule1.OrderNumber.CompareTo(rule2.OrderNumber);
+            return rule1.RuleNo.CompareTo(rule2.RuleNo);
         }
     }
 }

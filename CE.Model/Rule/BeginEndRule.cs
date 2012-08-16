@@ -16,20 +16,30 @@ namespace CE.Model.Rule
             set;
         }
         public string EndMark { get; set; }
-        //是否包含用于定位的字符串
+       /// <summary>
+       /// 是否包含用于定位的字符串
+       /// </summary>
+
         public bool IncludeBeginMark { get; set; }
         public bool IncludeEndMark { get; set; }
+        /// <summary>
+        /// 过滤完成后是否删除开始/结束标识字符串
+        /// </summary>
+        public bool RemoveBegin { get; set; }
+        public bool RemoveEnd { get; set; }
 
-        public BeginEndRule(string beginmark,string endmark,bool includeBegin,bool includeEnd)
+        public BeginEndRule(string beginmark,string endmark,bool includeBegin,bool includeEnd,bool removeBegin,bool removeEnd)
             :base(1,string.Empty,string.Empty)
         {
             BeginMark = beginmark;
             EndMark = endmark;
             IncludeBeginMark = includeBegin;
             IncludeEndMark = includeEnd;
+            RemoveBegin = removeBegin;
+            RemoveEnd = removeEnd;
         }
        
-        public override string FilterUsingRule(string rawContent)
+        public override string FilterUsingRule(ref string rawContent)
         {
             string filteredContent = rawContent;
             if (!this.Enabled)
@@ -43,7 +53,7 @@ namespace CE.Model.Rule
             if (startIndex == -1 || endIndex == -1)
                 return filteredContent;
             filteredContent = rawContent.Substring(startIndex + this.BeginMark.Length, endIndex - startIndex - this.BeginMark.Length);
-           
+
             if (this.IncludeBeginMark)
             {
                 filteredContent = BeginMark + filteredContent;
@@ -52,8 +62,17 @@ namespace CE.Model.Rule
             {
                 filteredContent += EndMark;
             }
-           
-          
+            string tobeRemoved = filteredContent;
+            if ((!IncludeBeginMark) && RemoveBegin)
+            {
+                tobeRemoved = BeginMark + tobeRemoved;
+            }
+            if ((!IncludeEndMark) && RemoveEnd)
+            {
+                tobeRemoved += EndMark;
+            }
+            rawContent = rawContent.Replace(tobeRemoved, string.Empty);
+
             FixFilteredContent(filteredContent);
             return filteredContent;
         }

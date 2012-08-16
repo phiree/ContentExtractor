@@ -15,8 +15,9 @@ namespace TddTest.Model.Rule
         public void FilterUsingRuleTest()
         {
 
+            string rawContent = "<div>仙都风景名胜区</div>";
             Assert.AreEqual("<div>仙都风景名胜区",
-                new BeginEndRule("<div>", "</div>", true, false).FilterUsingRule("<div>仙都风景名胜区</div>"));
+                new BeginEndRule("<div>", "</div>", true, false,true,true).FilterUsingRule(ref rawContent ));
 
         }
 
