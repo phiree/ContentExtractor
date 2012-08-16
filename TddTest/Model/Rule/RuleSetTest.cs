@@ -19,11 +19,17 @@ namespace TddTest.Model.Rule
             rule1.RuleNo = 10;
             BaseRule rule2 = new BeginEndRule("<span>", "</span>", false, false, true, true);
             rule2.RuleNo = 11;
+            BaseRule rule3 = new BeginEndRule("<div id=img>", "</div>", false, false, true, true);
+            rule2.RuleNo = 12;
             RuleSet ruleset = new RuleSet();
             
             ruleset.Rules.Add(rule1);
-            ruleset.Rules.Add(rule2);
-            string raw="1<div>a</div>2<span>b</span>3";
+            ruleset.Rules.Add(rule2); ruleset.Rules.Add(rule3);
+            ruleset.NeedImageLocalizer = true;
+            string raw=@"1<div>a</div>2<span>b</span>3<div id=img>
+ <img src=""https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7@4x-hover.png?1337118071"" />
+       
+</div>";
             Assert.AreEqual("ab", ruleset.FilterUsingRuleSet(ref raw, false));
 
             //输出为json格式

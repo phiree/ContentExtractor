@@ -13,3 +13,5 @@ D:\workspace\ContentExtractor\TddTest\bin\Debug\nunit.framework.dll
 D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.BLL.pdb
 D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.Model.pdb
 D:\workspace\ContentExtractor\TddTest\obj\Debug\TddTest.pdb
+D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.Component.dll
+D:\workspace\ContentExtractor\TddTest\bin\Debug\CE.Component.pdb

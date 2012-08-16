@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageLocalizer.cs" />
     <Compile Include="Rule\BaseRule.cs" />
     <Compile Include="Rule\BeginEndRule.cs" />
     <Compile Include="Rule\RuleSet.cs" />
     <Compile Include="Rule\RuleAssembly.cs" />
+    <Compile Include="SiteConfig.cs" />
     <Compile Include="TargetSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

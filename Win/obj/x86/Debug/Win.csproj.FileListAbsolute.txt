@@ -11,3 +11,5 @@ D:\workspace\ContentExtractor\Win\bin\Debug\CE.BLL.dll
 D:\workspace\ContentExtractor\Win\bin\Debug\CE.Model.dll
 D:\workspace\ContentExtractor\Win\bin\Debug\CE.BLL.pdb
 D:\workspace\ContentExtractor\Win\bin\Debug\CE.Model.pdb
+D:\workspace\ContentExtractor\Win\bin\Debug\CE.Component.dll
+D:\workspace\ContentExtractor\Win\bin\Debug\CE.Component.pdb

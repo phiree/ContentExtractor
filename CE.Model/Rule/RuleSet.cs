@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using CE.Component;
+using CE.Domain;
 namespace CE.Domain.Rule
 {
     /// <summary>
@@ -53,7 +54,20 @@ namespace CE.Domain.Rule
             {
                 completeResult =  Code + ":\"" + completeResult+"\"";
             }
-            
+            if (NeedImageLocalizer)
+            {
+                string[] imageUrls = TextHelper.GetImageUrl(completeResult);
+                foreach (string imageUrl in imageUrls)
+                { 
+                    ImageLocalizer localizer=new ImageLocalizer(imageUrl
+                        
+                        , SiteConfig.SaveDirectoryForFetchedImages
+                        ,SiteConfig.PathForFetchedImages
+                        ,Guid.NewGuid().ToString());
+                   string newImagePath= localizer.SavePhotoFromUrl();
+                   completeResult = completeResult.Replace(imageUrl, newImagePath);
+                }
+            }
             return completeResult;
         }
 
