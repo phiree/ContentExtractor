@@ -7,8 +7,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 using System.Web;
-using CE.Model;
-namespace CE.BLL
+using CE.Domain;
+namespace CE.Component
 {
     /// <summary>
     /// 将远程服务器图片保存到本地,并且返回本地url路径

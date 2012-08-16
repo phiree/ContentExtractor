@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FAC82C4D-A110-45AF-A69D-2BD6A147080D}</ProjectGuid>
+    <ProjectGuid>{9BE9423C-1343-486E-9B69-96FE1070642C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TddTest</RootNamespace>
-    <AssemblyName>TddTest</AssemblyName>
+    <RootNamespace>CE.Component</RootNamespace>
+    <AssemblyName>CE.Component</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.4.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>3rd\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,32 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\ImageLocalizerTest.cs" />
-    <Compile Include="BLL\ExtractorTest.cs" />
-    <Compile Include="Model\Rule\BeginEndRuleTest.cs" />
-    <Compile Include="Model\Rule\RuleSetTest.cs" />
-    <Compile Include="Model\Rule\RuleAssemblyTest.cs" />
+    <Compile Include="ImageLocalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="3rd\nunit.framework.dll" />
-    <Content Include="docs\todo.txt" />
-    <Content Include="docs\userstory.txt" />
-    <Content Include="docs\資料.txt" />
-    <Content Include="Todo.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CE.BLL\CE.BLL.csproj">
-      <Project>{5EBAD232-904E-4CB1-BC9B-F09AC5EB25FF}</Project>
-      <Name>CE.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CE.Model\CE.Domain.csproj">
-      <Project>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</Project>
-      <Name>CE.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

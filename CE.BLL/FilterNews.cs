@@ -7,7 +7,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 using System.Web;
-using CE.Model;
+using CE.Domain;
 namespace CE.BLL
 {
     /// <summary>

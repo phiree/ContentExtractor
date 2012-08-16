@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using CE.BLL;
-using CE.Model.Rule;
+using CE.Domain.Rule;
 
 namespace TddTest.Model.Rule
 {

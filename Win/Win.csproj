@@ -81,9 +81,9 @@
       <Project>{5EBAD232-904E-4CB1-BC9B-F09AC5EB25FF}</Project>
       <Name>CE.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CE.Model\CE.Model.csproj">
+    <ProjectReference Include="..\CE.Model\CE.Domain.csproj">
       <Project>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</Project>
-      <Name>CE.Model</Name>
+      <Name>CE.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
