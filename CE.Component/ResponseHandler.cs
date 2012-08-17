@@ -5,10 +5,15 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
-namespace CE.BLL
+namespace CE.Component
 {
   public  class ResponseHandler
     {
+      /// <summary>
+      /// webrequest获取目标页html源码
+      /// </summary>
+      /// <param name="url"></param>
+      /// <returns></returns>
         public static string GetResponseHtml(string url)
         {
             string str = string.Empty;
