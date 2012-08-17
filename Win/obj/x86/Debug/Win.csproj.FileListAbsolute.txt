@@ -13,3 +13,4 @@ D:\workspace\ContentExtractor\Win\bin\Debug\CE.BLL.pdb
 D:\workspace\ContentExtractor\Win\bin\Debug\CE.Model.pdb
 D:\workspace\ContentExtractor\Win\bin\Debug\CE.Component.dll
 D:\workspace\ContentExtractor\Win\bin\Debug\CE.Component.pdb
+D:\workspace\ContentExtractor\Win\obj\x86\Debug\Win.FmImageLocalizer.resources

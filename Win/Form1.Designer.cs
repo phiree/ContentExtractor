@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnImgLoc = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnImgLoc
+            // 
+            this.btnImgLoc.Location = new System.Drawing.Point(32, 13);
+            this.btnImgLoc.Name = "btnImgLoc";
+            this.btnImgLoc.Size = new System.Drawing.Size(75, 23);
+            this.btnImgLoc.TabIndex = 0;
+            this.btnImgLoc.Text = "图片本地化";
+            this.btnImgLoc.UseVisualStyleBackColor = true;
+            this.btnImgLoc.Click += new System.EventHandler(this.btnImgLoc_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 322);
+            this.Controls.Add(this.btnImgLoc);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -42,6 +54,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnImgLoc;
     }
 }
 

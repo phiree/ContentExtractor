@@ -15,5 +15,10 @@ namespace Win
         {
             InitializeComponent();
         }
+
+        private void btnImgLoc_Click(object sender, EventArgs e)
+        {
+            new FmImageLocalizer().Show();
+        }
     }
 }

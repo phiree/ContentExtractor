@@ -26,11 +26,11 @@ namespace TddTest.Model.Rule
             ruleset.Rules.Add(rule1);
             ruleset.Rules.Add(rule2); ruleset.Rules.Add(rule3);
             ruleset.NeedImageLocalizer = true;
-            string raw=@"1<div>a</div>2<span>b</span>3<div id=img>
- <img src=""https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7@4x-hover.png?1337118071"" />
+            string raw= @"1<div>a</div>2<span>b</span>3<div id=img>
+ <img src=""http://www.tourol.com/Img/slide/1.png"" />
        
 </div>";
-            Assert.AreEqual("ab", ruleset.FilterUsingRuleSet(ref raw, false));
+            Assert.AreEqual(@"ab<img src=""http://www.tourol.com/Img/slide/1.png""", ruleset.FilterUsingRuleSet(ref raw, false));
 
             //输出为json格式
             RuleSet ruleset2 = new RuleSet();
