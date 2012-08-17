@@ -1,9 +1,0 @@
-D:\workspace\ContentExtractor\CE.BLL\bin\Debug\CE.BLL.dll
-D:\workspace\ContentExtractor\CE.BLL\bin\Debug\CE.BLL.pdb
-D:\workspace\ContentExtractor\CE.BLL\obj\Debug\ResolveAssemblyReference.cache
-D:\workspace\ContentExtractor\CE.BLL\obj\Debug\CE.BLL.dll
-D:\workspace\ContentExtractor\CE.BLL\obj\Debug\CE.BLL.pdb
-D:\workspace\ContentExtractor\CE.BLL\bin\Debug\CE.Model.dll
-D:\workspace\ContentExtractor\CE.BLL\bin\Debug\CE.Model.pdb
-D:\workspace\ContentExtractor\CE.BLL\bin\Debug\CE.Component.dll
-D:\workspace\ContentExtractor\CE.BLL\bin\Debug\CE.Component.pdb

@@ -51,7 +51,7 @@ namespace CE.Component
             Stream stream = null;
 
             try
-            {
+            { 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ImageUrl);
 
                 response = request.GetResponse();
