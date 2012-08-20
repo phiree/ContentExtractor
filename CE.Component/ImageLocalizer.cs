@@ -29,6 +29,17 @@ namespace CE.Component
         public ImageLocalizer(string imageUrl, string savePathPhy, string savePath, string savedFileName)
         {
             this.ImageUrl = imageUrl;
+            //保证路径均以\\或者/结尾
+            while (savePathPhy.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            { savePathPhy=savePathPhy.TrimEnd(Path.DirectorySeparatorChar); }
+    
+                savePathPhy += Path.DirectorySeparatorChar;
+            while (savePath.EndsWith("/"))
+            {
+                savePath=savePath.TrimEnd('/');
+                
+            }
+            savePath += "/";
             this.SavePath = savePath;
             this.SavedFileName = savedFileName;
             this.SavePathPhy = savePathPhy;

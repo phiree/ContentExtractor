@@ -17,16 +17,16 @@ namespace TddTest.BLL
         [Test]
         public void SavePhotoFromUrlTest()
         {
-            string savePath="/ScenicImg/";
+            string savePath="/ScenicImg";
             string savePathPhy=@"d:\testImageLocalizer\";
-            string savedFileName = Guid.NewGuid().ToString();
+            string savedFileName = "http://www.tourol.com/Img/slide/2.png".GetHashCode().ToString();
             ImageLocalizer localizer = new ImageLocalizer(
                 "http://www.tourol.com/Img/slide/2.png"
                 ,savePathPhy
                 , savePath
                 ,savedFileName);
         string actual= localizer.SavePhotoFromUrl();
-        Assert.AreEqual(savePath+ savedFileName+".png", actual);
+        Assert.AreEqual(savePath+"/"+ savedFileName+".png", actual);
         FileInfo file = new FileInfo(savePathPhy + savedFileName + ".png");
         Assert.IsTrue(file.Exists);
         Assert.IsTrue(file.LastAccessTime.AddSeconds(2) > DateTime.Now);

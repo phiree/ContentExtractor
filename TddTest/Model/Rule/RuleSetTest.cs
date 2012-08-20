@@ -20,17 +20,16 @@ namespace TddTest.Model.Rule
             BaseRule rule2 = new BeginEndRule("<span>", "</span>", false, false, true, true);
             rule2.RuleNo = 11;
             BaseRule rule3 = new BeginEndRule("<div id=img>", "</div>", false, false, true, true);
-            rule2.RuleNo = 12;
+            rule3.RuleNo = 12;
             RuleSet ruleset = new RuleSet();
             
             ruleset.Rules.Add(rule1);
-            ruleset.Rules.Add(rule2); ruleset.Rules.Add(rule3);
+            ruleset.Rules.Add(rule2); 
+            ruleset.Rules.Add(rule3);
             ruleset.NeedImageLocalizer = true;
-            string raw= @"1<div>a</div>2<span>b</span>3<div id=img>
- <img src=""http://www.tourol.com/Img/slide/1.png"" />
-       
-</div>";
-            Assert.AreEqual(@"ab<img src=""http://www.tourol.com/Img/slide/1.png""", ruleset.FilterUsingRuleSet(ref raw, false));
+            string raw= @"1<div>a</div>2<span>b</span>3
+<div id=img><img src=""http://www.tourol.com/Img/slide/1.png""/></div>";
+            Assert.AreEqual(@"ab<img src=""/FetchImages/" + Math.Abs( "http://www.tourol.com/Img/slide/1.png".GetHashCode())+ ".png\"/>", ruleset.FilterUsingRuleSet(ref raw, false));
 
             //输出为json格式
             RuleSet ruleset2 = new RuleSet();

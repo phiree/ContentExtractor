@@ -63,7 +63,7 @@ namespace CE.Domain.Rule
                         
                         , SiteConfig.SaveDirectoryForFetchedImages
                         ,SiteConfig.PathForFetchedImages
-                        ,Guid.NewGuid().ToString());
+                        ,Math.Abs(imageUrl.GetHashCode()).ToString());
                    string newImagePath= localizer.SavePhotoFromUrl();
                    completeResult = completeResult.Replace(imageUrl, newImagePath);
                 }

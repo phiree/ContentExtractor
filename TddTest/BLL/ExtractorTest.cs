@@ -14,11 +14,6 @@ namespace TddTest.BLL
     [TestFixture]
     public class ExtractorTest
     {
-        [Test]
-        public void SavePhotoFromUrlTest()
-        {
-            string rawUrl = "<b>content</b>";
-          //  FilterRuleInfo rule = new FilterRuleInfo
-        }
+        
     }
 }
