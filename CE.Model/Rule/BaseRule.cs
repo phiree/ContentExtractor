@@ -28,10 +28,6 @@ namespace CE.Domain.Rule
             Enabled = true;
            
         }
-        public void RemoveFilteredFromRaw()
-        { 
-            
-        }
         
         protected void FixFilteredContent(string filteredContent)
         {

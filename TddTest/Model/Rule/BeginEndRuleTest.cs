@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using CE.BLL;
 using CE.Domain.Rule;
 
 namespace TddTest.Model.Rule

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using CE.BLL;
+
 using System.IO;
 using CE.Component;
 namespace TddTest.BLL
