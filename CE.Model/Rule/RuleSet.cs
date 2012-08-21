@@ -27,6 +27,11 @@ namespace CE.Domain.Rule
 
         public RuleSet()
         {
+            Id = 0;
+            Name = string.Empty;
+            SetNo = 0;
+            Code = string.Empty;
+            NeedImageLocalizer = false;
             Rules = new List<BaseRule>();
         }
         /// <summary>

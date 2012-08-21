@@ -7,7 +7,6 @@ namespace IPersistence
 {
     public interface IRule
     {
-         void SaveRule(CE.Domain.Rule.BaseRule rule);
-        
+         void SaveRule(CE.Domain.Rule.RuleAssembly ruleAssembly);
     }
 }

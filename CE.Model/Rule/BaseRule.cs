@@ -19,6 +19,17 @@ namespace CE.Domain.Rule
         public string AppendAfter { get; set; }
         public bool Enabled { get; set; }
         public virtual  string FilterUsingRule(ref string rawContent){return string.Empty;}
+
+        public BaseRule()
+        {
+            Id = 0;
+            Name = string.Empty;
+            RuleNo = 0;
+            PreAppenddBefore = string.Empty;
+            AppendAfter = string.Empty;
+            Enabled = true;
+        }
+
         public BaseRule(int orderNumber,string preappendBefore
             ,string appendAfter)
         {

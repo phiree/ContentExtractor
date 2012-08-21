@@ -10,6 +10,7 @@ namespace CE.Domain.Rule
     public class RuleAssembly
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public List<Rule.RuleSet> RuleSets { get; set; }
         /// <summary>
         /// 规则集的集合,用于处理完整的html源码.
