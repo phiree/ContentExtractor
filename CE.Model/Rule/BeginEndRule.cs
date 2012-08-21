@@ -10,11 +10,7 @@ namespace CE.Domain.Rule
     /// </summary>
     public class BeginEndRule:BaseRule
     {
-        public string BeginMark
-        {
-            get;
-            set;
-        }
+        public string BeginMark{get;set;}
         public string EndMark { get; set; }
        /// <summary>
        /// 是否包含用于定位的字符串

@@ -56,7 +56,6 @@ namespace Win
             ruleset.Rules.Add(rule2);
             ruleset.Code = "Pro1";
 
-
             //第二个set
             BaseRule rule3 = new BeginEndRule("<div id=dv2>", "</div>", true, true, true, true);
             rule3.RuleNo = 10;
@@ -80,7 +79,14 @@ namespace Win
             assm.RuleSets.Add(ruleset2);
 
             IPersistence.IRule rule = new Persistence.Rule();
-            rule.SaveRule(assm);
+            rule.SaveRule(@"d:\" , assm);
+            MessageBox.Show("操作完成，请查看" + @"d:\" + assm.Name + ".xml");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            IPersistence.IRule rule = new Persistence.Rule();
+            rule.ReadRule(@"d:\", "sst");
         }
     }
 }

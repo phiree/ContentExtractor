@@ -7,6 +7,19 @@ namespace IPersistence
 {
     public interface IRule
     {
-         void SaveRule(CE.Domain.Rule.RuleAssembly ruleAssembly);
+        /// <summary>
+        /// 持久化rule
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="ruleAssembly"></param>
+        void SaveRule(string path, CE.Domain.Rule.RuleAssembly ruleAssembly);
+
+        /// <summary>
+        /// 读取rule
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="assemblyName"></param>
+        /// <returns></returns>
+        CE.Domain.Rule.RuleAssembly ReadRule(string path, string assemblyName);
     }
 }
