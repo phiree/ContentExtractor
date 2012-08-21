@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CE.Component", "CE.Componen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPersistence", "IPersistence\IPersistence.csproj", "{03385796-4B98-4B88-A663-2F7DA40F4403}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{1F256C3A-8F1D-4454-862F-6AE5E115C421}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{03385796-4B98-4B88-A663-2F7DA40F4403}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{03385796-4B98-4B88-A663-2F7DA40F4403}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{03385796-4B98-4B88-A663-2F7DA40F4403}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1F256C3A-8F1D-4454-862F-6AE5E115C421}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
