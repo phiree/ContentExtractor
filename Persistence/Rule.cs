@@ -272,11 +272,14 @@ namespace Persistence
             rassembly.RuleSets = rsetlist;
             return rassembly;
         }
-    }
 
-    public enum PersistenceWay
-    {
-        xml,
-        sql
+        /// <summary>
+        /// 根据传入的ruleassembly,将结果保存到execl中
+        /// </summary>
+        /// <param name="ruelassembly"></param>
+        public void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly)
+        {
+            
+        }
     }
 }

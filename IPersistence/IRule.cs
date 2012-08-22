@@ -21,5 +21,17 @@ namespace IPersistence
         /// <param name="assemblyName"></param>
         /// <returns></returns>
         CE.Domain.Rule.RuleAssembly ReadRule(string assemblyName);
+
+        /// <summary>
+        /// 根据传入的ruleassembly,将结果保存到execl中
+        /// </summary>
+        /// <param name="ruelassembly"></param>
+        void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly);
+    }
+
+    public enum PersistenceWay
+    {
+        xml,
+        sql
     }
 }

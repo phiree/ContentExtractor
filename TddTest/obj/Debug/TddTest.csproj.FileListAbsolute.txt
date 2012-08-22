@@ -31,3 +31,5 @@ E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\IPersistence.dll
 E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Persistence.dll
 E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\IPersistence.pdb
 E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Persistence.pdb
+E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Rhino.Mocks.dll
+E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Rhino.Mocks.xml

@@ -18,7 +18,7 @@ namespace TddTest.BLL
         public void GetResponseHtmlTest()
         {
 
-            Assert.IsTrue(ResponseHandler.GetResponseHtml("http://www.tourol.cn").IndexOf("浙江旅游") > 0);
+            Assert.IsTrue(new ResponseHandler().GetResponseHtml("http://www.tourol.cn").IndexOf("浙江旅游") > 0);
         
         }
     }

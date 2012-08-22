@@ -14,7 +14,8 @@ namespace CE.Component
       /// </summary>
       /// <param name="url"></param>
       /// <returns></returns>
-        public static string GetResponseHtml(string url)
+      /// <remarks>因为mock需要,将静态方法改成实例方法</remarks>
+        public string GetResponseHtml(string url)
         {
             string str = string.Empty;
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);

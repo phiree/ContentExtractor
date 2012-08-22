@@ -24,6 +24,15 @@ namespace CE.Domain.Rule
         public bool RemoveBegin { get; set; }
         public bool RemoveEnd { get; set; }
 
+        /// <summary>
+        /// 初始化规则
+        /// </summary>
+        /// <param name="beginmark"></param>
+        /// <param name="endmark"></param>
+        /// <param name="includeBegin"></param>
+        /// <param name="includeEnd"></param>
+        /// <param name="removeBegin"></param>
+        /// <param name="removeEnd"></param>
         public BeginEndRule(string beginmark,string endmark,bool includeBegin,bool includeEnd,bool removeBegin,bool removeEnd)
             :base(1,string.Empty,string.Empty)
         {
@@ -35,6 +44,11 @@ namespace CE.Domain.Rule
             RemoveEnd = removeEnd;
         }
        
+        /// <summary>
+        /// 根据规则, 过滤出结果
+        /// </summary>
+        /// <param name="rawContent"></param>
+        /// <returns></returns>
         public override string FilterUsingRule(ref string rawContent)
         {
             string filteredContent = rawContent;
