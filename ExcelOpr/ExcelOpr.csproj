@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9BE9423C-1343-486E-9B69-96FE1070642C}</ProjectGuid>
+    <ProjectGuid>{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CE.Component</RootNamespace>
-    <AssemblyName>CE.Component</AssemblyName>
+    <RootNamespace>ExcelOpr</RootNamespace>
+    <AssemblyName>ExcelOpr</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageLocalizer.cs" />
-    <Compile Include="Interface\IResponseHandler.cs" />
+    <Compile Include="Entity\ExcelEntity.cs" />
+    <Compile Include="Entity\TicketEntity.cs" />
+    <Compile Include="ExcelOpr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResponseHandler.cs" />
-    <Compile Include="TextHelper.cs" />
+    <Compile Include="Entity\ScenicEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

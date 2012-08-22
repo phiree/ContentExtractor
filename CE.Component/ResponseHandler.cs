@@ -5,9 +5,10 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using CE.Component.Interface;
 namespace CE.Component
 {
-  public  class ResponseHandler
+    public class ResponseHandler : IResponseHandler
     {
       /// <summary>
       /// webrequest获取目标页html源码

@@ -9,7 +9,7 @@ namespace CE.BLL
 {
     public class Extractor
     {
-        public ResponseHandler responseHandler
+        public CE.Component.Interface.IResponseHandler responseHandler
         {
             get;
             set;
@@ -18,9 +18,14 @@ namespace CE.BLL
         public string AnalysisUrl(string url)
         {
                 RuleAssembly ruleAssembly = GetRuleAssembly(url);
-                string htmlcode = responseHandler.GetResponseHtml("");
+                string htmlcode = responseHandler.GetResponseHtml(url);
                 string result = ruleAssembly.FilterUsingAssembly(htmlcode, false);
                 return result;
+        }
+
+        public string PersistenceToExcel(string url)
+        {
+            string result=AnalysisUrl(url);
         }
 
         /// <summary>
