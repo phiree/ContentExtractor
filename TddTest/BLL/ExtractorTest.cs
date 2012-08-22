@@ -55,7 +55,19 @@ namespace TddTest.BLL
             assm.RuleSets.Add(ruleset2);
 
             IPersistence.IRule rule = new Persistence.Rule();
-            rule.SaveRule(@"d:\",assm);
+            rule.SaveRule(@"d:\", assm);
+
+            //测试,是否存在该文件
+            Assert.IsTrue(File.Exists(@"d:\" + assm.Name + ".xml"));
+
+            //测试,是否达到指定行数
+            //(xml[1]+assembly[2]+rulesetNum[z]*(ruleProperty[x]+rulesetProperty[y]))
+            //x=12;y=4;z=2   得35
+            string[] filelines=File.ReadAllLines(@"d:\" + assm.Name + ".xml");
+            Assert.GreaterOrEqual(filelines.Count(),35);
+
+            //测试,第12行是否相同
+            Assert.AreEqual("<RuleNo>10</RuleNo>", filelines[11].Trim());
         }
     }
 }
