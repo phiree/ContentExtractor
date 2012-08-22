@@ -29,9 +29,20 @@ namespace ExcelOpr
             {
                 workbook1 = excel1.Workbooks.Add(true);
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
-                worksheet1 = (Worksheet)workbook1.Worksheets.Add(Type.Missing, workbook1.Worksheets[1], 1, Type.Missing);
+                worksheet1 = (Worksheet)workbook1.Worksheets.Add(Type.Missing, workbook1.Worksheets["sheet1"], 1, Type.Missing);
                 excel1.Visible = true;
-
+                worksheet1.Cells[1, 1] = "姓名";
+                worksheet1.Cells[1, 2] = "性别";
+                excel1.Visible = true;
+                excel1.DisplayAlerts = false;//不显示提示框
+                workbook1.Close(true, "d:\\1.xls", null);
+                //关闭
+                worksheet1 = null;
+                workbook1 = null;
+                excel1.Quit();
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excel1);
+                excel1 = null;
+                System.GC.Collect();
             }
             else
             {
