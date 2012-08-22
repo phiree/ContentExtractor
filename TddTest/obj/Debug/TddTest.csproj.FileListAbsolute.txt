@@ -33,3 +33,5 @@ E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\IPersistence.pdb
 E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Persistence.pdb
 E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Rhino.Mocks.dll
 E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\Rhino.Mocks.xml
+E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\ExcelOpr.dll
+E:\我的prj\GitHub2\ContentExtractor\TddTest\bin\Debug\ExcelOpr.pdb
