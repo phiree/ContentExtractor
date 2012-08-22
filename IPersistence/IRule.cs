@@ -12,7 +12,7 @@ namespace IPersistence
         /// </summary>
         /// <param name="path"></param>
         /// <param name="ruleAssembly"></param>
-        void SaveRule(string path, CE.Domain.Rule.RuleAssembly ruleAssembly);
+        void SaveRule(CE.Domain.Rule.RuleAssembly ruleAssembly);
 
         /// <summary>
         /// 读取rule
@@ -20,6 +20,6 @@ namespace IPersistence
         /// <param name="path"></param>
         /// <param name="assemblyName"></param>
         /// <returns></returns>
-        CE.Domain.Rule.RuleAssembly ReadRule(string path, string assemblyName);
+        CE.Domain.Rule.RuleAssembly ReadRule(string assemblyName);
     }
 }

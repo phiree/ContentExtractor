@@ -55,7 +55,7 @@ namespace TddTest.BLL
             assm.RuleSets.Add(ruleset2);
 
             IPersistence.IRule rule = new Persistence.Rule();
-            rule.SaveRule(@"d:\", assm);
+            rule.SaveRule(assm);
 
             //测试,是否存在该文件
             Assert.IsTrue(File.Exists(@"d:\" + assm.Name + ".xml"));

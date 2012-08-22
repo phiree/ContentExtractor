@@ -7,17 +7,38 @@ using System.Xml;
 using System.IO;
 namespace Persistence
 {
-    public class Rule:IRule
+    public class Rule : IRule
     {
+        public PersistenceWay Persistenceway { get; set; }
+        private string persistencepath;
+        public string PersistencePath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(persistencepath))
+                {
+                    return @"d:\";
+                }
+                else
+                {
+                    return persistencepath;
+                }
+            }
+            set
+            {
+                persistencepath = value;
+            }
+        }
+
         /// <summary>
         /// 持久化rule
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="PersistencePath"></param>
         /// <param name="ruleAssembly"></param>
-        public void SaveRule(string path,CE.Domain.Rule.RuleAssembly ruleAssembly)
+        public void SaveRule(CE.Domain.Rule.RuleAssembly ruleAssembly)
         {
             XmlDocument xmlDoc = new XmlDocument();
-            if (!File.Exists(path + ruleAssembly.Name + ".xml"))
+            if (!File.Exists(PersistencePath + ruleAssembly.Name + ".xml"))
             {
                 XmlDeclaration dec = xmlDoc.CreateXmlDeclaration("1.0", "GB2312", null);
                 xmlDoc.AppendChild(dec);
@@ -40,7 +61,7 @@ namespace Persistence
                     XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
                     foreach (var item in ruleset.Rules)
                     {
-                        CE.Domain.Rule.BeginEndRule ber=(CE.Domain.Rule.BeginEndRule)item;
+                        CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)item;
                         XmlElement xe2 = xmlDoc.CreateElement(ber.Name);
 
                         XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
@@ -86,33 +107,33 @@ namespace Persistence
                     xe1.AppendChild(xesub5);
                     root.AppendChild(xe1);
                 }
-                xmlDoc.Save(path + ruleAssembly.Name + ".xml");
+                xmlDoc.Save(PersistencePath + ruleAssembly.Name + ".xml");
             }
             else
             {
                 //xmlDoc.Load(path + ruleAssembly.Name + ".xml");
                 //删除文件.并重新调用本方法,创建一个新的xml保存文件
-                File.Delete(path + ruleAssembly.Name + ".xml");
-                SaveRule(@"d:\",ruleAssembly);
+                File.Delete(PersistencePath + ruleAssembly.Name + ".xml");
+                SaveRule(ruleAssembly);
             }
         }
 
         /// <summary>
         /// 读取rule
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="PersistencePath"></param>
         /// <param name="assemblyName"></param>
         /// <returns></returns>
-        public CE.Domain.Rule.RuleAssembly ReadRule(string path,string assemblyName)
+        public CE.Domain.Rule.RuleAssembly ReadRule(string assemblyName)
         {
-            CE.Domain.Rule.RuleAssembly  rassembly= new CE.Domain.Rule.RuleAssembly();
-            List<CE.Domain.Rule.RuleSet> rsetlist=new List<CE.Domain.Rule.RuleSet>();
+            CE.Domain.Rule.RuleAssembly rassembly = new CE.Domain.Rule.RuleAssembly();
+            List<CE.Domain.Rule.RuleSet> rsetlist = new List<CE.Domain.Rule.RuleSet>();
             CE.Domain.Rule.RuleSet rset = new CE.Domain.Rule.RuleSet();
             List<CE.Domain.Rule.BaseRule> berlist = new List<CE.Domain.Rule.BaseRule>();
             CE.Domain.Rule.BeginEndRule ber;
             //加载xml
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(path+assemblyName+".xml");
+            xmlDoc.Load(PersistencePath + assemblyName + ".xml");
             //xn整篇
             XmlNode assembly = xmlDoc.SelectSingleNode(assemblyName);
             //xnl各个ruleset
@@ -141,29 +162,29 @@ namespace Persistence
                     }
                     if (item2.Name == "RuleSetSetNo")
                     {
-                        rset.SetNo = int.Parse(item2.InnerText==string.Empty ? "False" : item2.InnerText);
+                        rset.SetNo = int.Parse(item2.InnerText == string.Empty ? "False" : item2.InnerText);
                         continue;
                     }
                     if (item2.Name == "RuleSetRules")
                     {
                         //rules
-                        XmlNodeList rulesinset =item2.ChildNodes;
+                        XmlNodeList rulesinset = item2.ChildNodes;
                         #region rule
                         foreach (XmlNode rule in rulesinset)
                         {
                             //单个rule
-                            XmlNodeList rulenodes=rule.ChildNodes;
-                            string  Id= string.Empty;
-                            string  Name= string.Empty;
-                            string  RuleNo= string.Empty;
-                            string  PreAppenddBefore= string.Empty;
+                            XmlNodeList rulenodes = rule.ChildNodes;
+                            string Id = string.Empty;
+                            string Name = string.Empty;
+                            string RuleNo = string.Empty;
+                            string PreAppenddBefore = string.Empty;
                             string AppendAfter = string.Empty;
                             string Enabled = string.Empty;
                             string BeginMark = string.Empty;
                             string EndMark = string.Empty;
-                            bool  IncludeBeginMark=false;
-                            bool IncludeEndMark=false;
-                            bool RemoveBegin=false;
+                            bool IncludeBeginMark = false;
+                            bool IncludeEndMark = false;
+                            bool RemoveBegin = false;
                             bool RemoveEnd = false;
                             foreach (XmlNode rulenode in rulenodes)
                             {
@@ -251,5 +272,11 @@ namespace Persistence
             rassembly.RuleSets = rsetlist;
             return rassembly;
         }
+    }
+
+    public enum PersistenceWay
+    {
+        xml,
+        sql
     }
 }
