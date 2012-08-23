@@ -40,7 +40,7 @@ namespace ExcelOpr
             }
         }
 
-        public void Persistence2Excel(int row,string htmlPragraph)
+        public void Persistence2Excel(int row, string htmlPragraph)
         {
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
             Workbook workbook1;
@@ -75,7 +75,7 @@ namespace ExcelOpr
             string[] result = htmlPragraph.Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < result.Length; i++)
             {
-                worksheet1.Cells[row, i+1] = result[i];
+                worksheet1.Cells[row, i + 1] = result[i];
             }
             //excel属性
             excel1.Visible = false;
@@ -114,12 +114,7 @@ namespace ExcelOpr
                     if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
 
                     //对景区详情处理
-                    //string[] srclist = GetPiclist(dt.Rows[i][0].ToString().Replace("\n", "").Trim()).Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
                     string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
-                    //for (int j = 0; j < srclist.Length / 2; j++)
-                    //{
-                    //    scdetail = scdetail.Replace(srclist[j], srclist[j + srclist.Length / 2]);
-                    //}
 
                     //如果excel中的行不为空,添加
                     slist.Add(new Entity.ScenicEntity()

@@ -58,6 +58,12 @@
     <Compile Include="FmImageLocalizer.Designer.cs">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmUrl2Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUrl2Excel.Designer.cs">
+      <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -65,6 +71,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FmImageLocalizer.resx">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUrl2Excel.resx">
+      <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

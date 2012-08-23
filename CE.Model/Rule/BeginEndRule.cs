@@ -59,8 +59,12 @@ namespace CE.Domain.Rule
             //断言:标记在文中唯一
             //开始标记--结束标记 是否包括,攫取后添加的头部标签.的尾部
             int startIndex = filteredContent.IndexOf(this.BeginMark, StringComparison.OrdinalIgnoreCase);
-            int endIndex = rawContent.IndexOf(this.EndMark);
-            if (startIndex == -1 || endIndex == -1)
+            if (startIndex == -1)
+            {
+                return filteredContent;
+            }
+            int endIndex = rawContent.IndexOf(this.EndMark,startIndex);
+            if (endIndex == -1)
                 return filteredContent;
             filteredContent = rawContent.Substring(startIndex + this.BeginMark.Length, endIndex - startIndex - this.BeginMark.Length);
 

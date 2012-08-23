@@ -30,6 +30,11 @@ namespace Persistence
             }
         }
 
+        public Rule(string persistencepath)
+        {
+            this.PersistencePath = persistencepath;
+        }
+
         /// <summary>
         /// 持久化rule
         /// </summary>
@@ -129,7 +134,7 @@ namespace Persistence
             CE.Domain.Rule.RuleAssembly rassembly = new CE.Domain.Rule.RuleAssembly();
             List<CE.Domain.Rule.RuleSet> rsetlist = new List<CE.Domain.Rule.RuleSet>();
             CE.Domain.Rule.RuleSet rset = new CE.Domain.Rule.RuleSet();
-            List<CE.Domain.Rule.BaseRule> berlist = new List<CE.Domain.Rule.BaseRule>();
+            List<CE.Domain.Rule.BaseRule> berlist;
             CE.Domain.Rule.BeginEndRule ber;
             //加载xml
             XmlDocument xmlDoc = new XmlDocument();
@@ -149,6 +154,7 @@ namespace Persistence
                 #region ruleset
                 foreach (XmlNode item2 in rulesetnode)
                 {
+                    berlist = new List<CE.Domain.Rule.BaseRule>();
                     //单个ruleset属性
                     if (item2.Name == "RuleSetId")
                     {

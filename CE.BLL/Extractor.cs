@@ -4,29 +4,51 @@ using System.Linq;
 using System.Text;
 using CE.Component;
 using CE.Domain.Rule;
+using IPersistence;
+using System.IO;
 
 namespace CE.BLL
 {
     public class Extractor
     {
+        private CE.Component.Interface.IResponseHandler responsehandler;
         public CE.Component.Interface.IResponseHandler responseHandler
         {
-            get;
-            set;
+            get {
+                if (null == responsehandler)
+                {
+                    responsehandler = new CE.Component.ResponseHandler();
+                }
+                return responsehandler;
+            }
+            set {
+                responsehandler = value;
+            }
         }
+
+        private RuleAssembly ruleassembly;
 
         public string AnalysisUrl(string url)
         {
-                RuleAssembly ruleAssembly = GetRuleAssembly(url);
-                string htmlcode = responseHandler.GetResponseHtml(url);
-                string result = ruleAssembly.FilterUsingAssembly(htmlcode, false);
-                return result;
+            //RuleAssembly ruleAssembly = GetRuleAssembly(url);
+            string htmlcode = responseHandler.GetResponseHtml(url);
+            string result = ruleassembly.FilterUsingAssembly(htmlcode, false);
+            return result;
         }
 
-        public string PersistenceToExcel(string url)
+        public void PersistenceToExcel(List<string> url,string rulepath,string savepath)
         {
-            string result=AnalysisUrl(url);
-            return null;
+            IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulepath));
+            ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulepath));
+            ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
+            //获取
+            //
+            for (int i = 0; i < url.Count; i++)
+            {
+                string result = AnalysisUrl(url[i]);
+                result = ruleassembly.FilterUsingAssembly(result, false);
+                excelopr.Persistence2Excel(i + 2, result);
+            }
         }
 
         /// <summary>

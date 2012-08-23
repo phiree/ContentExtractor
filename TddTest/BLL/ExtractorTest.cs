@@ -71,5 +71,19 @@ namespace TddTest.BLL
 
             Assert.AreEqual("仙都风景名胜区$AAAA$",extractor.AnalysisUrl(""));
         }
+
+        [Test]
+        public void PersistenceToExcel()
+        { 
+            List<string> urls = new List<string>(){
+                "http://www.17u.cn/scenery/BookSceneryTicket_2851.html",
+                "http://www.17u.cn/scenery/BookSceneryTicket_20730.html",
+                "http://www.17u.cn/scenery/BookSceneryTicket_6270.html"
+            };
+            string rulepath = @"D:\tongcheng.xml";
+            string savepath = @"e:\";
+            CE.BLL.Extractor extractor = new CE.BLL.Extractor();
+            extractor.PersistenceToExcel(urls, rulepath, savepath);
+        }
     }
 }
