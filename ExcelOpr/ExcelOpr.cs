@@ -43,21 +43,21 @@ namespace ExcelOpr
         public void Persistence2Excel(int row, string htmlPragraph)
         {
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
-            Workbook workbook1;
-            Worksheet worksheet1;
+            Workbook workbook1=null;
+            Worksheet worksheet1=null;
             if (!File.Exists(@"d:\sst.xls"))
             {
-                workbook1 = excel1.Workbooks.Add(true);
+                workbook1 = excel1.Workbooks.Add(Missing.Value);
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
-                worksheet1 = (Worksheet)workbook1.Worksheets.Add(Type.Missing, workbook1.Worksheets["sheet1"], 1, Type.Missing);
                 excel1.Visible = false;
             }
             else
             {
                 workbook1 = excel1.Workbooks.Open(@"d:\sst.xls", Type.Missing, Type.Missing, Type.Missing,
-                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                    Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
             }
             //赋值给title
             worksheet1.Cells[1, 1] = "名称";
@@ -99,7 +99,7 @@ namespace ExcelOpr
             try
             {
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\sst.xls;Extended Properties=Excel 8.0;";
+                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\sst.xls;Extended Properties=Excel 12.0;";
                 //Sheet1为excel中表的名字
                 string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));

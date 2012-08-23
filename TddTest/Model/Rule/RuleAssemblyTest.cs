@@ -129,6 +129,11 @@ namespace TddTest.Model.Rule
             #endregion
 
             Assert.AreEqual("仙都风景名胜区$AAAA$",
+                assm.FilterUsingAssembly(content, false));
+            Assert.AreEqual("{title:\"仙都风景名胜区\"$level:\"AAAA\"$}",
+                assm.FilterUsingAssembly(content, true));
+
+            Assert.AreEqual("仙都风景名胜区$AAAA$",
                 assm.FilterUsingAssembly(content2, false));
             Assert.AreEqual("{title:\"仙都风景名胜区\"$level:\"AAAA\"$}",
                 assm.FilterUsingAssembly(content2, true));
