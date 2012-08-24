@@ -19,9 +19,9 @@ namespace TddTest.BLL
         {
             string savePath="/ScenicImg";
             string savePathPhy=@"d:\testImageLocalizer\";
-            string savedFileName = "http://www.tourol.com/Img/slide/2.png".GetHashCode().ToString();
+            string savedFileName = "http://www.tourol.cn/Img/slide/2.png".GetHashCode().ToString();
             ImageLocalizer localizer = new ImageLocalizer(
-                "http://www.tourol.com/Img/slide/2.png"
+                "http://www.tourol.cn/Img/slide/2.png"
                 ,savePathPhy
                 , savePath
                 ,savedFileName);

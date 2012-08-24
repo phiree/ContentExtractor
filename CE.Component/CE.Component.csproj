@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlHandler.cs" />
     <Compile Include="ImageLocalizer.cs" />
     <Compile Include="Interface\IResponseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

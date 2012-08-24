@@ -50,6 +50,18 @@ namespace ExcelOpr
                 workbook1 = excel1.Workbooks.Add(Missing.Value);
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
                 excel1.Visible = false;
+                //赋值给title
+                worksheet1.Cells[1, 1] = "名称";
+                worksheet1.Cells[1, 2] = "等级";
+                worksheet1.Cells[1, 3] = "景区地址";
+                worksheet1.Cells[1, 4] = "seoname";
+                worksheet1.Cells[1, 5] = "区域";
+                worksheet1.Cells[1, 6] = "景区主题";
+                worksheet1.Cells[1, 7] = "topicseo";
+                worksheet1.Cells[1, 8] = "交通指南";
+                worksheet1.Cells[1, 9] = "订票说明";
+                worksheet1.Cells[1, 10] = "景区详情";
+                worksheet1.Cells[1, 11] = "景区简介";
             }
             else
             {
@@ -59,20 +71,8 @@ namespace ExcelOpr
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
                 excel1.Visible = false;
             }
-            //赋值给title
-            worksheet1.Cells[1, 1] = "名称";
-            worksheet1.Cells[1, 2] = "等级";
-            worksheet1.Cells[1, 3] = "景区地址";
-            worksheet1.Cells[1, 4] = "seoname";
-            worksheet1.Cells[1, 5] = "区域";
-            worksheet1.Cells[1, 6] = "景区主题";
-            worksheet1.Cells[1, 7] = "topicseo";
-            worksheet1.Cells[1, 8] = "交通指南";
-            worksheet1.Cells[1, 9] = "订票说明";
-            worksheet1.Cells[1, 10] = "景区详情";
-            worksheet1.Cells[1, 11] = "景区简介";
             //赋值给单元格
-            string[] result = htmlPragraph.Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] result = htmlPragraph.Split(new string[] { "$#$" },12,StringSplitOptions.None);
             for (int i = 0; i < result.Length; i++)
             {
                 worksheet1.Cells[row, i + 1] = result[i];
@@ -98,8 +98,9 @@ namespace ExcelOpr
         {
             try
             {
+                //一个现象, wps的excel文件是et结尾.  微软的excel是以elsx结尾
                 //path即是excel文档的路径。
-                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\sst.xls;Extended Properties=Excel 12.0;";
+                string conn = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= d:\sst.xls;Extended Properties=Excel 8.0;";
                 //Sheet1为excel中表的名字
                 string sql = "select 名称,seoname,区域,景区主题,交通指南,订票说明,景区详情,等级,景区地址,topicseo,景区简介 from [Sheet1$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));

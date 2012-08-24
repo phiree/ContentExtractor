@@ -27,7 +27,7 @@ namespace CE.Domain.Rule
             RuleSets.Sort(SortCompare);
             foreach (RuleSet ruleset in RuleSets)
             {
-                result += ruleset.FilterUsingRuleSet(ref rawContent, returnJsonFormat)+"$";
+                result += ruleset.FilterUsingRuleSet(ref rawContent, returnJsonFormat) + "$#$";
             }
             if (!string.IsNullOrEmpty(result))
             {

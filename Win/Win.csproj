@@ -58,6 +58,12 @@
     <Compile Include="FmImageLocalizer.Designer.cs">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmHtml2Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHtml2Excel.Designer.cs">
+      <DependentUpon>FrmHtml2Excel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUrl2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FmImageLocalizer.resx">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHtml2Excel.resx">
+      <DependentUpon>FrmHtml2Excel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUrl2Excel.resx">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>

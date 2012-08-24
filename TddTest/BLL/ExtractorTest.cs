@@ -67,9 +67,10 @@ namespace TddTest.BLL
             CE.BLL.Extractor extractor = new CE.BLL.Extractor();
             CE.Component.Interface.IResponseHandler responseHandler = MockRepository.GenerateMock<CE.Component.Interface.IResponseHandler>();
             responseHandler.Stub(x => x.GetResponseHtml("")).Return(content);
+            extractor.ruleassembly = assm;
             extractor.responseHandler = responseHandler;
 
-            Assert.AreEqual("仙都风景名胜区$AAAA$",extractor.AnalysisUrl(""));
+            Assert.AreEqual("仙都风景名胜区$#$AAAA$#$", extractor.AnalysisUrl(""));
         }
 
         [Test]

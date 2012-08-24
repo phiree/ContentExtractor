@@ -67,12 +67,12 @@ namespace TddTest.Model.Rule
                                         + "<a href=\"http://www.17u.com/special/yanke/\" target=\"_blank\" title=\"什么是验客大赛？\" rel=\"nofollow\">(什么是验客大赛?)</a>"
                                         + "</p></div></div></span></div></div></div><span class=\"list_sale\" id=\"last_sale\" style=\"display: block; \"><span id=\"last_sale_t\">8分钟</span>前有人预订了该景点</span></div>";
             
-            string content2="<!-- 右侧导航 end  -->            	"
+            string content2="<!-- 右侧导航 end  -->"
 			+"<!--标签、幻灯片、点评滚动 start -->"
 			+"<div class=\"jqlast_main\">"
                 +"<!--标签start -->"
                 +"<div class=\"udiy\" id=\"udiy-tag\"><div id=\"portal-frame-16753065536\"  class=\"udiyframe frame-1\" ><div id=\"portal-frame-16753065536-left\" class=\"udiycolumn frame-1-c\"><div id=\"portal-block-445000270656\" class=\"udiyblock\"  type=\"CommonSource\"> <div id=\"jqlast_maincontent\" class=\"jqlast_main_title\">"
-    +"          <h1>"
+    +"<h1>"
         +"仙都风景名胜区</h1>"
         	        +"<span class=\"grade\">AAAA</span>"
         		+"<span onmouseover=\"show_dk(event,this)\" onmouseout=\"hide_dk()\" class=\"cosPicLast s_dpjj_img\"></span>"
@@ -128,14 +128,14 @@ namespace TddTest.Model.Rule
 
             #endregion
 
-            Assert.AreEqual("仙都风景名胜区$AAAA$",
+            Assert.AreEqual("仙都风景名胜区$#$AAAA$#$",
                 assm.FilterUsingAssembly(content, false));
-            Assert.AreEqual("{title:\"仙都风景名胜区\"$level:\"AAAA\"$}",
+            Assert.AreEqual("{title:\"仙都风景名胜区\"$#$level:\"AAAA\"$#$}",
                 assm.FilterUsingAssembly(content, true));
 
-            Assert.AreEqual("仙都风景名胜区$AAAA$",
+            Assert.AreEqual("仙都风景名胜区$#$AAAA$#$",
                 assm.FilterUsingAssembly(content2, false));
-            Assert.AreEqual("{title:\"仙都风景名胜区\"$level:\"AAAA\"$}",
+            Assert.AreEqual("{title:\"仙都风景名胜区\"$#$level:\"AAAA\"$#$}",
                 assm.FilterUsingAssembly(content2, true));
         }
 

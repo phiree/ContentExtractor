@@ -26,8 +26,8 @@ namespace TddTest.Model.Rule
             ruleset.Rules.Add(rule2); 
             ruleset.Rules.Add(rule3);
             ruleset.NeedImageLocalizer = true;
-            string raw= @"1<div>a</div>2<span>b</span>3<div id=img><img src=""http://www.tourol.com/Img/slide/1.png""/></div>";
-            Assert.AreEqual(@"ab<img src=""/FetchImages/" + Math.Abs( "http://www.tourol.com/Img/slide/1.png".GetHashCode())+ ".png\"/>", ruleset.FilterUsingRuleSet(ref raw, false));
+            string raw= @"1<div>a</div>2<span>b</span>3<div id=img><img src=""http://www.tourol.cn/Img/slide/1.png""/></div>";
+            Assert.AreEqual(@"ab<img src=""/FetchImages/" + Math.Abs( "http://www.tourol.cn/Img/slide/1.png".GetHashCode())+ ".png\"/>", ruleset.FilterUsingRuleSet(ref raw, false));
 
             //输出为json格式
             RuleSet ruleset2 = new RuleSet();

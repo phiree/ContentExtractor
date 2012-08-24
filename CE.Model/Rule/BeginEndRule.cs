@@ -61,11 +61,11 @@ namespace CE.Domain.Rule
             int startIndex = filteredContent.IndexOf(this.BeginMark, StringComparison.OrdinalIgnoreCase);
             if (startIndex == -1)
             {
-                return filteredContent;
+                return string.Empty;
             }
             int endIndex = rawContent.IndexOf(this.EndMark,startIndex);
             if (endIndex == -1)
-                return filteredContent;
+                return string.Empty;
             filteredContent = rawContent.Substring(startIndex + this.BeginMark.Length, endIndex - startIndex - this.BeginMark.Length);
 
             if (this.IncludeBeginMark)

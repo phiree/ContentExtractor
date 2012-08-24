@@ -14,19 +14,22 @@ namespace CE.BLL
         private CE.Component.Interface.IResponseHandler responsehandler;
         public CE.Component.Interface.IResponseHandler responseHandler
         {
-            get {
+            get
+            {
                 if (null == responsehandler)
                 {
                     responsehandler = new CE.Component.ResponseHandler();
                 }
                 return responsehandler;
             }
-            set {
+            set
+            {
                 responsehandler = value;
             }
         }
+        public RuleAssembly ruleassembly { get; set; }
 
-        private RuleAssembly ruleassembly;
+        private HtmlHandler htmlHandler=new HtmlHandler(); 
 
         public string AnalysisUrl(string url)
         {
@@ -36,7 +39,7 @@ namespace CE.BLL
             return result;
         }
 
-        public void PersistenceToExcel(List<string> url,string rulepath,string savepath)
+        public void PersistenceToExcel(List<string> url, string rulepath, string savepath)
         {
             IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulepath));
             ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulepath));
@@ -47,6 +50,31 @@ namespace CE.BLL
             {
                 string result = AnalysisUrl(url[i]);
                 result = ruleassembly.FilterUsingAssembly(result, false);
+                excelopr.Persistence2Excel(i + 2, result);
+            }
+        }
+
+        public void Persistence2Excel8Html(string htmlPath,string rulePath,string savePath)
+        {
+            List<string> htmllist = new List<string>();
+            if (Directory.Exists(htmlPath))
+            {
+                foreach (string d in Directory.GetFileSystemEntries(htmlPath))
+                {
+                        htmllist.Add(d);
+                }
+            }
+            else
+            {
+                return;
+            }  
+            IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulePath));
+            ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulePath));
+            ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
+            for (int i = 0; i < htmllist.Count; i++)
+            {
+                string html=htmlHandler.ReadHtml(htmllist[i]);
+                string result = ruleassembly.FilterUsingAssembly(html, false);
                 excelopr.Persistence2Excel(i + 2, result);
             }
         }
