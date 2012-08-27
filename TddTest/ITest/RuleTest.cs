@@ -66,16 +66,18 @@ namespace TddTest.ITest
         [Test]
         public void SaveRule17U()
         {
-            #region 模拟2个ruleset
+            #region 模拟11个ruleset
 
             //第1个条件
-            BaseRule rule1 = new BeginEndRule("<div class=\"Name\">", "</h1>", false, false, true, true);
+            BaseRule rule1 = new BeginEndRule(@"<div class=""Name"">
+					<h1>", "</h1>", false, false, true, true);
             rule1.RuleNo = 10;
             rule1.Name = "标题rule";
             RuleSet ruleset = new RuleSet();
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
+            ruleset.NeedImageLocalizer = true;
 
 
             //第2个条件
@@ -86,6 +88,7 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
+            ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -95,24 +98,35 @@ namespace TddTest.ITest
             ruleset3.Name = "景区地址";
             ruleset3.Rules.Add(rule3);
             ruleset3.Code = "scenicadd";
+            ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
-            BaseRule rule4 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
+            BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
             rule4.RuleNo = 10;
             rule4.Name = "seonamerule";
             RuleSet ruleset4 = new RuleSet();
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
+            ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
-            BaseRule rule5 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
+            BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
             rule5.RuleNo = 10;
-            rule5.Name = "区域rule";
+            rule5.Name = "seonamerule0";
+            BaseRule rule51 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
+            rule51.RuleNo = 12;
+            rule51.Name = "seonamerule1";
+            BaseRule rule52 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
+            rule52.RuleNo = 12;
+            rule52.Name = "seonamerule2";
             RuleSet ruleset5 = new RuleSet();
-            ruleset5.Name = "区域";
+            ruleset5.Name = "seoname";
             ruleset5.Rules.Add(rule5);
-            ruleset5.Code = "areacode";
+            ruleset5.Rules.Add(rule51);
+            ruleset5.Rules.Add(rule52);
+            ruleset5.Code = "seoname";
+            ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -122,6 +136,7 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
+            ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -131,6 +146,7 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
+            ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule("<div class=\"drive_way\">", "</div>", false, false, true, true);
@@ -140,24 +156,27 @@ namespace TddTest.ITest
             ruleset8.Name = "交通指南";
             ruleset8.Rules.Add(rule8);
             ruleset8.Code = "trafficeintro";
+            ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
-            BaseRule rule9 = new BeginEndRule("<div class=\"bd\">", "<div class=\"point_intro\" id=\"jieshao\">", false, false, true, true);
+            BaseRule rule9 = new BeginEndRule("<div class=\"point_intro\" id=\"xuzhi\">", "<div class=\"point_intro\" id=\"jieshao\">", true, false, true, true);
             rule9.RuleNo = 10;
             rule9.Name = "订票说明rule";
             RuleSet ruleset9 = new RuleSet();
             ruleset9.Name = "订票说明";
             ruleset9.Rules.Add(rule9);
             ruleset9.Code = "bookintro";
+            ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
-            BaseRule rule10 = new BeginEndRule("<DL class=intro_information>", "<H4 class=intro_head>", false, false, true, true);
+            BaseRule rule10 = new BeginEndRule("<DL class=intro_information>", "<H4 class=intro_head>", true, false, true, true);
             rule10.RuleNo = 10;
             rule10.Name = "景区详情rule";
             RuleSet ruleset10 = new RuleSet();
             ruleset10.Name = "景区详情";
             ruleset10.Rules.Add(rule10);
             ruleset.Code = "scenicdetail";
+            ruleset10.NeedImageLocalizer = true;
 
             //第11个条件
             BaseRule rule11 = new BeginEndRule("fdsafsdfsd", "</h1>", false, false, true, true);
@@ -167,6 +186,7 @@ namespace TddTest.ITest
             ruleset11.Name = "景区简介";
             ruleset11.Rules.Add(rule11);
             ruleset.Code = "scenicintro";
+            ruleset11.NeedImageLocalizer = true;
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -254,7 +274,7 @@ namespace TddTest.ITest
             #region 读一个xml
 
             CE.Domain.Rule.RuleAssembly ra = rule.ReadRule(assm.Name);
-            CE.Domain.Rule.BeginEndRule ber=(CE.Domain.Rule.BeginEndRule)ra.RuleSets[0].Rules[0];
+            CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)ra.RuleSets[0].Rules[0];
             Assert.AreEqual(ber.Name, "标题rule");
             Assert.AreEqual(ber.RuleNo.ToString(), "10");
             Assert.AreEqual(ber.Enabled.ToString(), "True");

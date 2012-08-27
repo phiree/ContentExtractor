@@ -45,7 +45,7 @@ namespace ExcelOpr
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
             Workbook workbook1=null;
             Worksheet worksheet1=null;
-            if (!File.Exists(@"d:\sst.xls"))
+            if (!File.Exists(SavePath))
             {
                 workbook1 = excel1.Workbooks.Add(Missing.Value);
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
@@ -65,7 +65,7 @@ namespace ExcelOpr
             }
             else
             {
-                workbook1 = excel1.Workbooks.Open(@"d:\sst.xls", Type.Missing, Type.Missing, Type.Missing,
+                workbook1 = excel1.Workbooks.Open(SavePath, Type.Missing, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
@@ -75,6 +75,22 @@ namespace ExcelOpr
             string[] result = htmlPragraph.Split(new string[] { "$#$" },12,StringSplitOptions.None);
             for (int i = 0; i < result.Length; i++)
             {
+                if (i == 1)
+                {
+                    if (!string.IsNullOrEmpty(result[i]))
+                    {
+                        int count = result[i].Length;
+                        result[i] = count.ToString() + "A";
+                    }
+                }
+                if (i == 4)
+                {
+                    if (!string.IsNullOrEmpty(result[i]))
+                    {
+                        string[] area = result[i].Split(new string[] { "景区门票" }, StringSplitOptions.RemoveEmptyEntries);
+                        result[i] = area[0] + "省" + area[1] + "市";
+                    }
+                }
                 worksheet1.Cells[row, i + 1] = result[i];
             }
             //excel属性

@@ -64,6 +64,12 @@
     <Compile Include="FrmHtml2Excel.Designer.cs">
       <DependentUpon>FrmHtml2Excel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRule.Designer.cs">
+      <DependentUpon>FrmRule.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUrl2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmHtml2Excel.resx">
       <DependentUpon>FrmHtml2Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRule.resx">
+      <DependentUpon>FrmRule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUrl2Excel.resx">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
