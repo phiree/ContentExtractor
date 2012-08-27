@@ -15,11 +15,17 @@ namespace Win
     public partial class FrmRule : Form
     {
         IRule rule = null;
+        RuleAssembly ruleAssemly = null;
         public FrmRule()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 修改rule
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in rulelist.Items)
@@ -34,17 +40,42 @@ namespace Win
             }
         }
 
+        /// <summary>
+        /// 取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 添加ruleset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             rtxtBegin.Text = string.Empty;
             rtxtEnd.Text = string.Empty;
+            FrmRulenew frm = new FrmRulenew();
+            frm.ShowDialog();
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                RuleSet rs = new RuleSet();
+                rs.Name = frm.txtName.Text;
+                rs.Rules.Add(new BeginEndRule(rtxtBegin.Text,rtxtEnd.Text,true,false,false,false));
+                ruleAssemly.RuleSets.Add(rs);
+                loadRulelist(ruleAssemly);
+            }
         }
 
+        /// <summary>
+        /// 删除ruleset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDel_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in rulelist.Items)
@@ -57,6 +88,11 @@ namespace Win
             }
         }
 
+        /// <summary>
+        /// 打开ruleassembly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsbtnOpen_Click(object sender, EventArgs e)
         {
             rulelist.Items.Clear();
@@ -71,9 +107,27 @@ namespace Win
             if (openFileDialog1.ShowDialog() != DialogResult.OK)
                 return;
             string path = openFileDialog1.FileName;
-            loadRulelist(path);
+            loadPath(path);
         }
 
+        /// <summary>
+        /// 新建ruleset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsbtnNew_Click(object sender, EventArgs e)
+        {
+            rtxtBegin.Text = string.Empty;
+            rtxtEnd.Text = string.Empty;
+            rulelist.Items.Clear();
+            ruleAssemly = null;
+        }
+
+        /// <summary>
+        /// 保存ruleassembly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsbtnSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -89,16 +143,29 @@ namespace Win
             }
         }
 
-        RuleAssembly ruleAssemly = null;
-        private void loadRulelist(string path)
+        /// <summary>
+        /// 路径加载
+        /// </summary>
+        /// <param name="path"></param>
+        private void loadPath(string path)
         {
             rule = new Persistence.Rule(Path.GetDirectoryName(path));
             ruleAssemly = rule.ReadRule(Path.GetFileNameWithoutExtension(path));
+            loadRulelist(ruleAssemly);
+        }
+
+        /// <summary>
+        /// 加载ruleassembly
+        /// </summary>
+        /// <param name="ruleAssemly"></param>
+        private void loadRulelist(RuleAssembly ruleAssemly)
+        {
             foreach (RuleSet ruleset in ruleAssemly.RuleSets)
             {
                 ListViewItem lvi=rulelist.Items.Add(ruleset.Name);
             }
         }
+
 
         private void rulelist_Click(object sender, EventArgs e)
         {
