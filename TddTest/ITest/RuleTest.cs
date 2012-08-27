@@ -175,7 +175,7 @@ namespace TddTest.ITest
             RuleSet ruleset10 = new RuleSet();
             ruleset10.Name = "景区详情";
             ruleset10.Rules.Add(rule10);
-            ruleset.Code = "scenicdetail";
+            ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
 
             //第11个条件
@@ -185,8 +185,18 @@ namespace TddTest.ITest
             RuleSet ruleset11 = new RuleSet();
             ruleset11.Name = "景区简介";
             ruleset11.Rules.Add(rule11);
-            ruleset.Code = "scenicintro";
+            ruleset11.Code = "scenicintro";
             ruleset11.NeedImageLocalizer = true;
+
+            //第12个条件
+            BaseRule rule12 = new RegexRule("aa123");
+            rule12.RuleNo = 10;
+            rule12.Name = "价格rule";
+            RuleSet ruleset12 = new RuleSet();
+            ruleset12.Name = "价格";
+            ruleset12.Rules.Add(rule12);
+            ruleset12.Code = "scenicprice";
+            ruleset12.NeedImageLocalizer = true;
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -202,6 +212,7 @@ namespace TddTest.ITest
             ruleset9.SetNo = 19;
             ruleset10.SetNo = 20;
             ruleset11.SetNo = 21;
+            ruleset12.SetNo = 22;
             assm.RuleSets.Add(ruleset);
             assm.RuleSets.Add(ruleset2);
             assm.RuleSets.Add(ruleset3);
@@ -213,6 +224,7 @@ namespace TddTest.ITest
             assm.RuleSets.Add(ruleset9);
             assm.RuleSets.Add(ruleset10);
             assm.RuleSets.Add(ruleset11);
+            assm.RuleSets.Add(ruleset12);
 
             #endregion
 
@@ -239,7 +251,7 @@ namespace TddTest.ITest
             #region 写一个xml
             #region 模拟2个ruleset
 
-            //第2个条件
+            //第1个set
             BaseRule rule1 = new BeginEndRule("<div id=\"jqlast_maincontent\" class=\"jqlast_main_title\"><h1>", "</h1>", false, false, true, true);
             rule1.RuleNo = 10;
             rule1.Name = "标题rule";
@@ -249,22 +261,33 @@ namespace TddTest.ITest
             ruleset.Code = "title";
 
 
-            //第二个set
-            BaseRule rule3 = new BeginEndRule("<span class=\"grade\">", "</span>", false, false, true, true);
-            rule3.RuleNo = 10;
-            rule3.Name = "等级rule";
+            //第2个set
+            BaseRule rule2 = new BeginEndRule("<span class=\"grade\">", "</span>", false, false, true, true);
+            rule2.RuleNo = 10;
+            rule2.Name = "等级rule";
             RuleSet ruleset2 = new RuleSet();
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
-            ruleset2.Rules.Add(rule3);
+            ruleset2.Rules.Add(rule2);
+
+            //第3个set
+            BaseRule rule3 = new RegexRule("aa123");
+            rule3.RuleNo = 10;
+            rule3.Name = "价格rule";
+            RuleSet ruleset3 = new RuleSet();
+            ruleset3.Name = "价格";
+            ruleset3.Code = "price";
+            ruleset3.Rules.Add(rule3);
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
             assm.Name = "tongcheng";
             ruleset.SetNo = 10;
             ruleset2.SetNo = 11;
+            ruleset3.SetNo = 12;
             assm.RuleSets.Add(ruleset);
             assm.RuleSets.Add(ruleset2);
+            assm.RuleSets.Add(ruleset3);
 
             #endregion
 
@@ -280,6 +303,11 @@ namespace TddTest.ITest
             Assert.AreEqual(ber.Enabled.ToString(), "True");
             Assert.AreEqual(ber.BeginMark, "<div id=\"jqlast_maincontent\" class=\"jqlast_main_title\"><h1>");
             Assert.AreEqual(ber.EndMark, "</h1>");
+
+            CE.Domain.Rule.BeginEndRule ber1 = ra.RuleSets[0].Rules[0] as CE.Domain.Rule.BeginEndRule;
+            Assert.IsNotNull(ber1);
+            CE.Domain.Rule.RegexRule ber2 = ra.RuleSets[2].Rules[0] as CE.Domain.Rule.RegexRule;
+            Assert.IsNotNull(ber1);
 
             #endregion
         }

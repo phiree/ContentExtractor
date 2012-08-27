@@ -66,46 +66,59 @@ namespace Persistence
                     XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
                     foreach (var item in ruleset.Rules)
                     {
-                        CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)item;
-                        XmlElement xe2 = xmlDoc.CreateElement(ber.Name);
+                        CE.Domain.Rule.BaseRule br = item; 
+                        XmlElement xe2 = xmlDoc.CreateElement(br.Name);
 
+                        //baseRule的属性
                         XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
-                        xe2sub1.InnerText = ber.Id.ToString();
+                        xe2sub1.InnerText = br.Id.ToString();
                         xe2.AppendChild(xe2sub1);
                         XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
-                        xe2sub2.InnerText = ber.Name;
+                        xe2sub2.InnerText = br.Name;
                         xe2.AppendChild(xe2sub2);
                         XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
-                        xe2sub3.InnerText = ber.RuleNo.ToString();
+                        xe2sub3.InnerText = br.RuleNo.ToString();
                         xe2.AppendChild(xe2sub3);
                         XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
-                        xe2sub4.InnerText = ber.PreAppenddBefore.ToString();
+                        xe2sub4.InnerText = br.PreAppenddBefore.ToString();
                         xe2.AppendChild(xe2sub4);
                         XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
-                        xe2sub5.InnerText = ber.AppendAfter.ToString();
+                        xe2sub5.InnerText = br.AppendAfter.ToString();
                         xe2.AppendChild(xe2sub5);
                         XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
-                        xe2sub6.InnerText = ber.Enabled.ToString();
+                        xe2sub6.InnerText = br.Enabled.ToString();
                         xe2.AppendChild(xe2sub6);
 
-                        XmlElement xe2sub11 = xmlDoc.CreateElement("BeginMark");
-                        xe2sub11.InnerText = ber.BeginMark.ToString();
-                        xe2.AppendChild(xe2sub11);
-                        XmlElement xe2sub12 = xmlDoc.CreateElement("EndMark");
-                        xe2sub12.InnerText = ber.EndMark;
-                        xe2.AppendChild(xe2sub12);
-                        XmlElement xe2sub13 = xmlDoc.CreateElement("IncludeBeginMark");
-                        xe2sub13.InnerText = ber.IncludeBeginMark.ToString();
-                        xe2.AppendChild(xe2sub13);
-                        XmlElement xe2sub14 = xmlDoc.CreateElement("IncludeEndMark");
-                        xe2sub14.InnerText = ber.IncludeEndMark.ToString();
-                        xe2.AppendChild(xe2sub14);
-                        XmlElement xe2sub15 = xmlDoc.CreateElement("RemoveBegin");
-                        xe2sub15.InnerText = ber.RemoveBegin.ToString();
-                        xe2.AppendChild(xe2sub15);
-                        XmlElement xe2sub16 = xmlDoc.CreateElement("RemoveEnd");
-                        xe2sub16.InnerText = ber.RemoveEnd.ToString();
-                        xe2.AppendChild(xe2sub16);
+                        //子类Rule的属性
+                        if (item.GetType() == typeof(CE.Domain.Rule.BeginEndRule))
+                        {
+                            CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)br;
+                            XmlElement xe2sub11 = xmlDoc.CreateElement("BeginMark");
+                            xe2sub11.InnerText = ber.BeginMark.ToString();
+                            xe2.AppendChild(xe2sub11);
+                            XmlElement xe2sub12 = xmlDoc.CreateElement("EndMark");
+                            xe2sub12.InnerText = ber.EndMark;
+                            xe2.AppendChild(xe2sub12);
+                            XmlElement xe2sub13 = xmlDoc.CreateElement("IncludeBeginMark");
+                            xe2sub13.InnerText = ber.IncludeBeginMark.ToString();
+                            xe2.AppendChild(xe2sub13);
+                            XmlElement xe2sub14 = xmlDoc.CreateElement("IncludeEndMark");
+                            xe2sub14.InnerText = ber.IncludeEndMark.ToString();
+                            xe2.AppendChild(xe2sub14);
+                            XmlElement xe2sub15 = xmlDoc.CreateElement("RemoveBegin");
+                            xe2sub15.InnerText = ber.RemoveBegin.ToString();
+                            xe2.AppendChild(xe2sub15);
+                            XmlElement xe2sub16 = xmlDoc.CreateElement("RemoveEnd");
+                            xe2sub16.InnerText = ber.RemoveEnd.ToString();
+                            xe2.AppendChild(xe2sub16);
+                        }
+                        else if (item.GetType() == typeof(CE.Domain.Rule.RegexRule))
+                        {
+                            CE.Domain.Rule.RegexRule rr = (CE.Domain.Rule.RegexRule)br;
+                            XmlElement xe2sub11 = xmlDoc.CreateElement("RegexExp");
+                            xe2sub11.InnerText = rr.RegexExp.ToString();
+                            xe2.AppendChild(xe2sub11);
+                        }
 
                         xesub5.AppendChild(xe2);
                     }
@@ -134,8 +147,9 @@ namespace Persistence
             CE.Domain.Rule.RuleAssembly rassembly = new CE.Domain.Rule.RuleAssembly();
             List<CE.Domain.Rule.RuleSet> rsetlist = new List<CE.Domain.Rule.RuleSet>();
             CE.Domain.Rule.RuleSet rset = new CE.Domain.Rule.RuleSet();
-            List<CE.Domain.Rule.BaseRule> berlist;
+            //List<CE.Domain.Rule.BaseRule> berlist;
             CE.Domain.Rule.BeginEndRule ber;
+            CE.Domain.Rule.RegexRule rr;
             //加载xml
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(PersistencePath + assemblyName + ".xml");
@@ -154,7 +168,7 @@ namespace Persistence
                 #region ruleset
                 foreach (XmlNode item2 in rulesetnode)
                 {
-                    berlist = new List<CE.Domain.Rule.BaseRule>();
+                    brlist = new List<CE.Domain.Rule.BaseRule>();
                     //单个ruleset属性
                     if (item2.Name == "RuleSetId")
                     {
@@ -180,18 +194,24 @@ namespace Persistence
                         {
                             //单个rule
                             XmlNodeList rulenodes = rule.ChildNodes;
+                            //baserule属性
                             string Id = string.Empty;
                             string Name = string.Empty;
                             string RuleNo = string.Empty;
                             string PreAppenddBefore = string.Empty;
                             string AppendAfter = string.Empty;
                             string Enabled = string.Empty;
+                            //子类beginendrule属性
                             string BeginMark = string.Empty;
                             string EndMark = string.Empty;
                             bool IncludeBeginMark = false;
                             bool IncludeEndMark = false;
                             bool RemoveBegin = false;
                             bool RemoveEnd = false;
+                            //子类regexrule属性
+                            string RegexExp = string.Empty;
+                            //子类标识
+                            Type type=typeof(CE.Domain.Rule.BeginEndRule);
                             foreach (XmlNode rulenode in rulenodes)
                             {
                                 if (rulenode.Name == "Id")
@@ -255,19 +275,38 @@ namespace Persistence
                                     RemoveEnd = bool.Parse(rulenode.InnerText);
                                     continue;
                                 }
+                                if (rulenode.Name == "RegexExp")
+                                {
+                                    RegexExp = rulenode.InnerText;
+                                    type = typeof(CE.Domain.Rule.RegexRule);
+                                    continue;
+                                }
                             }
-                            ber = new CE.Domain.Rule.BeginEndRule(BeginMark, EndMark, IncludeBeginMark, IncludeEndMark, RemoveBegin, RemoveEnd);
-                            ber.Id = int.Parse(Id);
-                            ber.Name = Name;
-                            ber.RuleNo = int.Parse(RuleNo);
-                            ber.PreAppenddBefore = PreAppenddBefore;
-                            ber.AppendAfter = AppendAfter;
-                            ber.Enabled = bool.Parse(Enabled);
-                            CE.Domain.Rule.BaseRule br = ber;
-                            berlist.Add(br);
+                            CE.Domain.Rule.BaseRule br;
+                            if (type == typeof(CE.Domain.Rule.BeginEndRule))
+                            {
+                                ber = new CE.Domain.Rule.BeginEndRule(BeginMark, EndMark, IncludeBeginMark, IncludeEndMark, RemoveBegin, RemoveEnd);
+                                ber.Id = int.Parse(Id);
+                                ber.Name = Name;
+                                ber.RuleNo = int.Parse(RuleNo);
+                                ber.PreAppenddBefore = PreAppenddBefore;
+                                ber.AppendAfter = AppendAfter;
+                                ber.Enabled = bool.Parse(Enabled);
+                                br = ber;
+                            }
+                            else if (type == typeof(CE.Domain.Rule.RegexRule))
+                            {
+                                rr = new CE.Domain.Rule.RegexRule(RegexExp);
+                                br = rr;
+                            }
+                            else
+                            {
+                                br = new CE.Domain.Rule.BaseRule();
+                            }
+                            brlist.Add(br);
                         }
                         #endregion
-                        rset.Rules = berlist;
+                        rset.Rules = brlist;
                         continue;
                     }
                 }
@@ -287,5 +326,7 @@ namespace Persistence
         {
             
         }
+
+        public List<CE.Domain.Rule.BaseRule> brlist { get; set; }
     }
 }

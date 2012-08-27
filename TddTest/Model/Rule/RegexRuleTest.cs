@@ -108,7 +108,7 @@ namespace TddTest.Model.Rule
 
             string raw1 = rawContent;
             string regexExp=@"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
-            Assert.AreEqual("清明上河图$#$95$#$85$#$##$##广州/香港街$#$95$#$85$#$##$##屏岩洞府$#$80$#$70$#$##$##",
+            Assert.AreEqual("清明上河图||95||85||&&广州/香港街||95||85||&&屏岩洞府||80||70||&&",
                 new RegexRule(regexExp).FilterUsingRule(ref raw1));
            // new RegexRule(@"id=""se_title_\d+""\>\r*\s+\<span\>(?<t_name>.*?)\</span\>").FilterUsingRule(ref rawContent));
             /*
@@ -125,7 +125,7 @@ namespace TddTest.Model.Rule
 
             string result=set.FilterUsingRuleSet(ref raw2, false);
             Console.Write(result);
-            Assert.AreEqual("启园清明上河图$#$95$#$85$#$##$##广州/香港街$#$95$#$85$#$##$##屏岩洞府$#$80$#$70$#$##$##",
+            Assert.AreEqual("启园清明上河图||95||85||&&广州/香港街||95||85||&&屏岩洞府||80||70||&&",
          result);
         }
 

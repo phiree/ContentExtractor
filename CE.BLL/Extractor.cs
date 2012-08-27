@@ -29,7 +29,7 @@ namespace CE.BLL
         }
         public RuleAssembly ruleassembly { get; set; }
 
-        private HtmlHandler htmlHandler=new HtmlHandler(); 
+        private HtmlHandler htmlHandler = new HtmlHandler();
 
         public string AnalysisUrl(string url)
         {
@@ -50,11 +50,11 @@ namespace CE.BLL
             {
                 string result = AnalysisUrl(url[i]);
                 result = ruleassembly.FilterUsingAssembly(result, false);
-                excelopr.Persistence2Excel(i + 2, result);
+                excelopr.Persistence2Excel(i + 2, result, savepath);
             }
         }
 
-        public void Persistence2Excel8Html(string htmlPath,string rulePath,string savePath)
+        public void Persistence2Excel8Html(string htmlPath, string rulePath, string savePath)
         {
             List<string> htmllist = new List<string>();
             //查看是否存在html文件, 并添加到列表中
@@ -62,7 +62,7 @@ namespace CE.BLL
             {
                 foreach (string d in Directory.GetFileSystemEntries(htmlPath))
                 {
-                        htmllist.Add(d);
+                    htmllist.Add(d);
                 }
             }
             else
@@ -75,9 +75,9 @@ namespace CE.BLL
             ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
             for (int i = 0; i < htmllist.Count; i++)
             {
-                string html=htmlHandler.ReadHtml(htmllist[i]);
+                string html = htmlHandler.ReadHtml(htmllist[i]);
                 string result = ruleassembly.FilterUsingAssembly(html, false);
-                excelopr.Persistence2Excel(i + 2, result);
+                excelopr.Persistence2Excel(i + 2, result, savePath);
             }
         }
 
@@ -118,7 +118,6 @@ namespace CE.BLL
             assm.RuleSets.Add(ruleset2);
 
             #endregion
-
             return assm;
         }
     }

@@ -25,7 +25,7 @@ namespace ExcelOpr
         {
             get
             {
-                if (string.IsNullOrEmpty(savepath))
+                if (!string.IsNullOrEmpty(savepath))
                 {
                     return savepath;
                 }
@@ -40,11 +40,38 @@ namespace ExcelOpr
             }
         }
 
-        public void Persistence2Excel(int row, string htmlPragraph)
+        private string savepricepath;
+        public string SavePricePath
         {
+            get
+            {
+                if (!string.IsNullOrEmpty(savepricepath))
+                {
+                    return savepricepath;
+                }
+                else
+                {
+                    return @"d:\sst2.xls";
+                }
+            }
+            set
+            {
+                savepath = value;
+            }
+        }
+
+        /// <summary>
+        /// 持久化景区信息
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="htmlPragraph"></param>
+        /// <param name="savePath"></param>
+        public void Persistence2Excel(int row, string htmlPragraph, string savePath)
+        {
+            SavePath = savePath;
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
-            Workbook workbook1=null;
-            Worksheet worksheet1=null;
+            Workbook workbook1 = null;
+            Worksheet worksheet1 = null;
             if (!File.Exists(SavePath))
             {
                 workbook1 = excel1.Workbooks.Add(Missing.Value);
@@ -72,7 +99,7 @@ namespace ExcelOpr
                 excel1.Visible = false;
             }
             //赋值给单元格
-            string[] result = htmlPragraph.Split(new string[] { "$#$" },12,StringSplitOptions.None);
+            string[] result = htmlPragraph.Split(new string[] { "$#$" }, 12, StringSplitOptions.None);
             for (int i = 0; i < result.Length; i++)
             {
                 if (i == 1)
@@ -96,7 +123,61 @@ namespace ExcelOpr
             //excel属性
             excel1.Visible = false;
             excel1.DisplayAlerts = false;//不显示提示框
-            workbook1.Close(true, "d:\\sst.xls", null);
+            workbook1.Close(true, savePath, null);
+            //关闭
+            worksheet1 = null;
+            workbook1 = null;
+            excel1.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excel1);
+            excel1 = null;
+            System.GC.Collect();
+        }
+
+        /// <summary>
+        /// 持久化景区票价
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="htmlPragraph"></param>
+        /// <param name="savepricePath"></param>
+        public void PersistencePrice2Excel(int row, string htmlPragraph, string savepricePath)
+        {
+            SavePricePath = savepricePath;
+            Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook1 = null;
+            Worksheet worksheet1 = null;
+            if (!File.Exists(SavePricePath))
+            {
+                workbook1 = excel1.Workbooks.Add(Missing.Value);
+                worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
+                //赋值给title
+                worksheet1.Cells[1, 1] = "景区名称";
+                worksheet1.Cells[1, 2] = "门票名称";
+                worksheet1.Cells[1, 3] = "原价";
+                worksheet1.Cells[1, 4] = "在线支付价";
+            }
+            else
+            {
+                workbook1 = excel1.Workbooks.Open(SavePricePath, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
+            }
+            //赋值给单元格
+            string[] result = htmlPragraph.Split(new string[] { "&&" }, StringSplitOptions.None);
+            foreach (string item in result)
+            {
+                string[] temp = item.Split(new string[] { "$#$" }, 3, StringSplitOptions.None);
+                //worksheet1.Cells[row, 1] = temp[0];
+                worksheet1.Cells[row, 2] = temp[0];
+                worksheet1.Cells[row, 3] = temp[1];
+                worksheet1.Cells[row, 4] = temp[2];
+            }
+            //excel属性
+            excel1.Visible = false;
+            excel1.DisplayAlerts = false;//不显示提示框
+            workbook1.Close(true, savepricePath, null);
             //关闭
             worksheet1 = null;
             workbook1 = null;

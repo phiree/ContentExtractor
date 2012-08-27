@@ -15,7 +15,7 @@ namespace Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmRule());
+            Application.Run(new Form1());
         }
     }
 }

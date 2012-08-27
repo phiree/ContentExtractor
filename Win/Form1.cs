@@ -20,5 +20,15 @@ namespace Win
         {
             new FmImageLocalizer().Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new FrmHtml2Excel().Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new FrmUrl2Excel().Show();
+        }
     }
 }
