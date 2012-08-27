@@ -14,7 +14,7 @@ namespace TddTest.Model.Rule
         public void FilterUsingRuleTest()
         {
 
-            string rawContent = CE.Component.HtmlHandler.ReadHtml(@"D:\downloading\2113864687.html");
+            string rawContent = new CE.Component.HtmlHandler().ReadHtml(@"D:\downloading\2113864687.html");
             Assert.AreEqual("启园$#$60$#$48$#$",
                 new RegexRule(@"<div class=""st_bod"">(?<name>.*?)</div>.*?<span class=""parGd"">.(?<price>\d+)</span>").FilterUsingRule(ref rawContent));
            // new RegexRule(@"id=""se_title_\d+""\>\r*\s+\<span\>(?<t_name>.*?)\</span\>").FilterUsingRule(ref rawContent));
