@@ -15,7 +15,7 @@ namespace Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmHtml2Excel());
+            Application.Run(new FrmRule());
         }
     }
 }

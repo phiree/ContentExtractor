@@ -57,6 +57,7 @@ namespace CE.BLL
         public void Persistence2Excel8Html(string htmlPath,string rulePath,string savePath)
         {
             List<string> htmllist = new List<string>();
+            //查看是否存在html文件, 并添加到列表中
             if (Directory.Exists(htmlPath))
             {
                 foreach (string d in Directory.GetFileSystemEntries(htmlPath))
@@ -67,7 +68,8 @@ namespace CE.BLL
             else
             {
                 return;
-            }  
+            }
+            //查看
             IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulePath));
             ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulePath));
             ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();

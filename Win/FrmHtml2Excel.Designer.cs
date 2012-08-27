@@ -82,7 +82,7 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(676, 222);
+            this.btnConvert.Location = new System.Drawing.Point(676, 646);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(75, 23);
             this.btnConvert.TabIndex = 14;
@@ -142,13 +142,13 @@
             this.txtHtml.Name = "txtHtml";
             this.txtHtml.Size = new System.Drawing.Size(636, 21);
             this.txtHtml.TabIndex = 19;
-            this.txtHtml.Text = "D:\\downloading";
+            this.txtHtml.Text = "D:\\download";
             // 
             // FrmHtml2Excel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 264);
+            this.ClientSize = new System.Drawing.Size(765, 681);
             this.Controls.Add(this.btnHtml);
             this.Controls.Add(this.txtHtml);
             this.Controls.Add(this.btnOutput);
