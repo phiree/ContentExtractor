@@ -8,8 +8,8 @@
     <ProjectGuid>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CE.Model</RootNamespace>
-    <AssemblyName>CE.Model</AssemblyName>
+    <RootNamespace>CE.Domain</RootNamespace>
+    <AssemblyName>CE.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>3rd\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,8 +46,10 @@
   <ItemGroup>
     <Compile Include="Rule\BaseRule.cs" />
     <Compile Include="Rule\BeginEndRule.cs" />
+    <Compile Include="Rule\HAPRule.cs" />
     <Compile Include="Rule\RuleSet.cs" />
     <Compile Include="Rule\RuleAssembly.cs" />
+    <Compile Include="Rule\RegexRule.cs" />
     <Compile Include="SiteConfig.cs" />
     <Compile Include="TargetSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +59,9 @@
       <Project>{9BE9423C-1343-486E-9B69-96FE1070642C}</Project>
       <Name>CE.Component</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3rd\HtmlAgilityPack.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

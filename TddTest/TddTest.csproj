@@ -55,6 +55,7 @@
     <Compile Include="Model\Rule\BeginEndRuleTest.cs" />
     <Compile Include="Model\Rule\RuleSetTest.cs" />
     <Compile Include="Model\Rule\RuleAssemblyTest.cs" />
+    <Compile Include="Model\Rule\RegexRuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
