@@ -23,6 +23,7 @@ namespace CE.Domain.Rule
        
         /// <summary>
         /// 根据规则, 过滤出结果
+        /// 
         /// </summary>
         /// <param name="rawContent"></param>
         /// <returns></returns>
@@ -54,6 +55,7 @@ namespace CE.Domain.Rule
                     filteredContent += g.Value + "$#$";
                     }
                 }
+                filteredContent += "##$##";
             }
 
             return filteredContent;
