@@ -70,6 +70,12 @@
     <Compile Include="FrmRule.Designer.cs">
       <DependentUpon>FrmRule.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRulenew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRulenew.Designer.cs">
+      <DependentUpon>FrmRulenew.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUrl2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRule.resx">
       <DependentUpon>FrmRule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRulenew.resx">
+      <DependentUpon>FrmRulenew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUrl2Excel.resx">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
