@@ -13,8 +13,8 @@ namespace TddTest.Excel
         public void Persistence2ExcelTest()
         {
             ExcelOpr.ExcelOpr eo = new ExcelOpr.ExcelOpr();
-            eo.Persistence2Excel(2, "杭州西溪湿地$#$AAAA","d:\\sst.xml");
-            eo.Persistence2Excel(3, "西湖1$#$AA", "d:\\sst.xml");
+            eo.Persistence2Excel(2, "杭州西溪湿地$#$AAAA", "d:\\sst.xml", "d:\\sst2.xml");
+            eo.Persistence2Excel(3, "西湖1$#$AA", "d:\\sst.xml", "d:\\sst2.xml");
             List<ExcelOpr.Entity.ScenicEntity> sclist = eo.getSceniclist();
             Assert.AreEqual(sclist[0].name, "杭州西溪湿地");
             Assert.AreEqual(sclist[0].level, "AAAA");

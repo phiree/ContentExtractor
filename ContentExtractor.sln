@@ -22,6 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{4CA38111-A98
 		lib\Microsoft.Office.Interop.Excel.dll = lib\Microsoft.Office.Interop.Excel.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBOper", "DBOper\DBOper.csproj", "{701FB8E7-D34D-4175-B46E-9282E009EF30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Helper", "DB.Helper\DB.Helper.csproj", "{03AEA773-AAA8-419C-A067-A62F8E2876E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +116,26 @@ Global
 		{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}.Release|x86.ActiveCfg = Release|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{701FB8E7-D34D-4175-B46E-9282E009EF30}.Release|x86.ActiveCfg = Release|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

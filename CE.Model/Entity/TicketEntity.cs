@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ExcelOpr.Entity
+namespace CE.Domain.Entity
 {
     public class TicketEntity
     {
@@ -11,6 +11,5 @@ namespace ExcelOpr.Entity
         public string ticketname { get; set; }
         public string orgprice { get; set; }
         public string olprice { get; set; }
-        public string scprice { get; set; }
     }
 }

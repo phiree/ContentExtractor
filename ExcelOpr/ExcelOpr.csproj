@@ -45,11 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\ExcelEntity.cs" />
-    <Compile Include="Entity\TicketEntity.cs" />
+    <Compile Include="Entity\ScenicEntity.cs" />
     <Compile Include="ExcelOpr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entity\ScenicEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

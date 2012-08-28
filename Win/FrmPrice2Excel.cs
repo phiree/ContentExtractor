@@ -76,7 +76,7 @@ namespace Win
             CE.BLL.Extractor extractor = new CE.BLL.Extractor();
             CE.Component.Interface.IResponseHandler iresponse = new CE.Component.ResponseHandler();
             extractor.responseHandler = iresponse;
-            extractor.Persistence2Excel8Html(txtHtml.Text.Trim(), txtRule.Text.Trim(), txtOutput.Text.Trim());
+            //extractor.Persistence2Excel8Html(txtHtml.Text.Trim(), txtRule.Text.Trim(), txtOutput.Text.Trim());
             MessageBox.Show("转化完成!");
         }
     }

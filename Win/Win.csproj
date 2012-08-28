@@ -58,6 +58,12 @@
     <Compile Include="FmImageLocalizer.Designer.cs">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmHtml2DB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHtml2DB.Designer.cs">
+      <DependentUpon>FrmHtml2DB.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmHtml2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     <EmbeddedResource Include="FmImageLocalizer.resx">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmHtml2DB.resx">
+      <DependentUpon>FrmHtml2DB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmHtml2Excel.resx">
       <DependentUpon>FrmHtml2Excel.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +129,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,6 +152,10 @@
     <ProjectReference Include="..\CE.Model\CE.Domain.csproj">
       <Project>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</Project>
       <Name>CE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBOper\DBOper.csproj">
+      <Project>{701FB8E7-D34D-4175-B46E-9282E009EF30}</Project>
+      <Name>DBOper</Name>
     </ProjectReference>
     <ProjectReference Include="..\IPersistence\IPersistence.csproj">
       <Project>{03385796-4B98-4B88-A663-2F7DA40F4403}</Project>

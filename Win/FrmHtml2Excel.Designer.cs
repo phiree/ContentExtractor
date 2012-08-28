@@ -40,6 +40,9 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnHtml = new System.Windows.Forms.Button();
             this.txtHtml = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtOutput2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOutput
@@ -82,7 +85,7 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(676, 226);
+            this.btnConvert.Location = new System.Drawing.Point(676, 313);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(75, 23);
             this.btnConvert.TabIndex = 14;
@@ -108,9 +111,9 @@
             this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(20, 142);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 14);
+            this.label2.Size = new System.Drawing.Size(98, 14);
             this.label2.TabIndex = 12;
-            this.label2.Text = "输出路径:";
+            this.label2.Text = "景区输出路径:";
             // 
             // label1
             // 
@@ -144,11 +147,41 @@
             this.txtHtml.TabIndex = 19;
             this.txtHtml.Text = "D:\\downloading";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(676, 236);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "选择";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // txtOutput2
+            // 
+            this.txtOutput2.Location = new System.Drawing.Point(20, 238);
+            this.txtOutput2.Name = "txtOutput2";
+            this.txtOutput2.Size = new System.Drawing.Size(636, 21);
+            this.txtOutput2.TabIndex = 22;
+            this.txtOutput2.Text = "e:\\sst2.xls";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(20, 210);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 14);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "价格输出路径:";
+            // 
             // FrmHtml2Excel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 274);
+            this.ClientSize = new System.Drawing.Size(761, 348);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtOutput2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnHtml);
             this.Controls.Add(this.txtHtml);
             this.Controls.Add(this.btnOutput);
@@ -180,5 +213,8 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button btnHtml;
         private System.Windows.Forms.TextBox txtHtml;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtOutput2;
+        private System.Windows.Forms.Label label4;
     }
 }

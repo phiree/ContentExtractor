@@ -189,7 +189,8 @@ namespace TddTest.ITest
             ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
-            BaseRule rule12 = new RegexRule("aa123");
+            string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
+            BaseRule rule12 = new RegexRule(regexExp);
             rule12.RuleNo = 10;
             rule12.Name = "价格rule";
             RuleSet ruleset12 = new RuleSet();
@@ -271,7 +272,8 @@ namespace TddTest.ITest
             ruleset2.Rules.Add(rule2);
 
             //第3个set
-            BaseRule rule3 = new RegexRule("aa123");
+            string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
+            BaseRule rule3 = new RegexRule(regexExp);
             rule3.RuleNo = 10;
             rule3.Name = "价格rule";
             RuleSet ruleset3 = new RuleSet();

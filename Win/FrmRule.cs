@@ -174,9 +174,19 @@ namespace Win
                 if (item.Selected)
                 {
                     RuleSet rs=ruleAssemly.RuleSets.Where(x => x.Name == item.Text).FirstOrDefault();
-                    BeginEndRule ber=(BeginEndRule)rs.Rules[0];
-                    rtxtBegin.Text = ber.BeginMark;
-                    rtxtEnd.Text = ber.EndMark;
+                    BeginEndRule ber;
+                    RegexRule rr;
+                    ber = rs.Rules[0] as BeginEndRule;
+                    rr = rs.Rules[0] as RegexRule;
+                    if (ber != null)
+                    {
+                        rtxtBegin.Text = ber.BeginMark;
+                        rtxtEnd.Text = ber.EndMark;
+                    }
+                    else
+                    { 
+                        
+                    }
                 }
             }
         }

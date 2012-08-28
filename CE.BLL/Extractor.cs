@@ -41,20 +41,20 @@ namespace CE.BLL
 
         public void PersistenceToExcel(List<string> url, string rulepath, string savepath)
         {
-            IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulepath));
-            ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulepath));
-            ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
-            //获取
-            //
-            for (int i = 0; i < url.Count; i++)
-            {
-                string result = AnalysisUrl(url[i]);
-                result = ruleassembly.FilterUsingAssembly(result, false);
-                excelopr.Persistence2Excel(i + 2, result, savepath);
-            }
+        //    IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulepath));
+        //    ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulepath));
+        //    ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
+        //    //获取
+        //    //
+        //    for (int i = 0; i < url.Count; i++)
+        //    {
+        //        string result = AnalysisUrl(url[i]);
+        //        result = ruleassembly.FilterUsingAssembly(result, false);
+        //        excelopr.Persistence2Excel(i + 2, result, savepath);
+        //    }
         }
 
-        public void Persistence2Excel8Html(string htmlPath, string rulePath, string savePath)
+        public void Persistence2Excel8Html(string htmlPath, string rulePath, string savePath,string savePricePath)
         {
             List<string> htmllist = new List<string>();
             //查看是否存在html文件, 并添加到列表中
@@ -77,7 +77,7 @@ namespace CE.BLL
             {
                 string html = htmlHandler.ReadHtml(htmllist[i]);
                 string result = ruleassembly.FilterUsingAssembly(html, false);
-                excelopr.Persistence2Excel(i + 2, result, savePath);
+                excelopr.Persistence2Excel(i + 2, result, savePath,savePricePath);
             }
         }
 

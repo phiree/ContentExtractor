@@ -213,122 +213,6 @@ namespace TddTest.Model.Rule
 										<tr class=""listTr"">
 											<td>
 												<p class=""tkType"">
-													<span class=""tkSpan"" style=""cursor: default"" id=""se_title_1"">
-														<span>鼎湖峰</span>
-													</span>
-												</p>
-													<span fan=""2"" class=""xjq_new"" _left=""420"" _top=""581"" _width=""115"" _height=""22"">
-														<s fxprice=""2"" danbaotype=""0"" class=""return"">
-															<span class=""return_tt clearfix""></span><span class=""return_ct""><span class=""nob"">¥</span>2</span>
-														</s>
-													</span>
-											</td>
-											<td class=""sp_price"">
-												<span class=""parGd"">¥60</span>
-											</td>
-											<td>
-												<dl class=""saveMne"">
-													<dt><span class=""Mne"">¥</span>48</dt>
-												</dl>
-											</td>
-											<td>
-												<span id=""onlinepay_0_0"">景区支付</span>
-											</td>
-											<td>
-												<a title=""预订"" href=""javascript:void(0)"" onclick=""GetOrderUrl(2851,1381);return false;"" class=""yd_butm"" rel=""nofollow"">
-													预&nbsp;订</a>
-											</td>
-										</tr>
-										<tr class=""listTr"">
-											<td>
-												<p class=""tkType"">
-													<span class=""tkSpan"" style=""cursor: default"" id=""se_title_2"">
-														<span>小赤壁</span>
-													</span>
-												</p>
-													<span fan=""1"" class=""xjq_new"" _left=""420"" _top=""581"" _width=""115"" _height=""22"">
-														<s fxprice=""1"" danbaotype=""0"" class=""return"">
-															<span class=""return_tt clearfix""></span><span class=""return_ct""><span class=""nob"">¥</span>1</span>
-														</s>
-													</span>
-											</td>
-											<td class=""sp_price"">
-												<span class=""parGd"">¥10</span>
-											</td>
-											<td>
-												<dl class=""saveMne"">
-													<dt><span class=""Mne"">¥</span>8</dt>
-												</dl>
-											</td>
-											<td>
-												<span id=""onlinepay_0_0"">景区支付</span>
-											</td>
-											<td>
-												<a title=""预订"" href=""javascript:void(0)"" onclick=""GetOrderUrl(2851,2004);return false;"" class=""yd_butm"" rel=""nofollow"">
-													预&nbsp;订</a>
-											</td>
-										</tr>
-										<tr class=""listTr"">
-											<td>
-												<p class=""tkType"">
-													<span class=""tkSpan"" style=""cursor: default"" id=""se_title_3"">
-														<span>芙蓉峡</span>
-													</span>
-												</p>
-													<span fan=""1"" class=""xjq_new"" _left=""420"" _top=""581"" _width=""115"" _height=""22"">
-														<s fxprice=""1"" danbaotype=""0"" class=""return"">
-															<span class=""return_tt clearfix""></span><span class=""return_ct""><span class=""nob"">¥</span>1</span>
-														</s>
-													</span>
-											</td>
-											<td class=""sp_price"">
-												<span class=""parGd"">¥25</span>
-											</td>
-											<td>
-												<dl class=""saveMne"">
-													<dt><span class=""Mne"">¥</span>20</dt>
-												</dl>
-											</td>
-											<td>
-												<span id=""onlinepay_0_0"">景区支付</span>
-											</td>
-											<td>
-												<a title=""预订"" href=""javascript:void(0)"" onclick=""GetOrderUrl(2851,2006);return false;"" class=""yd_butm"" rel=""nofollow"">
-													预&nbsp;订</a>
-											</td>
-										</tr>
-										<tr class=""listTr"">
-											<td>
-												<p class=""tkType"">
-													<span class=""tkSpan"" style=""cursor: default"" id=""se_title_4"">
-														<span>赵侯祠</span>
-													</span>
-												</p>
-													<span fan=""1"" class=""xjq_new"" _left=""420"" _top=""581"" _width=""115"" _height=""22"">
-														<s fxprice=""1"" danbaotype=""0"" class=""return"">
-															<span class=""return_tt clearfix""></span><span class=""return_ct""><span class=""nob"">¥</span>1</span>
-														</s>
-													</span>
-											</td>
-											<td class=""sp_price"">
-												<span class=""parGd"">¥10</span>
-											</td>
-											<td>
-												<dl class=""saveMne"">
-													<dt><span class=""Mne"">¥</span>8</dt>
-												</dl>
-											</td>
-											<td>
-												<span id=""onlinepay_0_0"">景区支付</span>
-											</td>
-											<td>
-												<a title=""预订"" href=""javascript:void(0)"" onclick=""GetOrderUrl(2851,2005);return false;"" class=""yd_butm"" rel=""nofollow"">
-													预&nbsp;订</a>
-											</td>
-										</tr>
-										<tr class=""listTr"">
-											<td>
-												<p class=""tkType"">
 													<span class=""tkSpan"" style=""cursor: default"" id=""se_title_5"">
 														<span>倪翁洞</span>
 													</span>
@@ -355,40 +239,7 @@ namespace TddTest.Model.Rule
 													预&nbsp;订</a>
 											</td>
 										</tr>
-										<tr class=""listTr"">
-											<td>
-												<p class=""tkType"">
-													<span class=""tkSpan"" style=""cursor: default"" id=""se_title_6"">
-														<span>朱潭山</span>
-													</span>
-												</p>
-													<span fan=""1"" class=""xjq_new"" _left=""420"" _top=""581"" _width=""115"" _height=""22"">
-														<s fxprice=""1"" danbaotype=""0"" class=""return"">
-															<span class=""return_tt clearfix""></span><span class=""return_ct""><span class=""nob"">¥</span>1</span>
-														</s>
-													</span>
-											</td>
-											<td class=""sp_price"">
-												<span class=""parGd"">¥15</span>
-											</td>
-											<td>
-												<dl class=""saveMne"">
-													<dt><span class=""Mne"">¥</span>12</dt>
-												</dl>
-											</td>
-											<td>
-												<span id=""onlinepay_0_0"">景区支付</span>
-											</td>
-											<td>
-												<a title=""预订"" href=""javascript:void(0)"" onclick=""GetOrderUrl(2851,2003);return false;"" class=""yd_butm"" rel=""nofollow"">
-													预&nbsp;订</a>
-											</td>
-										</tr>
-									<tr class=""mp_type"">
-										<td colspan=""5"">
-										<div class=""st_bod"">套票</div>
-										</td>
-									</tr>
+										
 										<tr class=""listTr"">
 											<td>
 												<p class=""tkType"">
@@ -919,10 +770,10 @@ namespace TddTest.Model.Rule
             //Assert.AreEqual("{title:\"仙都风景名胜区\"$#$level:\"AAAA\"$#$}",
             //    assm.FilterUsingAssembly(content2, true));
 
-            Assert.AreEqual("仙都风景名胜区$#$AAAA$#$11",
+            Assert.AreEqual("仙都风景名胜区$#$AAAA$#$倪翁洞||10||8||&&套票||130||104||&&$#$",
                 assm.FilterUsingAssembly(content3, false));
-            Assert.AreEqual("{title:\"仙都风景名胜区\"$#$level:\"AAAA\"$#$}",
-                assm.FilterUsingAssembly(content3, true));
+            //Assert.AreEqual("{title:\"仙都风景名胜区\"$#$level:\"AAAA\"$#$}",
+            //    assm.FilterUsingAssembly(content3, true));
         }
 
         [Test]
