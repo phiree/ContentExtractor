@@ -35,6 +35,7 @@ BEGIN
 CREATE TABLE Scenic
 (
     Id INT IDENTITY(1,1) NOT NULL,
+	Sname nvarchar(100),
     Slevel NVARCHAR(100),
     Saddress NVARCHAR(200),
     Sseoname NVARCHAR(100),

@@ -128,7 +128,7 @@ namespace Win
                             foreach (var item in ticketprice)
                             {
                                 string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-
+                                te = new CE.Domain.Entity.TicketEntity();
                                 te.scenicname = result[0].ToString();
                                     te.ticketname = data[0].ToString();
                                     te.orgprice = data[1].ToString();
