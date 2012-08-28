@@ -72,9 +72,6 @@ namespace ExcelOpr
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
             Workbook workbook1 = null;
             Worksheet worksheet1 = null;
-            Microsoft.Office.Interop.Excel.Application excel2 = new Microsoft.Office.Interop.Excel.Application();
-            Workbook workbook2 = null;
-            Worksheet worksheet2 = null;
             if (!File.Exists(SavePath))
             {
                 workbook1 = excel1.Workbooks.Add(Missing.Value);
@@ -102,25 +99,6 @@ namespace ExcelOpr
                 worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
                 excel1.Visible = false;
             }
-            if (!File.Exists(savePricePath))
-            {
-                workbook2 = excel2.Workbooks.Add(Missing.Value);
-                worksheet2 = (Worksheet)workbook1.Worksheets["sheet1"];
-                excel2.Visible = false;
-                //赋值给title
-                worksheet2.Cells[1, 1] = "景区名称";
-                worksheet2.Cells[1, 2] = "门票名称";
-                worksheet2.Cells[1, 3] = "原价";
-                worksheet2.Cells[1, 4] = "在线支付价";
-            }
-            else
-            {
-                workbook2 = excel1.Workbooks.Open(savePricePath, Type.Missing, Type.Missing, Type.Missing,
-                Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, Type.Missing,
-                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-                worksheet2 = (Worksheet)workbook2.Worksheets["sheet1"];
-                excel2.Visible = false;
-            }
             //赋值给单元格
             string[] result = htmlPragraph.Split(new string[] { "$#$" }, 12, StringSplitOptions.None);
             for (int i = 0; i < result.Length; i++)
@@ -141,43 +119,18 @@ namespace ExcelOpr
                         result[i] = area[0] + "省" + area[1] + "市";
                     }
                 }
-                if (i == 11)
-                {
-                    if (!string.IsNullOrEmpty(result[i]))
-                    { 
-                        var temp=result[i].Replace("$#$","");
-                        string[] ticketprice = temp.Split(new string[] { "&&" }, StringSplitOptions.RemoveEmptyEntries);
-                        foreach (var item in ticketprice)
-                        {
-                            string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-                            for (int j = 0; j < data.Length; j++)
-                            {
-                                worksheet2.Rows.CurrentRegion.Cells[1, j + 1] = data[j];
-                            }
-                        }
-                    }
-                }
                 worksheet1.Cells[row, i + 1] = result[i];
             }
             //excel属性
             excel1.Visible = false;
             excel1.DisplayAlerts = false;//不显示提示框
             workbook1.Close(true, savePath, null);
-            excel2.Visible = false;
-            excel2.DisplayAlerts = false;//不显示提示框
-            workbook2.Close(true, savePricePath, null);
             //关闭1
             worksheet1 = null;
             workbook1 = null;
             excel1.Quit();
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excel1);
             excel1 = null;
-            //关闭2
-            worksheet2 = null;
-            workbook2 = null;
-            excel2.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(excel2);
-            excel2 = null;
             System.GC.Collect();
         }
 
@@ -227,6 +180,101 @@ namespace ExcelOpr
             excel1.DisplayAlerts = false;//不显示提示框
             workbook1.Close(true, savepricePath, null);
             //关闭
+            worksheet1 = null;
+            workbook1 = null;
+            excel1.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excel1);
+            excel1 = null;
+            System.GC.Collect();
+        }
+
+        public void PersistenceDB2Excel4Scenic(DataSet ds,string path)
+        {
+            Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook1 = null;
+            Worksheet worksheet1 = null;
+            if (!File.Exists(path))
+            {
+                workbook1 = excel1.Workbooks.Add(Missing.Value);
+                worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
+                //赋值给title
+                worksheet1.Cells[1, 1] = "名称";
+                worksheet1.Cells[1, 2] = "等级";
+                worksheet1.Cells[1, 3] = "景区地址";
+                worksheet1.Cells[1, 4] = "seoname";
+                worksheet1.Cells[1, 5] = "区域";
+                worksheet1.Cells[1, 6] = "景区主题";
+                worksheet1.Cells[1, 7] = "topicseo";
+                worksheet1.Cells[1, 8] = "交通指南";
+                worksheet1.Cells[1, 9] = "订票说明";
+                worksheet1.Cells[1, 10] = "景区详情";
+                worksheet1.Cells[1, 11] = "景区简介";
+            }
+            else
+            {
+                workbook1 = excel1.Workbooks.Open(path, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
+            }
+            for (int row = 0; row < ds.Tables[0].Rows.Count; row++)
+            {
+                for (int column = 1; column <= ds.Tables[0].Columns.Count-1; column++)
+                {
+                    worksheet1.Cells[row + 2, column] = ds.Tables[0].Rows[row][column].ToString();
+                }
+            }
+            //excel属性
+            excel1.Visible = false;
+            excel1.DisplayAlerts = false;//不显示提示框
+            workbook1.Close(true, path, null);
+            //关闭1
+            worksheet1 = null;
+            workbook1 = null;
+            excel1.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(excel1);
+            excel1 = null;
+            System.GC.Collect();
+        }
+
+        public void PersistenceDB2Excel4Ticketprice(DataSet ds, string path)
+        {
+            Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook1 = null;
+            Worksheet worksheet1 = null;
+            if (!File.Exists(path))
+            {
+                workbook1 = excel1.Workbooks.Add(Missing.Value);
+                worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
+                //赋值给title
+                worksheet1.Cells[1, 1] = "景区名称";
+                worksheet1.Cells[1, 2] = "门票名称";
+                worksheet1.Cells[1, 3] = "原价";
+                worksheet1.Cells[1, 4] = "在线支付价";
+            }
+            else
+            {
+                workbook1 = excel1.Workbooks.Open(path, Type.Missing, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                worksheet1 = (Worksheet)workbook1.Worksheets["sheet1"];
+                excel1.Visible = false;
+            }
+            for (int row = 0; row < ds.Tables[0].Rows.Count; row++)
+            {
+                for (int column = 1; column <= ds.Tables[0].Columns.Count-1; column++)
+                {
+                    worksheet1.Cells[row + 2, column] = ds.Tables[0].Rows[row][column].ToString();
+                }
+            }
+            //excel属性
+            excel1.Visible = false;
+            excel1.DisplayAlerts = false;//不显示提示框
+            workbook1.Close(true, path, null);
+            //关闭1
             worksheet1 = null;
             workbook1 = null;
             excel1.Quit();

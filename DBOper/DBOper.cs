@@ -42,8 +42,15 @@ namespace DBOper
             return dbhelper.ExecSql(sql1) && dbhelper.ExecSql(sql2);
         }
 
-        public System.Data.DataSet GetTiketprice(string sql)
+        public DataSet GetScenic()
         {
+            string sql = "select * from Scenic";
+            return dbhelper.ReturnDataSet(sql);
+        }
+
+        public System.Data.DataSet GetTiketprice()
+        {
+            string sql = "select * from TicketPrice";
             return dbhelper.ReturnDataSet(sql);
         }
 
@@ -61,5 +68,6 @@ Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro from Scenic where Sname='" +
                 return true;
             }
         }
+
     }
 }

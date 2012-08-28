@@ -10,6 +10,7 @@ namespace DBOper
     public interface IDBOper
     {
          bool Persistence2DB(ScenicEntity se);
-         DataSet GetTiketprice(string sql);
+         DataSet GetScenic();
+         DataSet GetTiketprice();
     }
 }

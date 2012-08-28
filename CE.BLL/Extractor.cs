@@ -6,6 +6,7 @@ using CE.Component;
 using CE.Domain.Rule;
 using IPersistence;
 using System.IO;
+using System.Data;
 
 namespace CE.BLL
 {
@@ -79,6 +80,18 @@ namespace CE.BLL
                 string result = ruleassembly.FilterUsingAssembly(html, false);
                 excelopr.Persistence2Excel(i + 2, result, savePath,savePricePath);
             }
+        }
+
+        public void PersistenceDB2Excel4Scenic(DataSet ds, string path)
+        {
+            ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
+            excelopr.PersistenceDB2Excel4Scenic(ds, path);
+        }
+
+        public void PersistenceDB2Excel4Ticketprice(DataSet ds, string path)
+        {
+            ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
+            excelopr.PersistenceDB2Excel4Ticketprice(ds, path);
         }
 
         /// <summary>

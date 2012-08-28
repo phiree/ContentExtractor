@@ -40,5 +40,10 @@ namespace Win
         {
             new FrmHtml2DB().Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            new FrmDB2Excel().Show();
+        }
     }
 }
