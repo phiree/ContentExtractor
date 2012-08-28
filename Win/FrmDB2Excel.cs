@@ -26,9 +26,9 @@ namespace Win
             if (fbd.ShowDialog() != DialogResult.OK)
                 return;
             string path = fbd.SelectedPath;
-            if (path.EndsWith(@"\"))
+            if (!path.EndsWith(@"\"))
             {
-                txtSce.Text = path.Remove(path.Length - 1);
+                txtSce.Text = path + @"\";
             }
             else
             {
@@ -47,9 +47,9 @@ namespace Win
                 return;
             string path = fbd.SelectedPath;
             txtPrice.Text = path;
-            if (path.EndsWith(@"\"))
+            if (!path.EndsWith(@"\"))
             {
-                txtPrice.Text = path.Remove(path.Length - 1);
+                txtPrice.Text = path+@"\";
             }
             else
             {
