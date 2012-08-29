@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CE.Domain.Entity
+namespace DBOper.Entity
 {
     public class ScenicEntity
     {

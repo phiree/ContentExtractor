@@ -152,7 +152,7 @@ namespace Persistence
             CE.Domain.Rule.RegexRule rr;
             //加载xml
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(PersistencePath + assemblyName + ".xml");
+            xmlDoc.Load(PersistencePath + "\\"+assemblyName + ".xml");
             //xn整篇
             XmlNode assembly = xmlDoc.SelectSingleNode(assemblyName);
             //xnl各个ruleset

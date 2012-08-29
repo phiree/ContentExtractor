@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using CE.Domain.Entity;
+using DBOper.Entity;
 using System.Data;
 
 namespace DBOper
@@ -12,7 +12,7 @@ namespace DBOper
     {
         DB.Helper.DBHelper dbhelper = new DB.Helper.DBHelper();
 
-        public bool Persistence2DB(CE.Domain.Entity.ScenicEntity se)
+        public bool Persistence2DB(ScenicEntity se)
         {
             String sql1=string.Empty;
             string sql2 = string.Empty;
@@ -59,7 +59,7 @@ namespace DBOper
             string sql = @"select Sname,Slevel,Saddress,Sseoname,Sarea,Stopic,Stopicseo,
 Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro from Scenic where Sname='" + name + "'";
             DataSet ds = dbhelper.ReturnDataSet(sql);
-            if (ds == null)
+            if (ds.Tables[0].Rows.Count==0)
             {
                 return false;
             }

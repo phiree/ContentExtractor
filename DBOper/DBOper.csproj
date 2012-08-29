@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBOper.cs" />
+    <Compile Include="Entity\ScenicEntity.cs" />
+    <Compile Include="Entity\TicketEntity.cs" />
     <Compile Include="IDBOper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

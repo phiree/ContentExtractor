@@ -14,8 +14,10 @@ namespace Win
 {
     public partial class FrmRule : Form
     {
-        IRule rule = null;
-        RuleAssembly ruleAssemly = null;
+        IRule rule ;
+        RuleAssembly ruleAssemly = new RuleAssembly();
+        RuleModel ruleModel=RuleModel.New;
+
         public FrmRule()
         {
             InitializeComponent();
@@ -28,14 +30,29 @@ namespace Win
         /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtRulename.Text))
+            {
+                MessageBox.Show("请输入规则名称");
+                return;
+            }
             foreach (ListViewItem item in rulelist.Items)
             {
                 if (item.Selected)
                 {
                     RuleSet rs = ruleAssemly.RuleSets.Where(x => x.Name == item.Text).FirstOrDefault();
-                    BeginEndRule ber = (BeginEndRule)rs.Rules[0];
-                    ber.BeginMark = rtxtBegin.Text;
-                    ber.EndMark = rtxtEnd.Text;
+                    BeginEndRule ber = rs.Rules[0] as BeginEndRule;
+                    RegexRule rr = rs.Rules[0] as RegexRule;
+                    if (ber != null)
+                    {
+                        ber.Name = txtRulename.Text.Trim();
+                        ber.BeginMark = rtxtBegin.Text;
+                        ber.EndMark = rtxtEnd.Text;
+                    }
+                    else
+                    {
+                        rr.Name = txtRulename.Text.Trim();
+                        rr.RegexExp=rtxtRegex.Text ;
+                    }
                 }
             }
         }
@@ -63,11 +80,22 @@ namespace Win
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
             {
-                RuleSet rs = new RuleSet();
-                rs.Name = frm.txtName.Text;
-                rs.Rules.Add(new BeginEndRule(rtxtBegin.Text,rtxtEnd.Text,true,false,false,false));
-                ruleAssemly.RuleSets.Add(rs);
-                loadRulelist(ruleAssemly);
+                if (ruleModel == RuleModel.Open)
+                {
+                    RuleSet rs = new RuleSet();
+                    rs.Name = frm.txtName.Text;
+                    rs.Rules.Add(new BeginEndRule(rtxtBegin.Text, rtxtEnd.Text, true, false, false, false));
+                    ruleAssemly.RuleSets.Add(rs);
+                    loadRulelist(ruleAssemly);
+                }
+                if (ruleModel == RuleModel.New)
+                {
+                    RuleSet rs = new RuleSet();
+                    rs.Name = frm.txtName.Text;
+                    rs.Rules.Add(new BeginEndRule(rtxtBegin.Text, rtxtEnd.Text, true, false, false, false));
+                    ruleAssemly.RuleSets.Add(rs);
+                    loadRulelist(ruleAssemly);
+                }
             }
         }
 
@@ -108,6 +136,7 @@ namespace Win
                 return;
             string path = openFileDialog1.FileName;
             loadPath(path);
+            ruleModel = RuleModel.Open;
         }
 
         /// <summary>
@@ -121,6 +150,7 @@ namespace Win
             rtxtEnd.Text = string.Empty;
             rulelist.Items.Clear();
             ruleAssemly = null;
+            ruleModel = RuleModel.New;
         }
 
         /// <summary>
@@ -137,6 +167,7 @@ namespace Win
             string fName = string.Empty;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+                loadPath(saveFileDialog.FileName);
                 ruleAssemly.Name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
                 rule.SaveRule(ruleAssemly);
                 MessageBox.Show("保存成功!");
@@ -180,15 +211,53 @@ namespace Win
                     rr = rs.Rules[0] as RegexRule;
                     if (ber != null)
                     {
+                        rbtnBeginend.Checked = true;
                         rtxtBegin.Text = ber.BeginMark;
                         rtxtEnd.Text = ber.EndMark;
                     }
                     else
-                    { 
-                        
+                    {
+                        rbtnRegex.Checked = true;
+                        rtxtRegex.Text = rr.RegexExp;
                     }
                 }
             }
         }
+
+        private void rbtnBeginend_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                //显示
+                label1.Visible = true;
+                label2.Visible = true;
+                rtxtBegin.Visible = true;
+                rtxtEnd.Visible = true;
+                //隐藏
+                label3.Visible = false;
+                rtxtRegex.Visible = false;
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                //显示
+                label3.Visible = true;
+                rtxtRegex.Visible = true;
+                //隐藏
+                label1.Visible = false;
+                label2.Visible = false;
+                rtxtBegin.Visible = false;
+                rtxtEnd.Visible = false;
+            }
+        }
+    }
+
+    public enum RuleModel
+    { 
+        New,
+        Open
     }
 }

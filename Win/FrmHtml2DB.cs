@@ -49,7 +49,7 @@ namespace Win
             if (openFileDialog1.ShowDialog() != DialogResult.OK)
                 return;
             string path = openFileDialog1.FileName;
-            this.txtRule.AppendText(path);
+            this.txtRule.Text=path;
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -70,10 +70,10 @@ namespace Win
             #endregion
 
             #region html转化成实体
-            List<CE.Domain.Entity.ScenicEntity> selist = new List<CE.Domain.Entity.ScenicEntity>();
-            List<CE.Domain.Entity.TicketEntity> tlist;
-            CE.Domain.Entity.ScenicEntity se ;
-            CE.Domain.Entity.TicketEntity te ;
+            List<DBOper.Entity.ScenicEntity> selist = new List<DBOper.Entity.ScenicEntity>();
+            List<DBOper.Entity.TicketEntity> tlist;
+            DBOper.Entity.ScenicEntity se ;
+            DBOper.Entity.TicketEntity te ;
 
             List<string> htmllist = new List<string>();
             //查看是否存在html文件, 并添加到列表中
@@ -94,9 +94,9 @@ namespace Win
             DBOper.IDBOper dbopr = new DBOper.DBOper();
             for (int i = 0; i < htmllist.Count; i++)
             {
-                se = new CE.Domain.Entity.ScenicEntity();
-                te = new CE.Domain.Entity.TicketEntity();
-                tlist = new List<CE.Domain.Entity.TicketEntity>();
+                se = new DBOper.Entity.ScenicEntity();
+                te = new DBOper.Entity.TicketEntity();
+                tlist = new List<DBOper.Entity.TicketEntity>();
                 string html = htmlHandler.ReadHtml(htmllist[i]);
                 string htmlPragraph = ruleassembly.FilterUsingAssembly(html, false);
                 string[] result = htmlPragraph.Split(new string[] { "$#$" }, 12, StringSplitOptions.None);
@@ -128,7 +128,7 @@ namespace Win
                             foreach (var item in ticketprice)
                             {
                                 string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-                                te = new CE.Domain.Entity.TicketEntity();
+                                te = new DBOper.Entity.TicketEntity();
                                 te.scenicname = result[0].ToString();
                                     te.ticketname = data[0].ToString();
                                     te.orgprice = data[1].ToString();

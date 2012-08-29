@@ -63,8 +63,8 @@ namespace Win
             DataSet dsTicketprice = dboper.GetTiketprice();
             DataSet dsScenic = dboper.GetScenic();
             CE.BLL.Extractor ext = new CE.BLL.Extractor();
-            ext.PersistenceDB2Excel4Scenic(dsScenic, txtSce.Text.Trim() + @"景区表格式.xls");
-            ext.PersistenceDB2Excel4Ticketprice(dsTicketprice, txtPrice.Text.Trim() + @"价格表格式.xls");
+            ext.PersistenceDB2Excel4Scenic(dsScenic, txtSce.Text.Trim() + @"景区表格式.xlsx");
+            ext.PersistenceDB2Excel4Ticketprice(dsTicketprice, txtPrice.Text.Trim() + @"价格表格式.xlsx");
             MessageBox.Show("操作完成!@");
         }
     }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.rtxtEnd = new System.Windows.Forms.RichTextBox();
@@ -38,13 +40,15 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.rbtnBeginend = new System.Windows.Forms.RadioButton();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRulename = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.txtRulename);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txtName);
             this.groupBox2.Controls.Add(this.btnCancel);
@@ -63,8 +67,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "提取数据方式";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "标签名称:";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(91, 20);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(236, 21);
+            this.txtName.TabIndex = 9;
+            // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(272, 382);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(57, 23);
@@ -75,6 +96,7 @@
             // 
             // btnOk
             // 
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(208, 382);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(57, 23);
@@ -150,27 +172,28 @@
             this.rbtnBeginend.Text = "前后截取";
             this.rbtnBeginend.UseVisualStyleBackColor = true;
             // 
-            // txtName
+            // label4
             // 
-            this.txtName.Location = new System.Drawing.Point(91, 20);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(236, 21);
-            this.txtName.TabIndex = 9;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 388);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "规则名称:";
             // 
-            // label3
+            // txtRulename
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "标签名称:";
+            this.txtRulename.Location = new System.Drawing.Point(79, 384);
+            this.txtRulename.Name = "txtRulename";
+            this.txtRulename.Size = new System.Drawing.Size(113, 21);
+            this.txtRulename.TabIndex = 13;
             // 
             // FrmRulenew
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(368, 438);
             this.Controls.Add(this.groupBox2);
             this.Name = "FrmRulenew";
@@ -195,5 +218,7 @@
         public System.Windows.Forms.TextBox txtName;
         public System.Windows.Forms.RichTextBox rtxtEnd;
         public System.Windows.Forms.RichTextBox rtxtBegin;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtRulename;
     }
 }

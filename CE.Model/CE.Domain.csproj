@@ -44,8 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\ScenicEntity.cs" />
-    <Compile Include="Entity\TicketEntity.cs" />
     <Compile Include="Rule\BaseRule.cs" />
     <Compile Include="Rule\BeginEndRule.cs" />
     <Compile Include="Rule\HAPRule.cs" />
