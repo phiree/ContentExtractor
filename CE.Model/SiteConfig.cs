@@ -17,6 +17,6 @@ namespace CE.Domain
        /// <summary>
        /// 图片虚拟路径
        /// </summary>
-       public const string PathForFetchedImages = "/FetchImages/";
+       public const string PathForFetchedImages = "/scenicimg/";
     }
 }

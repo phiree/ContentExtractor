@@ -19,25 +19,21 @@ namespace Win
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-
             tbxResult.Clear();
             foreach (string s in tbxUrls.Lines)
             {
-                string newName=s.GetHashCode().ToString();
-                 ImageLocalizer localizer = new ImageLocalizer(s,tbxDir.Text,tbxPath.Text,newName);
-                newName=  localizer.SavePhotoFromUrl();
-               tbxResult.AppendText(newName + Environment.NewLine);
+                string newName = s.GetHashCode().ToString();
+                ImageLocalizer localizer = new ImageLocalizer(s, tbxDir.Text, tbxPath.Text, newName);
+                newName = localizer.SavePhotoFromUrl();
+                tbxResult.AppendText(newName + Environment.NewLine);
             }
-           
-            
-            
         }
 
         private void btnSelectDir_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                tbxDir.Text = folderBrowserDialog1.SelectedPath+@"\";
+                tbxDir.Text = folderBrowserDialog1.SelectedPath + @"\";
             }
         }
 
@@ -78,14 +74,16 @@ namespace Win
             assm.RuleSets.Add(ruleset);
             assm.RuleSets.Add(ruleset2);
 
-            IPersistence.IRule rule = new Persistence.Rule(@"d:\");
+            IPersistence.IRule rule = new Persistence.Rule();
+            rule.PersistencePath =@"d:\";
             rule.SaveRule(assm);
             MessageBox.Show("操作完成，请查看" + @"d:\" + assm.Name + ".xml");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            IPersistence.IRule rule = new Persistence.Rule(@"d:\");
+            IPersistence.IRule rule = new Persistence.Rule();
+            rule.PersistencePath = @"d:\";
             rule.ReadRule("sst");
         }
     }

@@ -165,7 +165,8 @@ CREATE TABLE Scenic
     Strafficintro NVARCHAR(2000),
     Sbookintro text,
     Sscenicdetail text,
-    Sscenicintro nvarchar(300)
+    Sscenicintro nvarchar(300),
+    Smainimg nvarchar(300)
     
     PRIMARY KEY CLUSTERED
     (

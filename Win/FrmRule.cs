@@ -14,12 +14,14 @@ namespace Win
 {
     public partial class FrmRule : Form
     {
-        IRule rule ;
-        RuleAssembly ruleAssemly = new RuleAssembly();
-        RuleModel ruleModel=RuleModel.New;
+        IPersistence.IRule rule;
+        RuleAssembly ruleAssemly;
+        RuleModel ruleModel = RuleModel.New;
 
         public FrmRule()
         {
+            ruleAssemly = new RuleAssembly();
+            rule = new Persistence.Rule();
             InitializeComponent();
         }
 
@@ -51,7 +53,7 @@ namespace Win
                     else
                     {
                         rr.Name = txtRulename.Text.Trim();
-                        rr.RegexExp=rtxtRegex.Text ;
+                        rr.RegexExp = rtxtRegex.Text;
                     }
                 }
             }
@@ -80,22 +82,22 @@ namespace Win
             frm.ShowDialog();
             if (frm.DialogResult == DialogResult.OK)
             {
-                if (ruleModel == RuleModel.Open)
+                RuleSet rs = new RuleSet();
+                rs.Name = frm.txtName.Text;
+                if (frm.rbtnBeginend.Checked)
                 {
-                    RuleSet rs = new RuleSet();
-                    rs.Name = frm.txtName.Text;
-                    rs.Rules.Add(new BeginEndRule(rtxtBegin.Text, rtxtEnd.Text, true, false, false, false));
-                    ruleAssemly.RuleSets.Add(rs);
-                    loadRulelist(ruleAssemly);
+                    BaseRule br = new BeginEndRule(frm.rtxtBegin.Text, frm.rtxtEnd.Text, true, false, false, false);
+                    br.Name = frm.txtRulename.Text;
+                    rs.Rules.Add(br);
                 }
-                if (ruleModel == RuleModel.New)
+                else
                 {
-                    RuleSet rs = new RuleSet();
-                    rs.Name = frm.txtName.Text;
-                    rs.Rules.Add(new BeginEndRule(rtxtBegin.Text, rtxtEnd.Text, true, false, false, false));
-                    ruleAssemly.RuleSets.Add(rs);
-                    loadRulelist(ruleAssemly);
+                    BaseRule rr = new RegexRule(frm.rtxtRegex.Text);
+                    rr.Name = frm.txtRulename.Text;
+                    rs.Rules.Add(rr);
                 }
+                ruleAssemly.RuleSets.Add(rs);
+                loadRulelist(ruleAssemly);
             }
         }
 
@@ -167,8 +169,9 @@ namespace Win
             string fName = string.Empty;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                loadPath(saveFileDialog.FileName);
+                //loadPath(saveFileDialog.FileName);
                 ruleAssemly.Name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+                rule.PersistencePath = Path.GetDirectoryName(saveFileDialog.FileName);
                 rule.SaveRule(ruleAssemly);
                 MessageBox.Show("保存成功!");
             }
@@ -180,7 +183,8 @@ namespace Win
         /// <param name="path"></param>
         private void loadPath(string path)
         {
-            rule = new Persistence.Rule(Path.GetDirectoryName(path));
+            //rule = new Persistence.Rule();
+            rule.PersistencePath = Path.GetDirectoryName(path);
             ruleAssemly = rule.ReadRule(Path.GetFileNameWithoutExtension(path));
             loadRulelist(ruleAssemly);
         }
@@ -191,20 +195,25 @@ namespace Win
         /// <param name="ruleAssemly"></param>
         private void loadRulelist(RuleAssembly ruleAssemly)
         {
+            rulelist.Items.Clear();
             foreach (RuleSet ruleset in ruleAssemly.RuleSets)
             {
-                ListViewItem lvi=rulelist.Items.Add(ruleset.Name);
+                ListViewItem lvi = rulelist.Items.Add(ruleset.Name);
             }
         }
 
-
+        /// <summary>
+        /// 列表选择
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rulelist_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in rulelist.Items)
             {
                 if (item.Selected)
                 {
-                    RuleSet rs=ruleAssemly.RuleSets.Where(x => x.Name == item.Text).FirstOrDefault();
+                    RuleSet rs = ruleAssemly.RuleSets.Where(x => x.Name == item.Text).FirstOrDefault();
                     BeginEndRule ber;
                     RegexRule rr;
                     ber = rs.Rules[0] as BeginEndRule;
@@ -214,11 +223,13 @@ namespace Win
                         rbtnBeginend.Checked = true;
                         rtxtBegin.Text = ber.BeginMark;
                         rtxtEnd.Text = ber.EndMark;
+                        txtRulename.Text = ber.Name;
                     }
                     else
                     {
                         rbtnRegex.Checked = true;
                         rtxtRegex.Text = rr.RegexExp;
+                        txtRulename.Text = rr.Name;
                     }
                 }
             }
@@ -256,7 +267,7 @@ namespace Win
     }
 
     public enum RuleModel
-    { 
+    {
         New,
         Open
     }

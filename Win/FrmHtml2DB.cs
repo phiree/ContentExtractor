@@ -89,7 +89,8 @@ namespace Win
                 return;
             }
             //查看
-            IRule rule = new Persistence.Rule(Path.GetDirectoryName(txtRule.Text));
+            IRule rule = new Persistence.Rule();
+            rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);
             ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));
             DBOper.IDBOper dbopr = new DBOper.DBOper();
             for (int i = 0; i < htmllist.Count; i++)
@@ -99,11 +100,11 @@ namespace Win
                 tlist = new List<DBOper.Entity.TicketEntity>();
                 string html = htmlHandler.ReadHtml(htmllist[i]);
                 string htmlPragraph = ruleassembly.FilterUsingAssembly(html, false);
-                string[] result = htmlPragraph.Split(new string[] { "$#$" }, 12, StringSplitOptions.None);
+                string[] result = htmlPragraph.Split(new string[] { "$#$" },14,StringSplitOptions.None);
                 for (int j = 0; j < result.Length; j++)
                 {
-                    #region 判断
-                    if (j == 1)
+                    #region 景区结果分析
+                    if (result[j].StartsWith("A"))
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
@@ -111,7 +112,7 @@ namespace Win
                             result[j] = count.ToString() + "A";
                         }
                     }
-                    if (j == 4)
+                    if (result[j].StartsWith("景区门票"))
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
@@ -137,6 +138,10 @@ namespace Win
                             }
                         }
                     }
+                    if (j == 12)
+                    {
+                        result[j] = result[j].Split(new string[] { @"src=""" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    }
                     #endregion
                 }
                 #region 转化&存储
@@ -151,6 +156,7 @@ namespace Win
                 se.bookintro = result[8].ToString();
                 se.scenicdetail = result[9].ToString();
                 se.scenicintro = result[10].ToString();
+                se.mainimg = Math.Abs(result[12].ToString().GetHashCode()).ToString() + Path.GetExtension(result[12]);
                 se.ticketlist = tlist;
                 bresult &= dbopr.Persistence2DB(se);
                 #endregion

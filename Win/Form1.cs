@@ -50,5 +50,16 @@ namespace Win
         {
             new FrmScript().Show();
         }
+
+        private void tasklist_DoubleClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in tasklist.Items)
+            {
+                if (item.Selected)
+                {
+
+                }
+            }
+        }
     }
 }

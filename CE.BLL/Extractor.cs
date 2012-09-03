@@ -71,7 +71,8 @@ namespace CE.BLL
                 return;
             }
             //查看
-            IRule rule = new Persistence.Rule(Path.GetDirectoryName(rulePath));
+            IRule rule = new Persistence.Rule();
+            rule.PersistencePath = Path.GetDirectoryName(rulePath);
             ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(rulePath));
             ExcelOpr.ExcelOpr excelopr = new ExcelOpr.ExcelOpr();
             for (int i = 0; i < htmllist.Count; i++)

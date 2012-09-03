@@ -11,39 +11,22 @@ namespace Persistence
     {
         public PersistenceWay Persistenceway { get; set; }
         private string persistencepath;
-        public string PersistencePath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(persistencepath))
-                {
-                    return @"d:\";
-                }
-                else
-                {
-                    return persistencepath;
-                }
-            }
-            set
-            {
-                persistencepath = value;
-            }
-        }
 
-        public Rule(string persistencepath)
-        {
-            this.PersistencePath = persistencepath;
-        }
+        //public Rule(string persistencepath)
+        //{
+        //    this.PersistencePath = persistencepath;
+        //}
 
         /// <summary>
         /// 持久化rule
         /// </summary>
         /// <param name="PersistencePath"></param>
         /// <param name="ruleAssembly"></param>
+        /// <remarks>保存前要先设置persistencePath</remarks>
         public void SaveRule(CE.Domain.Rule.RuleAssembly ruleAssembly)
         {
             XmlDocument xmlDoc = new XmlDocument();
-            if (!File.Exists(PersistencePath + ruleAssembly.Name + ".xml"))
+            if (!File.Exists(PersistencePath.EndsWith("\\") ? PersistencePath + ruleAssembly.Name + ".xml" : PersistencePath + "\\" + ruleAssembly.Name + ".xml"))
             {
                 XmlDeclaration dec = xmlDoc.CreateXmlDeclaration("1.0", "GB2312", null);
                 xmlDoc.AppendChild(dec);
@@ -63,35 +46,41 @@ namespace Persistence
                     XmlElement xesub3 = xmlDoc.CreateElement("RuleSetSetNo");
                     xesub3.InnerText = ruleset.SetNo.ToString();
                     xe1.AppendChild(xesub3);
+                    XmlElement xesub4 = xmlDoc.CreateElement("NeedImageLocalizer");
+                    xesub4.InnerText = ruleset.NeedImageLocalizer.ToString();
+                    xe1.AppendChild(xesub4);
                     XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
                     foreach (var item in ruleset.Rules)
                     {
-                        CE.Domain.Rule.BaseRule br = item; 
-                        XmlElement xe2 = xmlDoc.CreateElement(br.Name);
-
-                        //baseRule的属性
-                        XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
-                        xe2sub1.InnerText = br.Id.ToString();
-                        xe2.AppendChild(xe2sub1);
-                        XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
-                        xe2sub2.InnerText = br.Name;
-                        xe2.AppendChild(xe2sub2);
-                        XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
-                        xe2sub3.InnerText = br.RuleNo.ToString();
-                        xe2.AppendChild(xe2sub3);
-                        XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
-                        xe2sub4.InnerText = br.PreAppenddBefore.ToString();
-                        xe2.AppendChild(xe2sub4);
-                        XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
-                        xe2sub5.InnerText = br.AppendAfter.ToString();
-                        xe2.AppendChild(xe2sub5);
-                        XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
-                        xe2sub6.InnerText = br.Enabled.ToString();
-                        xe2.AppendChild(xe2sub6);
-
-                        //子类Rule的属性
-                        if (item.GetType() == typeof(CE.Domain.Rule.BeginEndRule))
+                        CE.Domain.Rule.BeginEndRule br = item as CE.Domain.Rule.BeginEndRule;
+                        CE.Domain.Rule.RegexRule rr = item as CE.Domain.Rule.RegexRule;
+                        if (br != null)
                         {
+                            #region cao!
+                            XmlElement xe2 = xmlDoc.CreateElement(br.Name);
+
+                            //baseRule的属性
+                            XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
+                            xe2sub1.InnerText = br.Id.ToString();
+                            xe2.AppendChild(xe2sub1);
+                            XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
+                            xe2sub2.InnerText = br.Name;
+                            xe2.AppendChild(xe2sub2);
+                            XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
+                            xe2sub3.InnerText = br.RuleNo.ToString();
+                            xe2.AppendChild(xe2sub3);
+                            XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
+                            xe2sub4.InnerText = br.PreAppenddBefore.ToString();
+                            xe2.AppendChild(xe2sub4);
+                            XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
+                            xe2sub5.InnerText = br.AppendAfter.ToString();
+                            xe2.AppendChild(xe2sub5);
+                            XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
+                            xe2sub6.InnerText = br.Enabled.ToString();
+                            xe2.AppendChild(xe2sub6);
+
+                            //子类Rule的属性
+
                             CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)br;
                             XmlElement xe2sub11 = xmlDoc.CreateElement("BeginMark");
                             xe2sub11.InnerText = ber.BeginMark.ToString();
@@ -111,27 +100,54 @@ namespace Persistence
                             XmlElement xe2sub16 = xmlDoc.CreateElement("RemoveEnd");
                             xe2sub16.InnerText = ber.RemoveEnd.ToString();
                             xe2.AppendChild(xe2sub16);
+                            xesub5.AppendChild(xe2);
+
+                            #endregion
                         }
-                        else if (item.GetType() == typeof(CE.Domain.Rule.RegexRule))
+                        if (rr != null)
                         {
-                            CE.Domain.Rule.RegexRule rr = (CE.Domain.Rule.RegexRule)br;
+                            #region cao!
+                            XmlElement xe2 = xmlDoc.CreateElement(rr.Name);
+
+                            //baseRule的属性
+                            XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
+                            xe2sub1.InnerText = rr.Id.ToString();
+                            xe2.AppendChild(xe2sub1);
+                            XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
+                            xe2sub2.InnerText = rr.Name;
+                            xe2.AppendChild(xe2sub2);
+                            XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
+                            xe2sub3.InnerText = rr.RuleNo.ToString();
+                            xe2.AppendChild(xe2sub3);
+                            XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
+                            xe2sub4.InnerText = rr.PreAppenddBefore.ToString();
+                            xe2.AppendChild(xe2sub4);
+                            XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
+                            xe2sub5.InnerText = rr.AppendAfter.ToString();
+                            xe2.AppendChild(xe2sub5);
+                            XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
+                            xe2sub6.InnerText = rr.Enabled.ToString();
+                            xe2.AppendChild(xe2sub6);
+
+                            //子类Rule的属性
+
                             XmlElement xe2sub11 = xmlDoc.CreateElement("RegexExp");
                             xe2sub11.InnerText = rr.RegexExp.ToString();
                             xe2.AppendChild(xe2sub11);
+                            xesub5.AppendChild(xe2);
+                            #endregion
                         }
-
-                        xesub5.AppendChild(xe2);
                     }
                     xe1.AppendChild(xesub5);
                     root.AppendChild(xe1);
                 }
-                xmlDoc.Save(PersistencePath + ruleAssembly.Name + ".xml");
+                xmlDoc.Save(PersistencePath.EndsWith("\\") ? PersistencePath + ruleAssembly.Name + ".xml" : PersistencePath + "\\" + ruleAssembly.Name + ".xml");
             }
             else
             {
                 //xmlDoc.Load(path + ruleAssembly.Name + ".xml");
                 //删除文件.并重新调用本方法,创建一个新的xml保存文件
-                File.Delete(PersistencePath + ruleAssembly.Name + ".xml");
+                File.Delete(PersistencePath.EndsWith("\\") ? PersistencePath + ruleAssembly.Name + ".xml" : PersistencePath + "\\" + ruleAssembly.Name + ".xml");
                 SaveRule(ruleAssembly);
             }
         }
@@ -152,7 +168,7 @@ namespace Persistence
             CE.Domain.Rule.RegexRule rr;
             //加载xml
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(PersistencePath + "\\"+assemblyName + ".xml");
+            xmlDoc.Load(PersistencePath.EndsWith("\\") ? PersistencePath + assemblyName + ".xml" : PersistencePath + "\\" + assemblyName + ".xml");
             //xn整篇
             XmlNode assembly = xmlDoc.SelectSingleNode(assemblyName);
             //xnl各个ruleset
@@ -185,6 +201,11 @@ namespace Persistence
                         rset.SetNo = int.Parse(item2.InnerText == string.Empty ? "False" : item2.InnerText);
                         continue;
                     }
+                    if (item2.Name == "NeedImageLocalizer")
+                    {
+                        rset.NeedImageLocalizer = bool.Parse(item2.InnerText);
+                        continue;
+                    }
                     if (item2.Name == "RuleSetRules")
                     {
                         //rules
@@ -194,6 +215,7 @@ namespace Persistence
                         {
                             //单个rule
                             XmlNodeList rulenodes = rule.ChildNodes;
+                            #region 属性
                             //baserule属性
                             string Id = string.Empty;
                             string Name = string.Empty;
@@ -210,10 +232,12 @@ namespace Persistence
                             bool RemoveEnd = false;
                             //子类regexrule属性
                             string RegexExp = string.Empty;
+                            #endregion
                             //子类标识
-                            Type type=typeof(CE.Domain.Rule.BeginEndRule);
+                            Type type = typeof(CE.Domain.Rule.BeginEndRule);
                             foreach (XmlNode rulenode in rulenodes)
                             {
+                                #region baserule属性
                                 if (rulenode.Name == "Id")
                                 {
                                     Id = rulenode.InnerText;
@@ -244,7 +268,9 @@ namespace Persistence
                                     Enabled = rulenode.InnerText;
                                     continue;
                                 }
+                                #endregion
 
+                                #region ber属性
                                 if (rulenode.Name == "BeginMark")
                                 {
                                     BeginMark = rulenode.InnerText;
@@ -275,12 +301,16 @@ namespace Persistence
                                     RemoveEnd = bool.Parse(rulenode.InnerText);
                                     continue;
                                 }
+                                #endregion
+
+                                #region rr属性
                                 if (rulenode.Name == "RegexExp")
                                 {
                                     RegexExp = rulenode.InnerText;
                                     type = typeof(CE.Domain.Rule.RegexRule);
                                     continue;
                                 }
+                                #endregion
                             }
                             CE.Domain.Rule.BaseRule br;
                             if (type == typeof(CE.Domain.Rule.BeginEndRule))
@@ -297,6 +327,12 @@ namespace Persistence
                             else if (type == typeof(CE.Domain.Rule.RegexRule))
                             {
                                 rr = new CE.Domain.Rule.RegexRule(RegexExp);
+                                rr.Id = int.Parse(Id);
+                                rr.Name = Name;
+                                rr.RuleNo = int.Parse(RuleNo);
+                                rr.PreAppenddBefore = PreAppenddBefore;
+                                rr.AppendAfter = AppendAfter;
+                                rr.Enabled = bool.Parse(Enabled);
                                 br = rr;
                             }
                             else
@@ -324,9 +360,28 @@ namespace Persistence
         /// <param name="ruelassembly"></param>
         public void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly)
         {
-            
+
         }
 
         public List<CE.Domain.Rule.BaseRule> brlist { get; set; }
+
+        public string PersistencePath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(persistencepath))
+                {
+                    return @"d:\";
+                }
+                else
+                {
+                    return persistencepath;
+                }
+            }
+            set
+            {
+                persistencepath = value;
+            }
+        }
     }
 }
