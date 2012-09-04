@@ -77,6 +77,12 @@ namespace CE.Domain.Rule
                    string newImagePath= localizer.SavePhotoFromUrl();
                    completeResult = completeResult.Replace(imageUrl, newImagePath);
                 }
+                //string[] temp=ImagePath.Split(new char[]{'\\'},StringSplitOptions.RemoveEmptyEntries);
+                //ImagePath = string.Empty;
+                //for (int i = 0; i < temp.Length-1; i++)
+                //{
+                //    ImagePath += temp[i] + "\\";
+                //}
             }
             return completeResult;
         }

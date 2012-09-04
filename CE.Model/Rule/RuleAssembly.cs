@@ -29,13 +29,16 @@ namespace CE.Domain.Rule
             RuleSets.Sort(SortCompare);
             foreach (RuleSet ruleset in RuleSets)
             {
+                if (result.StartsWith("$#$"))
+                    return null;
                 if (ruleset.Name == "主图")
                 {
-                    mainimgdir = ruleset.ImagePath + result.Split(new string[] { "$#$" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                    mainimgdir = ruleset.ImagePath + result.Split(new string[] { "$#$" }, StringSplitOptions.RemoveEmptyEntries)[0] + @"\";
                     if (!Directory.Exists(mainimgdir))
                     {
                         Directory.CreateDirectory(mainimgdir);
                     }
+                    ruleset.ImagePath = mainimgdir ;
                 }
                 result += ruleset.FilterUsingRuleSet(ref rawContent, returnJsonFormat) + "$#$";
             }

@@ -92,7 +92,7 @@ namespace Win
             //查看
             IRule rule = new Persistence.Rule();
             rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);
-            ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));
+            //ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));
             DBOper.IDBOper dbopr = new DBOper.DBOper();
             for (int i = 0; i < htmllist.Count; i++)
             {
@@ -100,7 +100,8 @@ namespace Win
                 te = new DBOper.Entity.TicketEntity();
                 tlist = new List<DBOper.Entity.TicketEntity>();
                 string html = htmlHandler.ReadHtml(htmllist[i]);
-                string htmlPragraph = ruleassembly.FilterUsingAssembly(html, false);
+                string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text)).FilterUsingAssembly(html, false);
+                if (string.IsNullOrEmpty(htmlPragraph)) continue;
                 string[] result = htmlPragraph.Split(new string[] { "$#$" },14,StringSplitOptions.None);
                 for (int j = 0; j < result.Length; j++)
                 {
@@ -115,7 +116,7 @@ namespace Win
                             result[j] = count.ToString() + "A";
                         }
                     }
-                    if (j==5)
+                    if (j==4)
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
