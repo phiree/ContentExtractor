@@ -178,6 +178,8 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImagePath = @"D:\testImageLocalizer\";
+            ruleset10.VirtualPath = "/scenicimg/";
 
             //第11个条件
             BaseRule rule11 = new BeginEndRule("fdsafsdfsd", "</h1>", false, false, true, true);
@@ -200,9 +202,16 @@ namespace TddTest.ITest
             ruleset12.Code = "scenicprice";
             //ruleset12.NeedImageLocalizer = true;
 
-            BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">
-					<img alt="""" src=""", @""" />
-				</div>",false,false,true,true);
+            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
+            //rule13.RuleNo = 10;
+            //rule13.Name = "主图rule";
+            //RuleSet ruleset13 = new RuleSet();
+            //ruleset13.Name = "主图";
+            //ruleset13.Rules.Add(rule13);
+            //ruleset13.Code = "mainimg";
+            //ruleset13.NeedImageLocalizer = true;
+
+            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>",false,false,true,true);
             rule13.RuleNo = 10;
             rule13.Name = "主图rule";
             RuleSet ruleset13 = new RuleSet();
@@ -210,6 +219,8 @@ namespace TddTest.ITest
             ruleset13.Rules.Add(rule13);
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImagePath = @"D:\testMainimgLocalizer\";
+            ruleset13.VirtualPath = "/scenicimg/";
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";

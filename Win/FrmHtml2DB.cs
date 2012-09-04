@@ -76,7 +76,7 @@ namespace Win
             DBOper.Entity.TicketEntity te ;
 
             List<string> htmllist = new List<string>();
-            //查看是否存在html文件, 并添加到列表中
+            #region 查看是否存在html文件, 并添加到列表中
             if (Directory.Exists(txtHtml.Text))
             {
                 foreach (string d in Directory.GetFileSystemEntries(txtHtml.Text))
@@ -88,6 +88,7 @@ namespace Win
             {
                 return;
             }
+            #endregion
             //查看
             IRule rule = new Persistence.Rule();
             rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);
@@ -103,8 +104,10 @@ namespace Win
                 string[] result = htmlPragraph.Split(new string[] { "$#$" },14,StringSplitOptions.None);
                 for (int j = 0; j < result.Length; j++)
                 {
+                    if (string.IsNullOrEmpty(result[0]))
+                        continue;
                     #region 景区结果分析
-                    if (result[j].StartsWith("A"))
+                    if (j==1)
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
@@ -112,7 +115,7 @@ namespace Win
                             result[j] = count.ToString() + "A";
                         }
                     }
-                    if (result[j].StartsWith("景区门票"))
+                    if (j==5)
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
@@ -140,7 +143,7 @@ namespace Win
                     }
                     if (j == 12)
                     {
-                        result[j] = result[j].Split(new string[] { @"src=""" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                        result[j] = result[j].Split(new string[] { @"scenicimg/",@""" />" }, StringSplitOptions.RemoveEmptyEntries)[1];
                     }
                     #endregion
                 }
@@ -156,7 +159,7 @@ namespace Win
                 se.bookintro = result[8].ToString();
                 se.scenicdetail = result[9].ToString();
                 se.scenicintro = result[10].ToString();
-                se.mainimg = Math.Abs(result[12].ToString().GetHashCode()).ToString() + Path.GetExtension(result[12]);
+                se.mainimg = result[12].ToString();
                 se.ticketlist = tlist;
                 bresult &= dbopr.Persistence2DB(se);
                 #endregion

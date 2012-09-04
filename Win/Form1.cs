@@ -61,5 +61,15 @@ namespace Win
                 }
             }
         }
+
+        private void hTML2DBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmHtml2DB().ShowDialog();
+        }
+
+        private void dB2EXCELToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmDB2Excel().ShowDialog();
+        }
     }
 }

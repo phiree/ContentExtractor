@@ -46,9 +46,19 @@ namespace Persistence
                     XmlElement xesub3 = xmlDoc.CreateElement("RuleSetSetNo");
                     xesub3.InnerText = ruleset.SetNo.ToString();
                     xe1.AppendChild(xesub3);
+
                     XmlElement xesub4 = xmlDoc.CreateElement("NeedImageLocalizer");
                     xesub4.InnerText = ruleset.NeedImageLocalizer.ToString();
                     xe1.AppendChild(xesub4);
+                    //ImagePath
+                    XmlElement xesub6 = xmlDoc.CreateElement("ImagePath");
+                    xesub6.InnerText = ruleset.ImagePath ?? "";
+                    xe1.AppendChild(xesub6);
+                    //VirtualPath
+                    XmlElement xesub7 = xmlDoc.CreateElement("VirtualPath");
+                    xesub7.InnerText = ruleset.VirtualPath ?? "";
+                    xe1.AppendChild(xesub7);
+                    //RuleSetRules
                     XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
                     foreach (var item in ruleset.Rules)
                     {
@@ -204,6 +214,16 @@ namespace Persistence
                     if (item2.Name == "NeedImageLocalizer")
                     {
                         rset.NeedImageLocalizer = bool.Parse(item2.InnerText);
+                        continue;
+                    }
+                    if (item2.Name == "ImagePath")
+                    {
+                        rset.ImagePath = item2.InnerText;
+                        continue;
+                    }
+                    if (item2.Name == "VirtualPath")
+                    {
+                        rset.VirtualPath = item2.InnerText;
                         continue;
                     }
                     if (item2.Name == "RuleSetRules")
