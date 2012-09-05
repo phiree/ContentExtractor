@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.OleDb;
 using System.Data;
 using Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Core;
+
 using System.Reflection;
 using System.IO;
 
