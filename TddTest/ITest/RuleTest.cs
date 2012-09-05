@@ -178,8 +178,8 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
-            ruleset10.ImagePath = @"D:\testImageLocalizer\";
-            ruleset10.VirtualPath = "/scenicimg/";
+            ruleset10.ImagePath = @"D:\testDetailimgLocalizer\";
+            ruleset10.VirtualPath = "/scenicimg/detailimg";
 
             //第11个条件
             BaseRule rule11 = new BeginEndRule("fdsafsdfsd", "</h1>", false, false, true, true);
@@ -220,7 +220,7 @@ namespace TddTest.ITest
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
             ruleset13.ImagePath = @"D:\testMainimgLocalizer\";
-            ruleset13.VirtualPath = "/scenicimg/";
+            ruleset13.VirtualPath = "/scenicimg/mainimg";
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
