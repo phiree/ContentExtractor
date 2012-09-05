@@ -47,7 +47,8 @@ namespace TddTest.ITest
 
             #endregion
 
-            IPersistence.IRule rule = new Persistence.Rule(@"d:\");
+            IPersistence.IRule rule = new Persistence.Rule();
+            rule.PersistencePath = @"d:\";
             rule.SaveRule(assm);
 
             //测试,是否存在该文件
@@ -77,7 +78,7 @@ namespace TddTest.ITest
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
-            ruleset.NeedImageLocalizer = true;
+            //ruleset.NeedImageLocalizer = true;
 
 
             //第2个条件
@@ -88,7 +89,7 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
-            ruleset2.NeedImageLocalizer = true;
+            //ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -98,7 +99,7 @@ namespace TddTest.ITest
             ruleset3.Name = "景区地址";
             ruleset3.Rules.Add(rule3);
             ruleset3.Code = "scenicadd";
-            ruleset3.NeedImageLocalizer = true;
+            //ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
             BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
@@ -108,7 +109,7 @@ namespace TddTest.ITest
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
-            ruleset4.NeedImageLocalizer = true;
+            //ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
             BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
@@ -126,7 +127,7 @@ namespace TddTest.ITest
             ruleset5.Rules.Add(rule51);
             ruleset5.Rules.Add(rule52);
             ruleset5.Code = "seoname";
-            ruleset5.NeedImageLocalizer = true;
+            //ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -136,7 +137,7 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
-            ruleset6.NeedImageLocalizer = true;
+            //ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -146,7 +147,7 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
-            ruleset7.NeedImageLocalizer = true;
+            //ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule("<div class=\"drive_way\">", "</div>", false, false, true, true);
@@ -156,7 +157,7 @@ namespace TddTest.ITest
             ruleset8.Name = "交通指南";
             ruleset8.Rules.Add(rule8);
             ruleset8.Code = "trafficeintro";
-            ruleset8.NeedImageLocalizer = true;
+            //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule("<div class=\"point_intro\" id=\"xuzhi\">", "<div class=\"point_intro\" id=\"jieshao\">", true, false, true, true);
@@ -166,7 +167,7 @@ namespace TddTest.ITest
             ruleset9.Name = "订票说明";
             ruleset9.Rules.Add(rule9);
             ruleset9.Code = "bookintro";
-            ruleset9.NeedImageLocalizer = true;
+            //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
             BaseRule rule10 = new BeginEndRule("<DL class=intro_information>", "<H4 class=intro_head>", true, false, true, true);
@@ -177,6 +178,8 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImagePath = @"D:\testDetailimgLocalizer\";
+            ruleset10.VirtualPath = "/scenicimg/detailimg";
 
             //第11个条件
             BaseRule rule11 = new BeginEndRule("fdsafsdfsd", "</h1>", false, false, true, true);
@@ -186,7 +189,7 @@ namespace TddTest.ITest
             ruleset11.Name = "景区简介";
             ruleset11.Rules.Add(rule11);
             ruleset11.Code = "scenicintro";
-            ruleset11.NeedImageLocalizer = true;
+            //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
             string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
@@ -197,7 +200,27 @@ namespace TddTest.ITest
             ruleset12.Name = "价格";
             ruleset12.Rules.Add(rule12);
             ruleset12.Code = "scenicprice";
-            ruleset12.NeedImageLocalizer = true;
+            //ruleset12.NeedImageLocalizer = true;
+
+            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
+            //rule13.RuleNo = 10;
+            //rule13.Name = "主图rule";
+            //RuleSet ruleset13 = new RuleSet();
+            //ruleset13.Name = "主图";
+            //ruleset13.Rules.Add(rule13);
+            //ruleset13.Code = "mainimg";
+            //ruleset13.NeedImageLocalizer = true;
+
+            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>",false,false,true,true);
+            rule13.RuleNo = 10;
+            rule13.Name = "主图rule";
+            RuleSet ruleset13 = new RuleSet();
+            ruleset13.Name = "主图";
+            ruleset13.Rules.Add(rule13);
+            ruleset13.Code = "mainimg";
+            ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImagePath = @"D:\testMainimgLocalizer\";
+            ruleset13.VirtualPath = "/scenicimg/mainimg";
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -214,6 +237,7 @@ namespace TddTest.ITest
             ruleset10.SetNo = 20;
             ruleset11.SetNo = 21;
             ruleset12.SetNo = 22;
+            ruleset13.SetNo = 23;
             assm.RuleSets.Add(ruleset);
             assm.RuleSets.Add(ruleset2);
             assm.RuleSets.Add(ruleset3);
@@ -226,10 +250,12 @@ namespace TddTest.ITest
             assm.RuleSets.Add(ruleset10);
             assm.RuleSets.Add(ruleset11);
             assm.RuleSets.Add(ruleset12);
+            assm.RuleSets.Add(ruleset13);
 
             #endregion
 
-            IPersistence.IRule rule = new Persistence.Rule(@"d:\");
+            IPersistence.IRule rule = new Persistence.Rule();
+            rule.PersistencePath = @"d:\";
             rule.SaveRule(assm);
 
             //测试,是否存在该文件
@@ -248,7 +274,8 @@ namespace TddTest.ITest
         [Test]
         public void ReadRule()
         {
-            IPersistence.IRule rule = new Persistence.Rule(@"d:\");
+            IPersistence.IRule rule = new Persistence.Rule();
+            rule.PersistencePath = @"d:\";
             #region 写一个xml
             #region 模拟2个ruleset
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CE.Component;
 using CE.Domain;
+using System.IO;
 namespace CE.Domain.Rule
 {
     /// <summary>
@@ -23,8 +24,15 @@ namespace CE.Domain.Rule
         /// 是否需要将远程图片保存至本地
         /// </summary>
         public bool NeedImageLocalizer { get; set; }
+        /// <summary>
+        /// 图片路径
+        /// </summary>
+        public string ImagePath { get; set; }
+        /// <summary>
+        /// 虚拟路径
+        /// </summary>
+        public string VirtualPath { get; set; }
         public List<BaseRule> Rules { get; set; }
-
         public RuleSet()
         {
             Id = 0;
@@ -49,11 +57,9 @@ namespace CE.Domain.Rule
             Rules.Sort(SortCompare);
             foreach (BaseRule rule in Rules)
             {
-
                string filtered= rule.FilterUsingRule(ref rawContent);
-                
+               
                completeResult += filtered;
-                
             }
             if (returnJsonFormat)
             {
@@ -65,13 +71,18 @@ namespace CE.Domain.Rule
                 foreach (string imageUrl in imageUrls)
                 { 
                     ImageLocalizer localizer=new ImageLocalizer(imageUrl
-                        
-                        , SiteConfig.SaveDirectoryForFetchedImages
-                        ,SiteConfig.PathForFetchedImages
+                        , ImagePath
+                        ,VirtualPath
                         ,Math.Abs(imageUrl.GetHashCode()).ToString());
                    string newImagePath= localizer.SavePhotoFromUrl();
                    completeResult = completeResult.Replace(imageUrl, newImagePath);
                 }
+                //string[] temp=ImagePath.Split(new char[]{'\\'},StringSplitOptions.RemoveEmptyEntries);
+                //ImagePath = string.Empty;
+                //for (int i = 0; i < temp.Length-1; i++)
+                //{
+                //    ImagePath += temp[i] + "\\";
+                //}
             }
             return completeResult;
         }

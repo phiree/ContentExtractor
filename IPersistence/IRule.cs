@@ -7,6 +7,7 @@ namespace IPersistence
 {
     public interface IRule
     {
+        string PersistencePath { get; set; }
         /// <summary>
         /// 持久化rule
         /// </summary>

@@ -19,5 +19,6 @@ namespace DBOper.Entity
         public string scenicdetail { get; set; }
         public string scenicintro { get; set; }
         public List<TicketEntity> ticketlist { get; set; }
+        public string mainimg { get; set; }
     }
 }

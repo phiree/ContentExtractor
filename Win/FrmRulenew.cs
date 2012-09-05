@@ -25,5 +25,35 @@ namespace Win
         {
 
         }
+
+        private void rbtnBeginend_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                //显示
+                label1.Visible = true;
+                label2.Visible = true;
+                rtxtBegin.Visible = true;
+                rtxtEnd.Visible = true;
+                //隐藏
+                label5.Visible = false;
+                rtxtRegex.Visible = false;
+            }
+        }
+
+        private void rbtnRegex_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                //显示
+                label5.Visible = true;
+                rtxtRegex.Visible = true;
+                //隐藏
+                label1.Visible = false;
+                label2.Visible = false;
+                rtxtBegin.Visible = false;
+                rtxtEnd.Visible = false;
+            }
+        }
     }
 }

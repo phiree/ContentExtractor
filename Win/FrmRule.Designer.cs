@@ -34,6 +34,10 @@
             this.btnDel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRulename = new System.Windows.Forms.TextBox();
+            this.rtxtRegex = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.rtxtEnd = new System.Windows.Forms.RichTextBox();
@@ -47,10 +51,6 @@
             this.tsbtnNew = new System.Windows.Forms.ToolStripButton();
             this.tsbtnOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.rtxtRegex = new System.Windows.Forms.RichTextBox();
-            this.txtRulename = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -74,9 +74,9 @@
             this.groupBox1.Controls.Add(this.btnDel);
             this.groupBox1.Controls.Add(this.rulelist);
             this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Location = new System.Drawing.Point(22, 34);
+            this.groupBox1.Location = new System.Drawing.Point(12, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(287, 383);
+            this.groupBox1.Size = new System.Drawing.Size(288, 383);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "页面内容标签定义";
@@ -122,6 +122,41 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "提取数据方式";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 356);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "规则名称:";
+            // 
+            // txtRulename
+            // 
+            this.txtRulename.Location = new System.Drawing.Point(72, 353);
+            this.txtRulename.Name = "txtRulename";
+            this.txtRulename.Size = new System.Drawing.Size(113, 21);
+            this.txtRulename.TabIndex = 11;
+            // 
+            // rtxtRegex
+            // 
+            this.rtxtRegex.Location = new System.Drawing.Point(15, 62);
+            this.rtxtRegex.Name = "rtxtRegex";
+            this.rtxtRegex.Size = new System.Drawing.Size(311, 283);
+            this.rtxtRegex.TabIndex = 10;
+            this.rtxtRegex.Text = "";
+            this.rtxtRegex.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 12);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "正则表达式:";
+            this.label3.Visible = false;
             // 
             // btnCancel
             // 
@@ -249,41 +284,6 @@
             this.tsbtnSave.Size = new System.Drawing.Size(52, 22);
             this.tsbtnSave.Text = "保存";
             this.tsbtnSave.Click += new System.EventHandler(this.tsbtnSave_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "正则表达式:";
-            this.label3.Visible = false;
-            // 
-            // rtxtRegex
-            // 
-            this.rtxtRegex.Location = new System.Drawing.Point(15, 62);
-            this.rtxtRegex.Name = "rtxtRegex";
-            this.rtxtRegex.Size = new System.Drawing.Size(311, 283);
-            this.rtxtRegex.TabIndex = 10;
-            this.rtxtRegex.Text = "";
-            this.rtxtRegex.Visible = false;
-            // 
-            // txtRulename
-            // 
-            this.txtRulename.Location = new System.Drawing.Point(72, 353);
-            this.txtRulename.Name = "txtRulename";
-            this.txtRulename.Size = new System.Drawing.Size(113, 21);
-            this.txtRulename.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 356);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "规则名称:";
             // 
             // FrmRule
             // 

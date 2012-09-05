@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rtxtRegex = new System.Windows.Forms.RichTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRulename = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -38,15 +42,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.rtxtBegin = new System.Windows.Forms.RichTextBox();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbtnRegex = new System.Windows.Forms.RadioButton();
             this.rbtnBeginend = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtRulename = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rtxtRegex);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtRulename);
             this.groupBox2.Controls.Add(this.label3);
@@ -58,7 +62,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.rtxtBegin);
             this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton2);
+            this.groupBox2.Controls.Add(this.rbtnRegex);
             this.groupBox2.Controls.Add(this.rbtnBeginend);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
@@ -67,10 +71,45 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "提取数据方式";
             // 
+            // rtxtRegex
+            // 
+            this.rtxtRegex.Location = new System.Drawing.Point(16, 95);
+            this.rtxtRegex.Name = "rtxtRegex";
+            this.rtxtRegex.Size = new System.Drawing.Size(311, 281);
+            this.rtxtRegex.TabIndex = 16;
+            this.rtxtRegex.Text = "";
+            this.rtxtRegex.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 78);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 12);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "正则表达式:";
+            this.label5.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 388);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "规则名称:";
+            // 
+            // txtRulename
+            // 
+            this.txtRulename.Location = new System.Drawing.Point(79, 384);
+            this.txtRulename.Name = "txtRulename";
+            this.txtRulename.Size = new System.Drawing.Size(113, 21);
+            this.txtRulename.TabIndex = 13;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 23);
+            this.label3.Location = new System.Drawing.Point(15, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 10;
@@ -107,7 +146,7 @@
             // 
             // rtxtEnd
             // 
-            this.rtxtEnd.Location = new System.Drawing.Point(18, 255);
+            this.rtxtEnd.Location = new System.Drawing.Point(16, 255);
             this.rtxtEnd.Name = "rtxtEnd";
             this.rtxtEnd.Size = new System.Drawing.Size(311, 121);
             this.rtxtEnd.TabIndex = 7;
@@ -150,16 +189,17 @@
             this.radioButton3.Text = "标签组合";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbtnRegex
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(106, 51);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(71, 16);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "正则提取";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbtnRegex.AutoSize = true;
+            this.rbtnRegex.Location = new System.Drawing.Point(106, 51);
+            this.rbtnRegex.Name = "rbtnRegex";
+            this.rbtnRegex.Size = new System.Drawing.Size(71, 16);
+            this.rbtnRegex.TabIndex = 1;
+            this.rbtnRegex.TabStop = true;
+            this.rbtnRegex.Text = "正则提取";
+            this.rbtnRegex.UseVisualStyleBackColor = true;
+            this.rbtnRegex.CheckedChanged += new System.EventHandler(this.rbtnRegex_CheckedChanged);
             // 
             // rbtnBeginend
             // 
@@ -171,22 +211,7 @@
             this.rbtnBeginend.TabStop = true;
             this.rbtnBeginend.Text = "前后截取";
             this.rbtnBeginend.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 388);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "规则名称:";
-            // 
-            // txtRulename
-            // 
-            this.txtRulename.Location = new System.Drawing.Point(79, 384);
-            this.txtRulename.Name = "txtRulename";
-            this.txtRulename.Size = new System.Drawing.Size(113, 21);
-            this.txtRulename.TabIndex = 13;
+            this.rbtnBeginend.CheckedChanged += new System.EventHandler(this.rbtnBeginend_CheckedChanged);
             // 
             // FrmRulenew
             // 
@@ -213,12 +238,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton rbtnBeginend;
         public System.Windows.Forms.TextBox txtName;
         public System.Windows.Forms.RichTextBox rtxtEnd;
         public System.Windows.Forms.RichTextBox rtxtBegin;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtRulename;
+        public System.Windows.Forms.TextBox txtRulename;
+        public System.Windows.Forms.RadioButton rbtnRegex;
+        public System.Windows.Forms.RadioButton rbtnBeginend;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.RichTextBox rtxtRegex;
     }
 }

@@ -28,112 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnImgLoc = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tasklist = new System.Windows.Forms.ListView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.hTML2DBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dB2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnImgLoc
+            // toolStrip1
             // 
-            this.btnImgLoc.Location = new System.Drawing.Point(32, 13);
-            this.btnImgLoc.Name = "btnImgLoc";
-            this.btnImgLoc.Size = new System.Drawing.Size(75, 23);
-            this.btnImgLoc.TabIndex = 0;
-            this.btnImgLoc.Text = "图片本地化";
-            this.btnImgLoc.UseVisualStyleBackColor = true;
-            this.btnImgLoc.Click += new System.EventHandler(this.btnImgLoc_Click);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripDropDownButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(945, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // button1
+            // toolStripButton1
             // 
-            this.button1.Location = new System.Drawing.Point(32, 71);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Html2Excel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButton1.Text = "文件";
             // 
-            // button2
+            // toolStripButton2
             // 
-            this.button2.Location = new System.Drawing.Point(32, 135);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Url2Excel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(52, 22);
+            this.toolStripButton2.Text = "设置";
             // 
-            // button3
+            // tasklist
             // 
-            this.button3.Location = new System.Drawing.Point(32, 193);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "规则";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.tasklist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tasklist.FullRowSelect = true;
+            this.tasklist.GridLines = true;
+            this.tasklist.Location = new System.Drawing.Point(3, 17);
+            this.tasklist.Name = "tasklist";
+            this.tasklist.Size = new System.Drawing.Size(245, 503);
+            this.tasklist.TabIndex = 1;
+            this.tasklist.UseCompatibleStateImageBehavior = false;
+            this.tasklist.View = System.Windows.Forms.View.Details;
+            this.tasklist.DoubleClick += new System.EventHandler(this.tasklist_DoubleClick);
             // 
-            // button4
+            // groupBox1
             // 
-            this.button4.Location = new System.Drawing.Point(218, 71);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Html2DB";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.groupBox1.Controls.Add(this.tasklist);
+            this.groupBox1.Location = new System.Drawing.Point(12, 28);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(251, 523);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "任务列表树";
             // 
-            // button5
+            // toolStripDropDownButton1
             // 
-            this.button5.Location = new System.Drawing.Point(218, 135);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "DB2Excel";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hTML2DBToolStripMenuItem,
+            this.dB2EXCELToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(85, 22);
+            this.toolStripDropDownButton1.Text = "功能模块";
             // 
-            // button6
+            // hTML2DBToolStripMenuItem
             // 
-            this.button6.Location = new System.Drawing.Point(218, 13);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "执行脚本";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.hTML2DBToolStripMenuItem.Name = "hTML2DBToolStripMenuItem";
+            this.hTML2DBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hTML2DBToolStripMenuItem.Text = "HTML2DB";
+            this.hTML2DBToolStripMenuItem.Click += new System.EventHandler(this.hTML2DBToolStripMenuItem_Click);
+            // 
+            // dB2EXCELToolStripMenuItem
+            // 
+            this.dB2EXCELToolStripMenuItem.Name = "dB2EXCELToolStripMenuItem";
+            this.dB2EXCELToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dB2EXCELToolStripMenuItem.Text = "DB2EXCEL";
+            this.dB2EXCELToolStripMenuItem.Click += new System.EventHandler(this.dB2EXCELToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 322);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnImgLoc);
+            this.ClientSize = new System.Drawing.Size(945, 568);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnImgLoc;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ListView tasklist;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem hTML2DBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dB2EXCELToolStripMenuItem;
+
     }
 }
 

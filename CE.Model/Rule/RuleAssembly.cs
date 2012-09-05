@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 namespace CE.Domain.Rule
 {
     /// <summary>
@@ -24,9 +25,21 @@ namespace CE.Domain.Rule
         public string FilterUsingAssembly(string rawContent, bool returnJsonFormat)
         {
             string result = string.Empty;
+            string mainimgdir = string.Empty;
             RuleSets.Sort(SortCompare);
             foreach (RuleSet ruleset in RuleSets)
             {
+                if (result.StartsWith("$#$"))
+                    return null;
+                if (ruleset.Name == "主图")
+                {
+                    mainimgdir = ruleset.ImagePath + result.Split(new string[] { "$#$" }, StringSplitOptions.RemoveEmptyEntries)[0] + @"\";
+                    if (!Directory.Exists(mainimgdir))
+                    {
+                        Directory.CreateDirectory(mainimgdir);
+                    }
+                    ruleset.ImagePath = mainimgdir ;
+                }
                 result += ruleset.FilterUsingRuleSet(ref rawContent, returnJsonFormat) + "$#$";
             }
             if (!string.IsNullOrEmpty(result))

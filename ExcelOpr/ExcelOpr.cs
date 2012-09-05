@@ -210,6 +210,7 @@ namespace ExcelOpr
                 worksheet1.Cells[1, 9] = "订票说明";
                 worksheet1.Cells[1, 10] = "景区详情";
                 worksheet1.Cells[1, 11] = "景区简介";
+                worksheet1.Cells[1, 12] = "主图";
             }
             else
             {

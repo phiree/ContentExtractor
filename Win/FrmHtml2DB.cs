@@ -76,7 +76,7 @@ namespace Win
             DBOper.Entity.TicketEntity te ;
 
             List<string> htmllist = new List<string>();
-            //查看是否存在html文件, 并添加到列表中
+            #region 查看是否存在html文件, 并添加到列表中
             if (Directory.Exists(txtHtml.Text))
             {
                 foreach (string d in Directory.GetFileSystemEntries(txtHtml.Text))
@@ -88,9 +88,11 @@ namespace Win
             {
                 return;
             }
+            #endregion
             //查看
-            IRule rule = new Persistence.Rule(Path.GetDirectoryName(txtRule.Text));
-            ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));
+            IRule rule = new Persistence.Rule();
+            rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);
+            //ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));
             DBOper.IDBOper dbopr = new DBOper.DBOper();
             for (int i = 0; i < htmllist.Count; i++)
             {
@@ -98,12 +100,15 @@ namespace Win
                 te = new DBOper.Entity.TicketEntity();
                 tlist = new List<DBOper.Entity.TicketEntity>();
                 string html = htmlHandler.ReadHtml(htmllist[i]);
-                string htmlPragraph = ruleassembly.FilterUsingAssembly(html, false);
-                string[] result = htmlPragraph.Split(new string[] { "$#$" }, 12, StringSplitOptions.None);
+                string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text)).FilterUsingAssembly(html, false);
+                if (string.IsNullOrEmpty(htmlPragraph)) continue;
+                string[] result = htmlPragraph.Split(new string[] { "$#$" },14,StringSplitOptions.None);
                 for (int j = 0; j < result.Length; j++)
                 {
-                    #region 判断
-                    if (j == 1)
+                    if (string.IsNullOrEmpty(result[0]))
+                        continue;
+                    #region 景区结果分析
+                    if (j==1)
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
@@ -111,7 +116,7 @@ namespace Win
                             result[j] = count.ToString() + "A";
                         }
                     }
-                    if (j == 4)
+                    if (j==4)
                     {
                         if (!string.IsNullOrEmpty(result[j]))
                         {
@@ -137,6 +142,10 @@ namespace Win
                             }
                         }
                     }
+                    if (j == 12)
+                    {
+                        result[j] = result[j].Split(new string[] { @"scenicimg/",@""" />" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    }
                     #endregion
                 }
                 #region 转化&存储
@@ -151,6 +160,7 @@ namespace Win
                 se.bookintro = result[8].ToString();
                 se.scenicdetail = result[9].ToString();
                 se.scenicintro = result[10].ToString();
+                se.mainimg = result[12].ToString();
                 se.ticketlist = tlist;
                 bresult &= dbopr.Persistence2DB(se);
                 #endregion
