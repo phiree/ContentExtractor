@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBOper", "DBOper\DBOper.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Helper", "DB.Helper\DB.Helper.csproj", "{03AEA773-AAA8-419C-A067-A62F8E2876E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CE.Crawler", "CE.Crawler\CE.Crawler.csproj", "{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,16 @@ Global
 		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{03AEA773-AAA8-419C-A067-A62F8E2876E1}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -58,6 +58,12 @@
     <Compile Include="FmImageLocalizer.Designer.cs">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCrawler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrawler.Designer.cs">
+      <DependentUpon>FrmCrawler.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDB2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     <EmbeddedResource Include="FmImageLocalizer.resx">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCrawler.resx">
+      <DependentUpon>FrmCrawler.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDB2Excel.resx">
       <DependentUpon>FrmDB2Excel.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +175,10 @@
     <ProjectReference Include="..\CE.Component\CE.Component.csproj">
       <Project>{9BE9423C-1343-486E-9B69-96FE1070642C}</Project>
       <Name>CE.Component</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CE.Crawler\CE.Crawler.csproj">
+      <Project>{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}</Project>
+      <Name>CE.Crawler</Name>
     </ProjectReference>
     <ProjectReference Include="..\CE.Model\CE.Domain.csproj">
       <Project>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</Project>
