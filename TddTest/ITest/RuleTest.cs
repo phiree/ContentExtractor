@@ -211,7 +211,7 @@ namespace TddTest.ITest
             //ruleset13.Code = "mainimg";
             //ruleset13.NeedImageLocalizer = true;
 
-            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>",false,false,true,true);
+            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>", false, false, true, true);
             rule13.RuleNo = 10;
             rule13.Name = "主图rule";
             RuleSet ruleset13 = new RuleSet();
@@ -221,6 +221,16 @@ namespace TddTest.ITest
             ruleset13.NeedImageLocalizer = true;
             ruleset13.ImagePath = @"D:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
+
+            BaseRule rule14 = new ReplaceRule("同程网", "旅游在线");
+            rule14.RuleNo = 10;
+            rule14.Name = "替换rule";
+            RuleSet ruleset14 = new RuleSet();
+            ruleset14.Name = "替换";
+            ruleset14.Rules.Add(rule14);
+            ruleset14.Code = "rename";
+            ruleset14.NeedImageLocalizer = false;
+
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -238,6 +248,7 @@ namespace TddTest.ITest
             ruleset11.SetNo = 21;
             ruleset12.SetNo = 22;
             ruleset13.SetNo = 23;
+            ruleset14.SetNo = 24;
             assm.RuleSets.Add(ruleset);
             assm.RuleSets.Add(ruleset2);
             assm.RuleSets.Add(ruleset3);
@@ -251,6 +262,7 @@ namespace TddTest.ITest
             assm.RuleSets.Add(ruleset11);
             assm.RuleSets.Add(ruleset12);
             assm.RuleSets.Add(ruleset13);
+            assm.RuleSets.Add(ruleset14);
 
             #endregion
 

@@ -71,5 +71,27 @@ namespace Win
         {
             new FrmDB2Excel().ShowDialog();
         }
+
+        private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void 打开ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tasklist.Items.Clear();
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();//类的实例化
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);//打开位置
+            openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*"; //文件类型
+            openFileDialog1.FilterIndex = 1;//表示默认筛选情况
+            openFileDialog1.RestoreDirectory = true;//获取或设置一个值，该值指示对话框在关闭前是否还原当前目录。
+            openFileDialog1.ValidateNames = true;     //文件有效性验证ValidateNames，验证用户输入是否是一个有效的Windows文件名
+            openFileDialog1.CheckFileExists = true;  //验证路径有效性
+            openFileDialog1.CheckPathExists = true; //验证文件有效性
+            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+            string path = openFileDialog1.FileName;
+            //loadPath(path);
+            //ruleModel = RuleModel.Open;
+        }
     }
 }

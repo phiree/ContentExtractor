@@ -64,6 +64,7 @@ namespace Persistence
                     {
                         CE.Domain.Rule.BeginEndRule br = item as CE.Domain.Rule.BeginEndRule;
                         CE.Domain.Rule.RegexRule rr = item as CE.Domain.Rule.RegexRule;
+                        CE.Domain.Rule.ReplaceRule rer = item as CE.Domain.Rule.ReplaceRule;
                         if (br != null)
                         {
                             #region cao!
@@ -144,6 +145,42 @@ namespace Persistence
                             XmlElement xe2sub11 = xmlDoc.CreateElement("RegexExp");
                             xe2sub11.InnerText = rr.RegexExp.ToString();
                             xe2.AppendChild(xe2sub11);
+                            xesub5.AppendChild(xe2);
+                            #endregion
+                        }
+                        if (rer != null)
+                        {
+                            #region cao!
+                            XmlElement xe2 = xmlDoc.CreateElement(rer.Name);
+
+                            //baseRule的属性
+                            XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
+                            xe2sub1.InnerText = rer.Id.ToString();
+                            xe2.AppendChild(xe2sub1);
+                            XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
+                            xe2sub2.InnerText = rer.Name;
+                            xe2.AppendChild(xe2sub2);
+                            XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
+                            xe2sub3.InnerText = rer.RuleNo.ToString();
+                            xe2.AppendChild(xe2sub3);
+                            XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
+                            xe2sub4.InnerText = rer.PreAppenddBefore.ToString();
+                            xe2.AppendChild(xe2sub4);
+                            XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
+                            xe2sub5.InnerText = rer.AppendAfter.ToString();
+                            xe2.AppendChild(xe2sub5);
+                            XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
+                            xe2sub6.InnerText = rer.Enabled.ToString();
+                            xe2.AppendChild(xe2sub6);
+
+                            //子类Rule的属性
+
+                            XmlElement xe2sub11 = xmlDoc.CreateElement("OldMark");
+                            xe2sub11.InnerText = rer.OldMark.ToString();
+                            xe2.AppendChild(xe2sub11);
+                            XmlElement xe2sub12 = xmlDoc.CreateElement("NewMark");
+                            xe2sub12.InnerText = rer.NewMark.ToString();
+                            xe2.AppendChild(xe2sub12);
                             xesub5.AppendChild(xe2);
                             #endregion
                         }
@@ -374,15 +411,6 @@ namespace Persistence
             return rassembly;
         }
 
-        /// <summary>
-        /// 根据传入的ruleassembly,将结果保存到execl中
-        /// </summary>
-        /// <param name="ruelassembly"></param>
-        public void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly)
-        {
-
-        }
-
         public List<CE.Domain.Rule.BaseRule> brlist { get; set; }
 
         public string PersistencePath
@@ -403,5 +431,10 @@ namespace Persistence
                 persistencepath = value;
             }
         }
+
+        //public void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
