@@ -58,6 +58,14 @@ namespace Persistence
                     XmlElement xesub7 = xmlDoc.CreateElement("VirtualPath");
                     xesub7.InnerText = ruleset.VirtualPath ?? "";
                     xe1.AppendChild(xesub7);
+                    //ImagePath
+                    XmlElement xesub8 = xmlDoc.CreateElement("OldRegex");
+                    xesub8.InnerText = ruleset.OldRegex ?? "";
+                    xe1.AppendChild(xesub8);
+                    //VirtualPath
+                    XmlElement xesub9 = xmlDoc.CreateElement("NewRegex");
+                    xesub9.InnerText = ruleset.NewRegex ?? "";
+                    xe1.AppendChild(xesub9);
                     //RuleSetRules
                     XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
                     foreach (var item in ruleset.Rules)
@@ -261,6 +269,16 @@ namespace Persistence
                     if (item2.Name == "VirtualPath")
                     {
                         rset.VirtualPath = item2.InnerText;
+                        continue;
+                    }
+                    if (item2.Name == "OldRegex")
+                    {
+                        rset.OldRegex = item2.InnerText;
+                        continue;
+                    }
+                    if (item2.Name == "NewRegex")
+                    {
+                        rset.NewRegex = item2.InnerText;
                         continue;
                     }
                     if (item2.Name == "RuleSetRules")

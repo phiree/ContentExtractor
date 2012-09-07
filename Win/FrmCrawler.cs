@@ -18,8 +18,10 @@ namespace Win
         {
             InitializeComponent();
 
+            txtRegex.Text = Settings.FileMatches;
+            txtPath.Text = Settings.FileSystemFolder;
+
             m_downloader = new Downloader();
-            //m_downloader.StatusChanged += new DownloaderStatusChangedEventHandler(DownloaderStatusChanged);
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using System.Text;
 using CE.Component;
 using CE.Domain;
 using System.IO;
+using System.Text.RegularExpressions;
 namespace CE.Domain.Rule
 {
     /// <summary>
@@ -32,6 +33,20 @@ namespace CE.Domain.Rule
         /// 虚拟路径
         /// </summary>
         public string VirtualPath { get; set; }
+        /// <summary>
+        /// 要替换的字符正则表达式
+        /// </summary>
+        /// <remarks>
+        /// 正则表达式
+        /// </remarks>
+        public string OldRegex { get; set; }
+        /// <summary>
+        /// 替换后的字符
+        /// </summary>
+        /// <remarks>
+        /// 字符串  不是正则表达式
+        /// </remarks>
+        public string NewRegex { get; set; }
         public List<BaseRule> Rules { get; set; }
         public RuleSet()
         {
@@ -45,7 +60,7 @@ namespace CE.Domain.Rule
         /// <summary>
         /// 最终结果
         /// </summary>
-       
+
         /// <summary>
         /// 按照order,使用rule过滤.
         /// </summary>
@@ -57,25 +72,40 @@ namespace CE.Domain.Rule
             Rules.Sort(SortCompare);
             foreach (BaseRule rule in Rules)
             {
-               string filtered= rule.FilterUsingRule(ref rawContent);
-               
-               completeResult += filtered;
+                //通过规则过滤文本
+                string filtered = rule.FilterUsingRule(ref rawContent);
+
+                //合并
+                completeResult += filtered;
             }
+            //判断是否有替换文本
+            if (!string.IsNullOrEmpty(OldRegex))
+            {
+                MatchCollection mc = Regex.Matches(completeResult, OldRegex);
+                if (mc.Count > 0)
+                {
+                    foreach (Match item in mc)
+                    {
+                        completeResult = completeResult.Replace(item.Value, NewRegex);
+                    }
+                }
+            }
+            //是否返回json格式
             if (returnJsonFormat)
             {
-                completeResult =  Code + ":\"" + completeResult+"\"";
+                completeResult = Code + ":\"" + completeResult + "\"";
             }
             if (NeedImageLocalizer)
             {
                 string[] imageUrls = TextHelper.GetImageUrl(completeResult);
                 foreach (string imageUrl in imageUrls)
-                { 
-                    ImageLocalizer localizer=new ImageLocalizer(imageUrl
+                {
+                    ImageLocalizer localizer = new ImageLocalizer(imageUrl
                         , ImagePath
-                        ,VirtualPath
-                        ,Math.Abs(imageUrl.GetHashCode()).ToString());
-                   string newImagePath= localizer.SavePhotoFromUrl();
-                   completeResult = completeResult.Replace(imageUrl, newImagePath);
+                        , VirtualPath
+                        , Math.Abs(imageUrl.GetHashCode()).ToString());
+                    string newImagePath = localizer.SavePhotoFromUrl();
+                    completeResult = completeResult.Replace(imageUrl, newImagePath);
                 }
                 //string[] temp=ImagePath.Split(new char[]{'\\'},StringSplitOptions.RemoveEmptyEntries);
                 //ImagePath = string.Empty;

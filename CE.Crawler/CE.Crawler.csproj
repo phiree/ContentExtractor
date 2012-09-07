@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\FileSystemUtility.cs" />
+    <Compile Include="Common\IniOper.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\PriorityQueue.cs" />
     <Compile Include="CrawlerThread.cs" />

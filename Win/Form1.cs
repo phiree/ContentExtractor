@@ -93,5 +93,10 @@ namespace Win
             //loadPath(path);
             //ruleModel = RuleModel.Open;
         }
+
+        private void cRAWLERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmCrawler().ShowDialog();
+        }
     }
 }
