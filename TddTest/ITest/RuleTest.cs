@@ -99,6 +99,8 @@ namespace TddTest.ITest
             ruleset3.Name = "景区地址";
             ruleset3.Rules.Add(rule3);
             ruleset3.Code = "scenicadd";
+            ruleset3.OldRegex = "同程";
+            ruleset3.NewRegex = "旅游在线";
             //ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
@@ -157,6 +159,8 @@ namespace TddTest.ITest
             ruleset8.Name = "交通指南";
             ruleset8.Rules.Add(rule8);
             ruleset8.Code = "trafficeintro";
+            ruleset8.OldRegex = "同程";
+            ruleset8.NewRegex = "旅游在线";
             //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
@@ -167,6 +171,8 @@ namespace TddTest.ITest
             ruleset9.Name = "订票说明";
             ruleset9.Rules.Add(rule9);
             ruleset9.Code = "bookintro";
+            ruleset9.OldRegex = "同程";
+            ruleset9.NewRegex = "旅游在线";
             //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
@@ -178,6 +184,8 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.OldRegex = "同程";
+            ruleset10.NewRegex = "旅游在线";
             ruleset10.ImagePath = @"D:\testDetailimgLocalizer\";
             ruleset10.VirtualPath = "/scenicimg/detailimg";
 
@@ -189,6 +197,8 @@ namespace TddTest.ITest
             ruleset11.Name = "景区简介";
             ruleset11.Rules.Add(rule11);
             ruleset11.Code = "scenicintro";
+            ruleset11.OldRegex = "同程";
+            ruleset11.NewRegex = "旅游在线";
             //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
