@@ -40,19 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\FileSystemUtility.cs" />
-    <Compile Include="Common\IniOper.cs" />
-    <Compile Include="Common\Logger.cs" />
-    <Compile Include="Common\PriorityQueue.cs" />
-    <Compile Include="CrawlerThread.cs" />
-    <Compile Include="CrawlHistroyEntry.cs" />
-    <Compile Include="Downloader.cs" />
-    <Compile Include="MemCache.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="UrlQueueManager.cs" />
-    <Compile Include="Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

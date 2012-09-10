@@ -43,6 +43,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(357, 21);
             this.txtUrl.TabIndex = 0;
+            this.txtUrl.Text = "http://www.lvmama.com/dest/zhongguo_zhejiang/ticket_tab_5_2";
             // 
             // button1
             // 
@@ -78,6 +79,7 @@
             this.txtRegex.Name = "txtRegex";
             this.txtRegex.Size = new System.Drawing.Size(357, 21);
             this.txtRegex.TabIndex = 3;
+            this.txtRegex.Text = "/dest/";
             // 
             // label3
             // 
