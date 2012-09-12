@@ -37,9 +37,10 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.hTML2DBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dB2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tasklist = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rULEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,14 +71,14 @@
             // 新建ToolStripMenuItem
             // 
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.新建ToolStripMenuItem.Text = "新建";
             this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
             // 
             // 打开ToolStripMenuItem
             // 
             this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
-            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.打开ToolStripMenuItem.Text = "打开";
             this.打开ToolStripMenuItem.Click += new System.EventHandler(this.打开ToolStripMenuItem_Click);
             // 
@@ -94,7 +95,8 @@
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hTML2DBToolStripMenuItem,
             this.dB2EXCELToolStripMenuItem,
-            this.cRAWLERToolStripMenuItem});
+            this.cRAWLERToolStripMenuItem,
+            this.rULEToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -114,6 +116,13 @@
             this.dB2EXCELToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dB2EXCELToolStripMenuItem.Text = "DB2EXCEL";
             this.dB2EXCELToolStripMenuItem.Click += new System.EventHandler(this.dB2EXCELToolStripMenuItem_Click);
+            // 
+            // cRAWLERToolStripMenuItem
+            // 
+            this.cRAWLERToolStripMenuItem.Name = "cRAWLERToolStripMenuItem";
+            this.cRAWLERToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cRAWLERToolStripMenuItem.Text = "CRAWLER";
+            this.cRAWLERToolStripMenuItem.Click += new System.EventHandler(this.cRAWLERToolStripMenuItem_Click);
             // 
             // tasklist
             // 
@@ -138,12 +147,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "任务列表树";
             // 
-            // cRAWLERToolStripMenuItem
+            // rULEToolStripMenuItem
             // 
-            this.cRAWLERToolStripMenuItem.Name = "cRAWLERToolStripMenuItem";
-            this.cRAWLERToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cRAWLERToolStripMenuItem.Text = "CRAWLER";
-            this.cRAWLERToolStripMenuItem.Click += new System.EventHandler(this.cRAWLERToolStripMenuItem_Click);
+            this.rULEToolStripMenuItem.Name = "rULEToolStripMenuItem";
+            this.rULEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rULEToolStripMenuItem.Text = "RULE";
+            this.rULEToolStripMenuItem.Click += new System.EventHandler(this.rULEToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -175,6 +184,7 @@
         private System.Windows.Forms.ToolStripMenuItem 新建ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打开ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cRAWLERToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rULEToolStripMenuItem;
 
     }
 }

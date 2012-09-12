@@ -31,11 +31,6 @@ namespace Win
             new FrmUrl2Excel().Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            new FrmRule().Show();
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             new FrmHtml2DB().Show();
@@ -97,6 +92,11 @@ namespace Win
         private void cRAWLERToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FrmCrawler().ShowDialog();
+        }
+
+        private void rULEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmRule().Show();
         }
     }
 }

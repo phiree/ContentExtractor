@@ -76,6 +76,12 @@ namespace Win
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //20120911
+            if (ruleAssemly == null)
+            {
+                ruleAssemly = new RuleAssembly();
+            }
+            //
             rtxtBegin.Text = string.Empty;
             rtxtEnd.Text = string.Empty;
             FrmRulenew frm = new FrmRulenew();
