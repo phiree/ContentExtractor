@@ -19,7 +19,8 @@ namespace DBOper
             //分解
             if (!IfExistScenic(se.name))
             {
-                sql1 = "insert into Scenic values('" + se.name + "','" + se.level + "','" + se.address + "','" + se.seoname + "','" + se.areaid + "','" + se.topic
+                sql1 = "insert into Scenic(Sname,Slevel,Saddress,Sarea,Stopic,Stopicseo,Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro,Smainimg) " +
+                    "values('" + se.name + "','" + se.level + "','" + se.address + "','" + se.areaid + "','" + se.topic
                    + "','" + se.topicseo + "','" + se.trafficintro + "','" + se.bookintro + "','" + se.scenicdetail + "','" + se.scenicintro + "','" + se.mainimg + "')";
                 foreach (var item in se.ticketlist)
                 {
@@ -29,7 +30,7 @@ namespace DBOper
             else
             {
                 sql1 = "update Scenic set Sname='" + se.name + "',Slevel='" + se.level + "',Saddress='" + se.address
-                    + "',Sseoname='" + se.seoname + "',Sarea='" + se.areaid + "',Stopic='" + se.topic
+                    + "',Sarea='" + se.areaid + "',Stopic='" + se.topic
                    + "',Stopicseo='" + se.topicseo + "',Strafficintro='" + se.trafficintro + "',Sbookintro='"
                    + se.bookintro + "',Sscenicdetail='" + se.scenicdetail + "',Sscenicintro='" + se.scenicintro + "', Smainimg='" + se.mainimg + "' "
                    + " where Sname='" + se.name + "'";

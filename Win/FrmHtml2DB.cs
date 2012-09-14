@@ -103,73 +103,66 @@ namespace Win
                 string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text)).FilterUsingAssembly(html, false);
                 if (string.IsNullOrEmpty(htmlPragraph)) continue;
                 string[] result = htmlPragraph.Split(new string[] { "$#$" },14,StringSplitOptions.None);
-                //for (int j = 0; j < result.Length; j++)
-                //{
-                //    if (string.IsNullOrEmpty(result[0]))
-                //        continue;
-                //    #region 景区结果分析
-                //    if (j==1)
-                //    {
-                //        if (!string.IsNullOrEmpty(result[j]))
-                //        {
-                //            int count = result[j].Length;
-                //            result[j] = count.ToString() + "A";
-                //        }
-                //    }
-                //    if (j==4)
-                //    {
-                //        if (!string.IsNullOrEmpty(result[j]))
-                //        {
-                //            string[] area = result[j].Split(new string[] { "景区门票" }, StringSplitOptions.RemoveEmptyEntries);
-                //            result[j] = area[0] + "省" + area[1] + "市";
-                //        }
-                //    }
-                //    if (j == 11)
-                //    {
-                //        if (!string.IsNullOrEmpty(result[j]))
-                //        {
-                //            var temp = result[j].Replace("$#$", "");
-                //            string[] ticketprice = temp.Split(new string[] { "&&" }, StringSplitOptions.RemoveEmptyEntries);
-                //            foreach (var item in ticketprice)
-                //            {
-                //                string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-                //                te = new DBOper.Entity.TicketEntity();
-                //                te.scenicname = result[0].ToString();
-                //                    te.ticketname = data[0].ToString();
-                //                    te.orgprice = data[1].ToString();
-                //                    te.olprice = data[2].ToString();
-                //                    tlist.Add(te);
-                //            }
-                //        }
-                //    }
-                //    if (j == 12)
-                //    {
-                //        result[j] = result[j].Split(new string[] { @"scenicimg/",@""" />" }, StringSplitOptions.RemoveEmptyEntries)[1];
-                //    }
-                //    #endregion
-                //}
+                for (int j = 0; j < result.Length; j++)
+                {
+                    if (string.IsNullOrEmpty(result[0]))
+                        continue;
+                    #region 景区结果分析
+                    if (j == 1)
+                    {
+                        if (!string.IsNullOrEmpty(result[j]))
+                        {
+                            int count = result[j].Length;
+                            result[j] = count.ToString() + "A";
+                        }
+                    }
+                    if (j == 4)
+                    {
+                        if (!string.IsNullOrEmpty(result[j]))
+                        {
+                            string[] area = result[j].Split(new string[] { "景区门票" }, StringSplitOptions.RemoveEmptyEntries);
+                            result[j] = area[0] + "省" + area[1] + "市";
+                        }
+                    }
+                    if (j == 11)
+                    {
+                        if (!string.IsNullOrEmpty(result[j]))
+                        {
+                            var temp = result[j].Replace("$#$", "");
+                            string[] ticketprice = temp.Split(new string[] { "&&" }, StringSplitOptions.RemoveEmptyEntries);
+                            foreach (var item in ticketprice)
+                            {
+                                string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
+                                te = new DBOper.Entity.TicketEntity();
+                                te.scenicname = result[0].ToString();
+                                te.ticketname = data[0].ToString();
+                                te.orgprice = data[1].ToString();
+                                te.olprice = data[2].ToString();
+                                tlist.Add(te);
+                            }
+                        }
+                    }
+                    if (j == 12)
+                    {
+                        result[j] = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    }
+                    #endregion
+                }
                 #region 景区转化&存储
-                //se.name = result[0].ToString();
-                //se.level = result[1].ToString();
-                //se.address = result[2].ToString();
-                //se.seoname = result[3].ToString();
-                //se.areaid = result[4].ToString();
-                //se.topic = result[5].ToString();
-                //se.topicseo = result[6].ToString();
-                //se.trafficintro = result[7].ToString();
-                //se.bookintro = result[8].ToString();
-                //se.scenicdetail = result[9].ToString();
-                //se.scenicintro = result[10].ToString();
-                //se.mainimg = result[12].ToString();
-                //se.ticketlist = tlist;
-                //bresult &= dbopr.Persistence2DB(se);
-                #endregion
-
-                #region topic转化&存储
                 se.name = result[0].ToString();
-                se.topic = result[1].ToString();
+                se.level = result[1].ToString();
+                se.address = result[2].ToString();
+                se.seoname = string.Empty;//result[3].ToString();
+                se.areaid = result[4].ToString();
+                se.topic = result[5].ToString();
+                se.topicseo = result[6].ToString();
+                se.trafficintro = result[7].ToString();
+                se.bookintro = result[8].ToString();
+                se.scenicdetail = result[9].ToString();
+                se.scenicintro = result[10].ToString();
+                se.mainimg = result[12].ToString();
                 se.ticketlist = tlist;
-                bresult &= dbopr.Persistence2DB4topic(se);
+                bresult &= dbopr.Persistence2DB(se);
                 #endregion
             }
             #endregion
