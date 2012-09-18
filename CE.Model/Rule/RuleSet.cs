@@ -39,14 +39,17 @@ namespace CE.Domain.Rule
         /// <remarks>
         /// 正则表达式
         /// </remarks>
-        public string OldRegex { get; set; }
+        public List<string> OldRegex { get; set; }
         /// <summary>
         /// 替换后的字符
         /// </summary>
         /// <remarks>
         /// 字符串  不是正则表达式
         /// </remarks>
-        public string NewRegex { get; set; }
+        public List<string> NewRegex { get; set; }
+        /// <summary>
+        /// 规则
+        /// </summary>
         public List<BaseRule> Rules { get; set; }
         public RuleSet()
         {
@@ -55,6 +58,8 @@ namespace CE.Domain.Rule
             SetNo = 0;
             Code = string.Empty;
             NeedImageLocalizer = false;
+            OldRegex = new List<string>();
+            NewRegex = new List<string>();
             Rules = new List<BaseRule>();
         }
         /// <summary>
@@ -79,14 +84,17 @@ namespace CE.Domain.Rule
                 completeResult += filtered;
             }
             //判断是否有替换文本
-            if (!string.IsNullOrEmpty(OldRegex))
+            if (OldRegex.Count > 0)
             {
-                MatchCollection mc = Regex.Matches(completeResult, OldRegex);
-                if (mc.Count > 0)
+                for (int i = 0; i < OldRegex.Count; i++)
                 {
-                    foreach (Match item in mc)
+                    MatchCollection mc = Regex.Matches(completeResult, OldRegex[i]);
+                    if (mc.Count > 0)
                     {
-                        completeResult = completeResult.Replace(item.Value, NewRegex);
+                        foreach (Match item in mc)
+                        {
+                            completeResult = completeResult.Replace(item.Value, NewRegex[i]);
+                        }
                     }
                 }
             }

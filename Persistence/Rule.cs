@@ -60,11 +60,27 @@ namespace Persistence
                     xe1.AppendChild(xesub7);
                     //ImagePath
                     XmlElement xesub8 = xmlDoc.CreateElement("OldRegex");
-                    xesub8.InnerText = ruleset.OldRegex ?? "";
+                    if (ruleset.OldRegex.Count > 0)
+                    {
+                        foreach (string item in ruleset.OldRegex)
+                        {
+                            XmlElement xe2sub = xmlDoc.CreateElement("regexrule");
+                            xe2sub.InnerText = item;
+                            xesub8.AppendChild(xe2sub);
+                        }
+                    }
                     xe1.AppendChild(xesub8);
                     //VirtualPath
                     XmlElement xesub9 = xmlDoc.CreateElement("NewRegex");
-                    xesub9.InnerText = ruleset.NewRegex ?? "";
+                    if (ruleset.NewRegex.Count > 0)
+                    {
+                        foreach (string item in ruleset.NewRegex)
+                        {
+                            XmlElement xe2sub = xmlDoc.CreateElement("regexrule");
+                            xe2sub.InnerText = item;
+                            xesub9.AppendChild(xe2sub);
+                        }
+                    }
                     xe1.AppendChild(xesub9);
                     //RuleSetRules
                     XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
@@ -82,18 +98,23 @@ namespace Persistence
                             XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
                             xe2sub1.InnerText = br.Id.ToString();
                             xe2.AppendChild(xe2sub1);
+
                             XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
                             xe2sub2.InnerText = br.Name;
                             xe2.AppendChild(xe2sub2);
+
                             XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
                             xe2sub3.InnerText = br.RuleNo.ToString();
                             xe2.AppendChild(xe2sub3);
+
                             XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
                             xe2sub4.InnerText = br.PreAppenddBefore.ToString();
                             xe2.AppendChild(xe2sub4);
+
                             XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
                             xe2sub5.InnerText = br.AppendAfter.ToString();
                             xe2.AppendChild(xe2sub5);
+
                             XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
                             xe2sub6.InnerText = br.Enabled.ToString();
                             xe2.AppendChild(xe2sub6);
@@ -101,24 +122,31 @@ namespace Persistence
                             //子类Rule的属性
 
                             CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)br;
+
                             XmlElement xe2sub11 = xmlDoc.CreateElement("BeginMark");
                             xe2sub11.InnerText = ber.BeginMark.ToString();
                             xe2.AppendChild(xe2sub11);
+
                             XmlElement xe2sub12 = xmlDoc.CreateElement("EndMark");
                             xe2sub12.InnerText = ber.EndMark;
                             xe2.AppendChild(xe2sub12);
+
                             XmlElement xe2sub13 = xmlDoc.CreateElement("IncludeBeginMark");
                             xe2sub13.InnerText = ber.IncludeBeginMark.ToString();
                             xe2.AppendChild(xe2sub13);
+
                             XmlElement xe2sub14 = xmlDoc.CreateElement("IncludeEndMark");
                             xe2sub14.InnerText = ber.IncludeEndMark.ToString();
                             xe2.AppendChild(xe2sub14);
+
                             XmlElement xe2sub15 = xmlDoc.CreateElement("RemoveBegin");
                             xe2sub15.InnerText = ber.RemoveBegin.ToString();
                             xe2.AppendChild(xe2sub15);
+
                             XmlElement xe2sub16 = xmlDoc.CreateElement("RemoveEnd");
                             xe2sub16.InnerText = ber.RemoveEnd.ToString();
                             xe2.AppendChild(xe2sub16);
+
                             xesub5.AppendChild(xe2);
 
                             #endregion
@@ -273,12 +301,20 @@ namespace Persistence
                     }
                     if (item2.Name == "OldRegex")
                     {
-                        rset.OldRegex = item2.InnerText;
+                        XmlNodeList rulesinset = item2.ChildNodes;
+                        foreach (XmlNode rule in rulesinset)
+                        {
+                            rset.OldRegex.Add(rule.InnerText);
+                        }
                         continue;
                     }
                     if (item2.Name == "NewRegex")
                     {
-                        rset.NewRegex = item2.InnerText;
+                        XmlNodeList rulesinset = item2.ChildNodes;
+                        foreach (XmlNode rule in rulesinset)
+                        {
+                            rset.NewRegex.Add(rule.InnerText);
+                        }
                         continue;
                     }
                     if (item2.Name == "RuleSetRules")
