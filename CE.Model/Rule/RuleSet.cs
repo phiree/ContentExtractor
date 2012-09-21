@@ -88,7 +88,7 @@ namespace CE.Domain.Rule
             {
                 for (int i = 0; i < OldRegex.Count; i++)
                 {
-                    MatchCollection mc = Regex.Matches(completeResult, OldRegex[i]);
+                    MatchCollection mc = Regex.Matches(completeResult, OldRegex[i],RegexOptions.Singleline);
                     if (mc.Count > 0)
                     {
                         foreach (Match item in mc)
