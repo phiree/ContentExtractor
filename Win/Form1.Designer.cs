@@ -38,9 +38,10 @@
             this.hTML2DBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dB2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rULEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tasklist = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rULEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xML2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -71,14 +72,14 @@
             // 新建ToolStripMenuItem
             // 
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.新建ToolStripMenuItem.Text = "新建";
             this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
             // 
             // 打开ToolStripMenuItem
             // 
             this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
-            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.打开ToolStripMenuItem.Text = "打开";
             this.打开ToolStripMenuItem.Click += new System.EventHandler(this.打开ToolStripMenuItem_Click);
             // 
@@ -96,7 +97,8 @@
             this.hTML2DBToolStripMenuItem,
             this.dB2EXCELToolStripMenuItem,
             this.cRAWLERToolStripMenuItem,
-            this.rULEToolStripMenuItem});
+            this.rULEToolStripMenuItem,
+            this.xML2EXCELToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -124,6 +126,13 @@
             this.cRAWLERToolStripMenuItem.Text = "CRAWLER";
             this.cRAWLERToolStripMenuItem.Click += new System.EventHandler(this.cRAWLERToolStripMenuItem_Click);
             // 
+            // rULEToolStripMenuItem
+            // 
+            this.rULEToolStripMenuItem.Name = "rULEToolStripMenuItem";
+            this.rULEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rULEToolStripMenuItem.Text = "RULE";
+            this.rULEToolStripMenuItem.Click += new System.EventHandler(this.rULEToolStripMenuItem_Click);
+            // 
             // tasklist
             // 
             this.tasklist.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,12 +156,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "任务列表树";
             // 
-            // rULEToolStripMenuItem
+            // xML2EXCELToolStripMenuItem
             // 
-            this.rULEToolStripMenuItem.Name = "rULEToolStripMenuItem";
-            this.rULEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rULEToolStripMenuItem.Text = "RULE";
-            this.rULEToolStripMenuItem.Click += new System.EventHandler(this.rULEToolStripMenuItem_Click);
+            this.xML2EXCELToolStripMenuItem.Name = "xML2EXCELToolStripMenuItem";
+            this.xML2EXCELToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xML2EXCELToolStripMenuItem.Text = "XML2EXCEL";
+            this.xML2EXCELToolStripMenuItem.Click += new System.EventHandler(this.xML2EXCELToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -185,6 +194,7 @@
         private System.Windows.Forms.ToolStripMenuItem 打开ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cRAWLERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rULEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xML2EXCELToolStripMenuItem;
 
     }
 }

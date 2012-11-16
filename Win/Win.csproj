@@ -112,6 +112,12 @@
     <Compile Include="FrmUrl2Excel.Designer.cs">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmXml2Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmXml2Excel.Designer.cs">
+      <DependentUpon>FrmXml2Excel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUrl2Excel.resx">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmXml2Excel.resx">
+      <DependentUpon>FrmXml2Excel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -187,6 +196,10 @@
     <ProjectReference Include="..\DBOper\DBOper.csproj">
       <Project>{701FB8E7-D34D-4175-B46E-9282E009EF30}</Project>
       <Name>DBOper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelOpr\ExcelOpr.csproj">
+      <Project>{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}</Project>
+      <Name>ExcelOpr</Name>
     </ProjectReference>
     <ProjectReference Include="..\IPersistence\IPersistence.csproj">
       <Project>{03385796-4B98-4B88-A663-2F7DA40F4403}</Project>

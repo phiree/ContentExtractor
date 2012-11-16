@@ -98,5 +98,10 @@ namespace Win
         {
             new FrmRule().Show();
         }
+
+        private void xML2EXCELToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmXml2Excel().Show();
+        }
     }
 }

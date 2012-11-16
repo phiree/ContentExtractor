@@ -144,7 +144,7 @@ namespace Win
                     }
                     if (j == 12)
                     {
-                        result[j] = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                        result[j] = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries)[0];
                     }
                     #endregion
                 }
