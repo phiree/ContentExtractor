@@ -16,7 +16,7 @@ namespace ExcelOplib
         /// </summary>
         /// <param name="xmlpath"></param>
         /// <param name="resultfile"></param>
-        public static void Xml2Excel(string xmlpath,string resultfile)
+        public static void Xml2Excel(string xmlpath, string resultfile)
         {
             var xd = XDocument.Load(xmlpath);
             if (xd.Root == null) return;
@@ -26,10 +26,12 @@ namespace ExcelOplib
                 travelModelList.Add(new TravelModel()
                 {
                     Name = item.Element("UnitName").Value,
+                    Area = item.Element("AreaName").Value.Split(new char[] { ' ', '-' },StringSplitOptions.RemoveEmptyEntries)[0].Trim()
+                    + item.Element("AreaName").Value.Split(new char[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries)[1].Trim(),
                     AreaCode = item.Element("AreaCode").Value
                 });
             }
-            new ExcelOplib.XML2Excel().ConvertXml2Excel(travelModelList, resultfile+"企业数据-旅行社(全部).xlsx");
+            new ExcelOplib.XML2Excel().ConvertXml2Excel(travelModelList, resultfile + "企业数据-旅行社(全部).xlsx");
         }
     }
 
@@ -55,6 +57,7 @@ namespace ExcelOplib
                 //赋值给title
                 worksheet1.Cells[1, 1] = "名称";
                 worksheet1.Cells[1, 2] = "地区";
+                worksheet1.Cells[1, 3] = "地区编码";
             }
             else
             {
@@ -67,7 +70,8 @@ namespace ExcelOplib
             for (int row = 0; row < Tlist.Count; row++)
             {
                 worksheet1.Cells[row + 2, 1] = Tlist[row].Name;
-                worksheet1.Cells[row + 2, 2] = Tlist[row].AreaCode;
+                worksheet1.Cells[row + 2, 2] = Tlist[row].Area;
+                worksheet1.Cells[row + 2, 3] = Tlist[row].AreaCode;
             }
             //excel属性
             excel1.Visible = false;
