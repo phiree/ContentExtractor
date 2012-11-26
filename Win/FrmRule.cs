@@ -76,6 +76,12 @@ namespace Win
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //20120911
+            if (ruleAssemly == null)
+            {
+                ruleAssemly = new RuleAssembly();
+            }
+            //
             rtxtBegin.Text = string.Empty;
             rtxtEnd.Text = string.Empty;
             FrmRulenew frm = new FrmRulenew();
@@ -86,7 +92,7 @@ namespace Win
                 rs.Name = frm.txtName.Text;
                 if (frm.rbtnBeginend.Checked)
                 {
-                    BaseRule br = new BeginEndRule(frm.rtxtBegin.Text, frm.rtxtEnd.Text, true, false, false, false);
+                    BaseRule br = new BeginEndRule(frm.rtxtBegin.Text, frm.rtxtEnd.Text, false, false, false, false);
                     br.Name = frm.txtRulename.Text;
                     rs.Rules.Add(br);
                 }

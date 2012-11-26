@@ -58,6 +58,12 @@
     <Compile Include="FmImageLocalizer.Designer.cs">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCrawler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrawler.Designer.cs">
+      <DependentUpon>FrmCrawler.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDB2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,12 @@
     <Compile Include="FrmUrl2Excel.Designer.cs">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmXml2Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmXml2Excel.Designer.cs">
+      <DependentUpon>FrmXml2Excel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -113,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FmImageLocalizer.resx">
       <DependentUpon>FmImageLocalizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCrawler.resx">
+      <DependentUpon>FrmCrawler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDB2Excel.resx">
       <DependentUpon>FrmDB2Excel.cs</DependentUpon>
@@ -137,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUrl2Excel.resx">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmXml2Excel.resx">
+      <DependentUpon>FrmXml2Excel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -167,6 +185,10 @@
       <Project>{9BE9423C-1343-486E-9B69-96FE1070642C}</Project>
       <Name>CE.Component</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CE.Crawler\CE.Crawler.csproj">
+      <Project>{F5E66F2F-B9A7-4DD3-BEE5-C5111E5EF8CF}</Project>
+      <Name>CE.Crawler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CE.Model\CE.Domain.csproj">
       <Project>{3BC98BBB-C23C-4BAD-AB1F-42C5ED1897A8}</Project>
       <Name>CE.Domain</Name>
@@ -174,6 +196,10 @@
     <ProjectReference Include="..\DBOper\DBOper.csproj">
       <Project>{701FB8E7-D34D-4175-B46E-9282E009EF30}</Project>
       <Name>DBOper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelOpr\ExcelOpr.csproj">
+      <Project>{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}</Project>
+      <Name>ExcelOpr</Name>
     </ProjectReference>
     <ProjectReference Include="..\IPersistence\IPersistence.csproj">
       <Project>{03385796-4B98-4B88-A663-2F7DA40F4403}</Project>

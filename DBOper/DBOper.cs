@@ -14,13 +14,14 @@ namespace DBOper
 
         public bool Persistence2DB(ScenicEntity se)
         {
-            String sql1=string.Empty;
+            String sql1 = string.Empty;
             string sql2 = string.Empty;
             //分解
             if (!IfExistScenic(se.name))
             {
-                 sql1 = "insert into Scenic values('" + se.name + "','" + se.level + "','" + se.address + "','" + se.seoname + "','" + se.areaid + "','" + se.topic
-                    + "','" + se.topicseo + "','" + se.trafficintro + "','" + se.bookintro + "','" + se.scenicdetail + "','" + se.scenicintro + "','" +se.mainimg +"')";
+                sql1 = "insert into Scenic(Sname,Slevel,Saddress,Sarea,Stopic,Stopicseo,Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro,Smainimg) " +
+                    "values('" + se.name + "','" + se.level + "','" + se.address + "','" + se.areaid + "','" + se.topic
+                   + "','" + se.topicseo + "','" + se.trafficintro + "','" + se.bookintro + "','" + se.scenicdetail + "','" + se.scenicintro + "','" + se.mainimg + "')";
                 foreach (var item in se.ticketlist)
                 {
                     sql2 += "insert into TicketPrice values('" + item.scenicname + "','" + item.ticketname + "','" + item.orgprice + "','" + item.olprice + "');";
@@ -28,11 +29,11 @@ namespace DBOper
             }
             else
             {
-                sql1 = "update Scenic set Sname='" + se.name + "',Slevel='" + se.level + "',Saddress='" + se.address 
-                    + "',Sseoname='" + se.seoname + "',Sarea='" + se.areaid + "',Stopic='" + se.topic
-                   + "',Stopicseo='" + se.topicseo + "',Strafficintro='" + se.trafficintro + "',Sbookintro='" 
-                   + se.bookintro + "',Sscenicdetail='" + se.scenicdetail + "',Sscenicintro='" + se.scenicintro + "', Smainimg='"+se.mainimg+"' "
-                   + " where Sname='"+ se.name + "'";
+                sql1 = "update Scenic set Sname='" + se.name + "',Slevel='" + se.level + "',Saddress='" + se.address
+                    + "',Sarea='" + se.areaid + "',Stopic='" + se.topic
+                   + "',Stopicseo='" + se.topicseo + "',Strafficintro='" + se.trafficintro + "',Sbookintro='"
+                   + se.bookintro + "',Sscenicdetail='" + se.scenicdetail + "',Sscenicintro='" + se.scenicintro + "', Smainimg='" + se.mainimg + "' "
+                   + " where Sname='" + se.name + "'";
                 sql2 += "delete from TicketPrice where Tscenic='" + se.name + "';";
                 foreach (var item in se.ticketlist)
                 {
@@ -40,6 +41,14 @@ namespace DBOper
                 }
             }
             return dbhelper.ExecSql(sql1) && dbhelper.ExecSql(sql2);
+        }
+
+        public bool Persistence2DB4topic(ScenicEntity se)
+        {
+            String sql1 = string.Empty;
+            sql1 = "update Scenic set Stopic='" + se.topic
+               + "' where Sname='" + se.name + "'";
+            return dbhelper.ExecSql(sql1);
         }
 
         public DataSet GetScenic()
@@ -59,7 +68,7 @@ namespace DBOper
             string sql = @"select Sname,Slevel,Saddress,Sseoname,Sarea,Stopic,Stopicseo,
 Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro,Smainimg from Scenic where Sname='" + name + "'";
             DataSet ds = dbhelper.ReturnDataSet(sql);
-            if (ds.Tables[0].Rows.Count==0)
+            if (ds.Tables[0].Rows.Count == 0)
             {
                 return false;
             }

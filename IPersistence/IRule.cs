@@ -27,7 +27,7 @@ namespace IPersistence
         /// 根据传入的ruleassembly,将结果保存到execl中
         /// </summary>
         /// <param name="ruelassembly"></param>
-        void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly);
+        //void PersisteceRule(CE.Domain.Rule.RuleAssembly ruelassembly);
     }
 
     public enum PersistenceWay

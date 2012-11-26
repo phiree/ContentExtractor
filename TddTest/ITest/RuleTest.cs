@@ -99,6 +99,8 @@ namespace TddTest.ITest
             ruleset3.Name = "景区地址";
             ruleset3.Rules.Add(rule3);
             ruleset3.Code = "scenicadd";
+            ruleset3.OldRegex = new List<string>() { @"入园凭证：.*\s*.*\s*.*" };
+            ruleset3.NewRegex = new List<string>() { @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
             //ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
@@ -157,6 +159,8 @@ namespace TddTest.ITest
             ruleset8.Name = "交通指南";
             ruleset8.Rules.Add(rule8);
             ruleset8.Code = "trafficeintro";
+            ruleset8.OldRegex = new List<string>(){"同程"};
+            ruleset8.NewRegex = new List<string>(){"旅游在线"};
             //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
@@ -167,6 +171,8 @@ namespace TddTest.ITest
             ruleset9.Name = "订票说明";
             ruleset9.Rules.Add(rule9);
             ruleset9.Code = "bookintro";
+            ruleset9.OldRegex = new List<string>() { "同程",@"入园凭证：.*\s*.*\s*.*" };
+            ruleset9.NewRegex = new List<string>() { "旅游在线",@"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
             //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
@@ -178,6 +184,8 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.OldRegex = new List<string>() { "同程"};
+            ruleset10.NewRegex = new List<string>() { "旅游在线"};
             ruleset10.ImagePath = @"D:\testDetailimgLocalizer\";
             ruleset10.VirtualPath = "/scenicimg/detailimg";
 
@@ -189,6 +197,8 @@ namespace TddTest.ITest
             ruleset11.Name = "景区简介";
             ruleset11.Rules.Add(rule11);
             ruleset11.Code = "scenicintro";
+            ruleset11.OldRegex = new List<string>() { "同程"};
+            ruleset11.NewRegex = new List<string>() { "旅游在线"};
             //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
@@ -211,7 +221,7 @@ namespace TddTest.ITest
             //ruleset13.Code = "mainimg";
             //ruleset13.NeedImageLocalizer = true;
 
-            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>",false,false,true,true);
+            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>", false, false, true, true);
             rule13.RuleNo = 10;
             rule13.Name = "主图rule";
             RuleSet ruleset13 = new RuleSet();
@@ -221,6 +231,16 @@ namespace TddTest.ITest
             ruleset13.NeedImageLocalizer = true;
             ruleset13.ImagePath = @"D:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
+
+            //BaseRule rule14 = new ReplaceRule("同程网", "旅游在线");
+            //rule14.RuleNo = 10;
+            //rule14.Name = "替换rule";
+            //RuleSet ruleset14 = new RuleSet();
+            //ruleset14.Name = "替换";
+            //ruleset14.Rules.Add(rule14);
+            //ruleset14.Code = "rename";
+            //ruleset14.NeedImageLocalizer = false;
+
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -238,6 +258,7 @@ namespace TddTest.ITest
             ruleset11.SetNo = 21;
             ruleset12.SetNo = 22;
             ruleset13.SetNo = 23;
+            //ruleset14.SetNo = 24;
             assm.RuleSets.Add(ruleset);
             assm.RuleSets.Add(ruleset2);
             assm.RuleSets.Add(ruleset3);
@@ -251,6 +272,7 @@ namespace TddTest.ITest
             assm.RuleSets.Add(ruleset11);
             assm.RuleSets.Add(ruleset12);
             assm.RuleSets.Add(ruleset13);
+            //assm.RuleSets.Add(ruleset14);
 
             #endregion
 
