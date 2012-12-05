@@ -39,9 +39,11 @@
             this.dB2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rULEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xML2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tasklist = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.xML2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sINGLECRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eXCELCRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -96,9 +98,11 @@
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hTML2DBToolStripMenuItem,
             this.dB2EXCELToolStripMenuItem,
-            this.cRAWLERToolStripMenuItem,
             this.rULEToolStripMenuItem,
-            this.xML2EXCELToolStripMenuItem});
+            this.xML2EXCELToolStripMenuItem,
+            this.cRAWLERToolStripMenuItem,
+            this.sINGLECRAWLERToolStripMenuItem,
+            this.eXCELCRAWLERToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -108,30 +112,37 @@
             // hTML2DBToolStripMenuItem
             // 
             this.hTML2DBToolStripMenuItem.Name = "hTML2DBToolStripMenuItem";
-            this.hTML2DBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hTML2DBToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.hTML2DBToolStripMenuItem.Text = "HTML2DB";
             this.hTML2DBToolStripMenuItem.Click += new System.EventHandler(this.hTML2DBToolStripMenuItem_Click);
             // 
             // dB2EXCELToolStripMenuItem
             // 
             this.dB2EXCELToolStripMenuItem.Name = "dB2EXCELToolStripMenuItem";
-            this.dB2EXCELToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dB2EXCELToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.dB2EXCELToolStripMenuItem.Text = "DB2EXCEL";
             this.dB2EXCELToolStripMenuItem.Click += new System.EventHandler(this.dB2EXCELToolStripMenuItem_Click);
             // 
             // cRAWLERToolStripMenuItem
             // 
             this.cRAWLERToolStripMenuItem.Name = "cRAWLERToolStripMenuItem";
-            this.cRAWLERToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.cRAWLERToolStripMenuItem.Text = "CRAWLER";
             this.cRAWLERToolStripMenuItem.Click += new System.EventHandler(this.cRAWLERToolStripMenuItem_Click);
             // 
             // rULEToolStripMenuItem
             // 
             this.rULEToolStripMenuItem.Name = "rULEToolStripMenuItem";
-            this.rULEToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rULEToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.rULEToolStripMenuItem.Text = "RULE";
             this.rULEToolStripMenuItem.Click += new System.EventHandler(this.rULEToolStripMenuItem_Click);
+            // 
+            // xML2EXCELToolStripMenuItem
+            // 
+            this.xML2EXCELToolStripMenuItem.Name = "xML2EXCELToolStripMenuItem";
+            this.xML2EXCELToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.xML2EXCELToolStripMenuItem.Text = "XML2EXCEL";
+            this.xML2EXCELToolStripMenuItem.Click += new System.EventHandler(this.xML2EXCELToolStripMenuItem_Click);
             // 
             // tasklist
             // 
@@ -156,12 +167,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "任务列表树";
             // 
-            // xML2EXCELToolStripMenuItem
+            // sINGLECRAWLERToolStripMenuItem
             // 
-            this.xML2EXCELToolStripMenuItem.Name = "xML2EXCELToolStripMenuItem";
-            this.xML2EXCELToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xML2EXCELToolStripMenuItem.Text = "XML2EXCEL";
-            this.xML2EXCELToolStripMenuItem.Click += new System.EventHandler(this.xML2EXCELToolStripMenuItem_Click);
+            this.sINGLECRAWLERToolStripMenuItem.Name = "sINGLECRAWLERToolStripMenuItem";
+            this.sINGLECRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.sINGLECRAWLERToolStripMenuItem.Text = "SINGLECRAWLER";
+            this.sINGLECRAWLERToolStripMenuItem.Click += new System.EventHandler(this.sINGLECRAWLERToolStripMenuItem_Click);
+            // 
+            // eXCELCRAWLERToolStripMenuItem
+            // 
+            this.eXCELCRAWLERToolStripMenuItem.Name = "eXCELCRAWLERToolStripMenuItem";
+            this.eXCELCRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.eXCELCRAWLERToolStripMenuItem.Text = "EXCELCRAWLER";
+            this.eXCELCRAWLERToolStripMenuItem.Click += new System.EventHandler(this.eXCELCRAWLERToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -195,6 +213,8 @@
         private System.Windows.Forms.ToolStripMenuItem cRAWLERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rULEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xML2EXCELToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sINGLECRAWLERToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eXCELCRAWLERToolStripMenuItem;
 
     }
 }

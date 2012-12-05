@@ -27,16 +27,16 @@ namespace Win
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUrl.Text))
-            { 
-                MessageBox.Show("请填写要抓去的url地址!");
-                return;
-            }
-            if (string.IsNullOrEmpty(txtRegex.Text))
-            { 
-                MessageBox.Show("请填写正则表达式!");
-                return;
-            }
+            //if (string.IsNullOrEmpty(txtUrl.Text))
+            //{ 
+            //    MessageBox.Show("请填写要抓去的url地址!");
+            //    return;
+            //}
+            //if (string.IsNullOrEmpty(txtRegex.Text))
+            //{ 
+            //    MessageBox.Show("请填写正则表达式!");
+            //    return;
+            //}
             if (string.IsNullOrEmpty(txtPath.Text))
             { 
                 MessageBox.Show("请填写需要存储的路径!");
@@ -46,28 +46,5 @@ namespace Win
             m_downloader.Start();
             MessageBox.Show("当你听到叮咚一声，请到" + txtPath.Text + "查找HTML文件");
         }
-
-        //private void DownloaderStatusChanged(object sender, DownloaderStatusChangedEventArgs e)
-        //{
-        //    UpdateToolStrip();
-        //}
-
-        //private void UpdateToolStrip()
-        //{
-            //Application.Current.Dispatcher.Invoke(
-            //    DispatcherPriority.Background,
-            //    new Action<bool>((b) => this.buttonResume.IsEnabled = b),
-            //    (m_downloader.Status == DownloaderStatusType.Suspended));
-
-            //Application.Current.Dispatcher.Invoke(
-            //    DispatcherPriority.Background,
-            //    new Action<bool>((b) => this.buttonGo.IsEnabled = b),
-            //    (m_downloader.Status == DownloaderStatusType.NotStarted));
-
-            //Application.Current.Dispatcher.Invoke(
-            //    DispatcherPriority.Background,
-            //    new Action<bool>((b) => this.buttonSuspend.IsEnabled = this.buttonStop.IsEnabled = b),
-            //    (m_downloader.Status == DownloaderStatusType.Running));
-        //}
     }
 }

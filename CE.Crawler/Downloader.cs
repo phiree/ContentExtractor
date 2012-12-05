@@ -27,7 +27,7 @@ namespace CE.Crawler
 
     public class Downloader
     {
-        #region
+        #region params
 
         public event DownloaderStatusChangedEventHandler StatusChanged;
         
@@ -57,7 +57,7 @@ namespace CE.Crawler
 
         #endregion
 
-        #region
+        #region public attribute
 
         public UrlQueueManager UrlsQueueFrontier
         {
@@ -142,7 +142,7 @@ namespace CE.Crawler
         
         #endregion
 
-        #region
+        #region initialize
 
         public Downloader()
         {

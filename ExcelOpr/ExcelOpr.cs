@@ -334,5 +334,41 @@ namespace ExcelOpr
                 return null;
             }
         }
+
+
+        /// <summary>
+        /// 获取-景区表website-内容 v.20121205
+        /// </summary>
+        /// <returns></returns>
+        public List<string> getWebsitelist()
+        {
+            try
+            {
+                //一个现象, wps的excel文件是et结尾.  微软的excel是以elsx结尾
+                //path即是excel文档的路径。
+                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\浙江省景区.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
+                //Sheet1为excel中表的名字
+                string sql = "select 网址 from [杭州$]";
+                OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                System.Data.DataTable dt = new System.Data.DataTable();
+                ad.Fill(dt);
+                List<string> weblist = new List<string>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+                return weblist;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -103,5 +103,15 @@ namespace Win
         {
             new FrmXml2Excel().Show();
         }
+
+        private void sINGLECRAWLERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmSingleCrawler().Show();
+        }
+
+        private void eXCELCRAWLERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmExcelCrawler().Show();
+        }
     }
 }

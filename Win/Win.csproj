@@ -70,6 +70,12 @@
     <Compile Include="FrmDB2Excel.Designer.cs">
       <DependentUpon>FrmDB2Excel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmExcelCrawler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExcelCrawler.Designer.cs">
+      <DependentUpon>FrmExcelCrawler.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmHtml2DB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,12 @@
     <Compile Include="FrmScript.Designer.cs">
       <DependentUpon>FrmScript.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSingleCrawler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSingleCrawler.Designer.cs">
+      <DependentUpon>FrmSingleCrawler.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUrl2Excel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +144,9 @@
     <EmbeddedResource Include="FrmDB2Excel.resx">
       <DependentUpon>FrmDB2Excel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmExcelCrawler.resx">
+      <DependentUpon>FrmExcelCrawler.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmHtml2DB.resx">
       <DependentUpon>FrmHtml2DB.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmScript.resx">
       <DependentUpon>FrmScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSingleCrawler.resx">
+      <DependentUpon>FrmSingleCrawler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUrl2Excel.resx">
       <DependentUpon>FrmUrl2Excel.cs</DependentUpon>

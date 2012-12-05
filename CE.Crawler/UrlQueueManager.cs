@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CE.Crawler
 {
+    /// <summary>
+    /// 队列权限enum
+    /// </summary>
     public enum FrontierQueuePriority
     {
         Low,
@@ -14,6 +17,9 @@ namespace CE.Crawler
         High,
     }
 
+    /// <summary>
+    /// url队列管理器
+    /// </summary>
     public class UrlQueueManager
     {
         private Queue<string> lowQueue = new Queue<string>();

@@ -45,7 +45,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(357, 21);
             this.txtUrl.TabIndex = 0;
-            this.txtUrl.Text = "http://www.lvmama.com/dest/zhongguo_zhejiang/ticket_tab_5_1";
+            this.txtUrl.Text = "http://www.17u.cn/scenery/BookSceneryTicket_2090.html";
             // 
             // button1
             // 
@@ -98,7 +98,7 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(357, 21);
             this.txtPath.TabIndex = 5;
-            this.txtPath.Text = "e:\\download";
+            this.txtPath.Text = "e:\\download2";
             // 
             // label4
             // 

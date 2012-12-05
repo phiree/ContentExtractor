@@ -12,14 +12,20 @@ namespace CE.Crawler
     using CE.Crawler.Common;
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// 爬虫状态类型
+    /// </summary>
     public enum CrawlerStatusType
     {
-        Idle,
-        Fetch,  // FetchWebContent
-        Parse,  // ParseWebPage
-        Save,   // SaveToRepository
+        Idle,//空闲
+        Fetch,  // 抓去FetchWebContent
+        Parse,  // 转换ParseWebPage
+        Save,   // 保存SaveToRepository
     }
 
+    /// <summary>
+    /// 爬虫状态转换事件类型
+    /// </summary>
     public enum CrawlerStatusChangedEventType
     {
 
@@ -163,6 +169,10 @@ namespace CE.Crawler
                 this.StatusChanged(this, null);
         }
 
+        /// <summary>
+        /// doCrawlerwork
+        /// </summary>
+        /// <param name="data"></param>
         private static void DoWork(object data)
         {
             try
@@ -267,7 +277,10 @@ namespace CE.Crawler
 
                 string html = Encoding.UTF8.GetString(buffer);
                 string baseUri = Utility.GetBaseUri(url);
-                string[] links = Parser.ExtractLinks(baseUri, html, regexOutput,regexFollow);
+                string[] links = null;
+                if(!string.IsNullOrEmpty(regexOutput) && !string.IsNullOrEmpty(regexFollow))
+                { Parser.ExtractLinks(baseUri, html, regexOutput, regexFollow); }
+                
 
                 if (Settings.DataStoreMode == "1")
                 {
@@ -275,7 +288,17 @@ namespace CE.Crawler
                 }
                 else
                 {
-                    //是否匹配提取html的过滤条件
+                    ////2012.12.5修改[old]  由输出regex判断模式改为多模式判断(包含不轮询)
+                    ////是否匹配提取html的过滤条件
+                    //if (Regex.IsMatch(url, regexOutput))
+                    //{
+                    //    FileSystemUtility.StoreWebFile(url, buffer);
+                    //}
+                    //2012.12.5修改[new]  由输出regex判断模式改为多模式判断(包含不轮询)
+                    if (string.IsNullOrEmpty(regexOutput))
+                    {
+                        regexOutput = url;
+                    }
                     if (Regex.IsMatch(url, regexOutput))
                     {
                         FileSystemUtility.StoreWebFile(url, buffer);
