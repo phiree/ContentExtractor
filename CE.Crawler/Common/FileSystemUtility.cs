@@ -21,7 +21,7 @@ namespace CE.Crawler.Common
             {
                 Directory.CreateDirectory(fileFolder);
             }
-            string filePath = fileFolder + "\\" + url.GetHashCode() + ".html";
+            string filePath = fileFolder + "\\" + Math.Abs(url.GetHashCode()) + ".html";
             if (File.Exists(filePath)) return;
             try
             {
@@ -64,6 +64,38 @@ namespace CE.Crawler.Common
             finally
             {
                 sw.Close();
+            }
+        }
+
+        public static void StoreWebFile(string url, byte[] resource,string prefixtag)
+        {
+            string[] prefixtags = prefixtag.Split('.');
+            if (prefixtags.Length < 2) {
+                StoreWebFile(url, resource);
+            }
+            FileStream fs = null;
+            if (!Directory.Exists(fileFolder))
+            {
+                Directory.CreateDirectory(fileFolder);
+            }
+            string filePath = fileFolder + "\\" +prefixtags[1]+"-"+ Math.Abs(url.GetHashCode()) + ".html";
+            if (File.Exists(filePath)) return;
+            try
+            {
+
+                fs = new FileStream(filePath, FileMode.Create);
+
+                fs.Write(resource, 0, resource.Length);
+                fs.Flush();
+                //FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
+            }
+            catch (Exception e)
+            {
+                //Logger.Error(e.Message + e.StackTrace);
+            }
+            finally
+            {
+                fs.Close();
             }
         }
     }

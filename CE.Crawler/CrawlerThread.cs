@@ -182,7 +182,7 @@ namespace CE.Crawler
                 string regex = crawler.m_regex;
                 string regex2 = crawler.m_regex2;
                 UrlQueueManager queue = downloader.UrlsQueueFrontier;
-                
+
 
                 while (true)
                 {
@@ -278,9 +278,9 @@ namespace CE.Crawler
                 string html = Encoding.UTF8.GetString(buffer);
                 string baseUri = Utility.GetBaseUri(url);
                 string[] links = null;
-                if(!string.IsNullOrEmpty(regexOutput) && !string.IsNullOrEmpty(regexFollow))
+                if (!string.IsNullOrEmpty(regexOutput) && !string.IsNullOrEmpty(regexFollow))
                 { Parser.ExtractLinks(baseUri, html, regexOutput, regexFollow); }
-                
+
 
                 if (Settings.DataStoreMode == "1")
                 {
@@ -301,7 +301,7 @@ namespace CE.Crawler
                     }
                     if (Regex.IsMatch(url, regexOutput))
                     {
-                        FileSystemUtility.StoreWebFile(url, buffer);
+                        FileSystemUtility.StoreWebFile(url, buffer,url);
                     }
                 }
 
