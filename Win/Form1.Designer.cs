@@ -37,13 +37,14 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.hTML2DBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dB2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rULEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xML2EXCELToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tasklist = new System.Windows.Forms.ListView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sINGLECRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eXCELCRAWLERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tasklist = new System.Windows.Forms.ListView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.hTML2DBMULTIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -96,13 +97,14 @@
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eXCELCRAWLERToolStripMenuItem,
             this.hTML2DBToolStripMenuItem,
+            this.hTML2DBMULTIToolStripMenuItem,
             this.dB2EXCELToolStripMenuItem,
             this.rULEToolStripMenuItem,
             this.xML2EXCELToolStripMenuItem,
             this.cRAWLERToolStripMenuItem,
-            this.sINGLECRAWLERToolStripMenuItem,
-            this.eXCELCRAWLERToolStripMenuItem});
+            this.sINGLECRAWLERToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -123,13 +125,6 @@
             this.dB2EXCELToolStripMenuItem.Text = "DB2EXCEL";
             this.dB2EXCELToolStripMenuItem.Click += new System.EventHandler(this.dB2EXCELToolStripMenuItem_Click);
             // 
-            // cRAWLERToolStripMenuItem
-            // 
-            this.cRAWLERToolStripMenuItem.Name = "cRAWLERToolStripMenuItem";
-            this.cRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.cRAWLERToolStripMenuItem.Text = "CRAWLER";
-            this.cRAWLERToolStripMenuItem.Click += new System.EventHandler(this.cRAWLERToolStripMenuItem_Click);
-            // 
             // rULEToolStripMenuItem
             // 
             this.rULEToolStripMenuItem.Name = "rULEToolStripMenuItem";
@@ -143,6 +138,27 @@
             this.xML2EXCELToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.xML2EXCELToolStripMenuItem.Text = "XML2EXCEL";
             this.xML2EXCELToolStripMenuItem.Click += new System.EventHandler(this.xML2EXCELToolStripMenuItem_Click);
+            // 
+            // cRAWLERToolStripMenuItem
+            // 
+            this.cRAWLERToolStripMenuItem.Name = "cRAWLERToolStripMenuItem";
+            this.cRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.cRAWLERToolStripMenuItem.Text = "CRAWLER";
+            this.cRAWLERToolStripMenuItem.Click += new System.EventHandler(this.cRAWLERToolStripMenuItem_Click);
+            // 
+            // sINGLECRAWLERToolStripMenuItem
+            // 
+            this.sINGLECRAWLERToolStripMenuItem.Name = "sINGLECRAWLERToolStripMenuItem";
+            this.sINGLECRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.sINGLECRAWLERToolStripMenuItem.Text = "SINGLECRAWLER";
+            this.sINGLECRAWLERToolStripMenuItem.Click += new System.EventHandler(this.sINGLECRAWLERToolStripMenuItem_Click);
+            // 
+            // eXCELCRAWLERToolStripMenuItem
+            // 
+            this.eXCELCRAWLERToolStripMenuItem.Name = "eXCELCRAWLERToolStripMenuItem";
+            this.eXCELCRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.eXCELCRAWLERToolStripMenuItem.Text = "WEB2HTML";
+            this.eXCELCRAWLERToolStripMenuItem.Click += new System.EventHandler(this.eXCELCRAWLERToolStripMenuItem_Click);
             // 
             // tasklist
             // 
@@ -167,19 +183,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "任务列表树";
             // 
-            // sINGLECRAWLERToolStripMenuItem
+            // hTML2DBMULTIToolStripMenuItem
             // 
-            this.sINGLECRAWLERToolStripMenuItem.Name = "sINGLECRAWLERToolStripMenuItem";
-            this.sINGLECRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.sINGLECRAWLERToolStripMenuItem.Text = "SINGLECRAWLER";
-            this.sINGLECRAWLERToolStripMenuItem.Click += new System.EventHandler(this.sINGLECRAWLERToolStripMenuItem_Click);
-            // 
-            // eXCELCRAWLERToolStripMenuItem
-            // 
-            this.eXCELCRAWLERToolStripMenuItem.Name = "eXCELCRAWLERToolStripMenuItem";
-            this.eXCELCRAWLERToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.eXCELCRAWLERToolStripMenuItem.Text = "EXCELCRAWLER";
-            this.eXCELCRAWLERToolStripMenuItem.Click += new System.EventHandler(this.eXCELCRAWLERToolStripMenuItem_Click);
+            this.hTML2DBMULTIToolStripMenuItem.Name = "hTML2DBMULTIToolStripMenuItem";
+            this.hTML2DBMULTIToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.hTML2DBMULTIToolStripMenuItem.Text = "HTML2DBMULTI";
+            this.hTML2DBMULTIToolStripMenuItem.Click += new System.EventHandler(this.hTML2DBMULTIToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -215,6 +224,7 @@
         private System.Windows.Forms.ToolStripMenuItem xML2EXCELToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sINGLECRAWLERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eXCELCRAWLERToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hTML2DBMULTIToolStripMenuItem;
 
     }
 }

@@ -111,7 +111,12 @@ namespace Win
 
         private void eXCELCRAWLERToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FrmExcelCrawler().Show();
+            new FrmWeb2Html().Show();
+        }
+
+        private void hTML2DBMULTIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FrmHtml2DBMulti().Show();
         }
     }
 }

@@ -78,7 +78,7 @@ namespace CE.Crawler.Common
             {
                 Directory.CreateDirectory(fileFolder);
             }
-            string filePath = fileFolder + "\\" +prefixtags[1]+"-"+ Math.Abs(url.GetHashCode()) + ".html";
+            string filePath = fileFolder + "\\r" +prefixtags[1]+"-"+ Math.Abs(url.GetHashCode()) + ".html";
             if (File.Exists(filePath)) return;
             try
             {

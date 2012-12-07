@@ -13,13 +13,13 @@ using CE.Component;
 
 namespace Win
 {
-    public partial class FrmHtml2DB : Form
+    public partial class FrmHtml2DBMulti : Form
     {
         DBOper.IDBOper dboper = new DBOper.DBOper();
         public RuleAssembly ruleassembly { get; set; }
         private HtmlHandler htmlHandler = new HtmlHandler();
 
-        public FrmHtml2DB()
+        public FrmHtml2DBMulti()
         {
             InitializeComponent();
         }
@@ -38,18 +38,27 @@ namespace Win
 
         private void btnRule_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();//类的实例化
-            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);//打开位置
-            openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*"; //文件类型
-            openFileDialog1.FilterIndex = 1;//表示默认筛选情况
-            openFileDialog1.RestoreDirectory = true;//获取或设置一个值，该值指示对话框在关闭前是否还原当前目录。
-            openFileDialog1.ValidateNames = true;     //文件有效性验证ValidateNames，验证用户输入是否是一个有效的Windows文件名
-            openFileDialog1.CheckFileExists = true;  //验证路径有效性
-            openFileDialog1.CheckPathExists = true; //验证文件有效性
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+            //OpenFileDialog openFileDialog1 = new OpenFileDialog();//类的实例化
+            //openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);//打开位置
+            //openFileDialog1.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*"; //文件类型
+            //openFileDialog1.FilterIndex = 1;//表示默认筛选情况
+            //openFileDialog1.RestoreDirectory = true;//获取或设置一个值，该值指示对话框在关闭前是否还原当前目录。
+            //openFileDialog1.ValidateNames = true;     //文件有效性验证ValidateNames，验证用户输入是否是一个有效的Windows文件名
+            //openFileDialog1.CheckFileExists = true;  //验证路径有效性
+            //openFileDialog1.CheckPathExists = true; //验证文件有效性
+            //if (openFileDialog1.ShowDialog() != DialogResult.OK)
+            //    return;
+            //string path = openFileDialog1.FileName;
+            //this.txtRule.Text = path;
+
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "选择文件夹";
+            fbd.RootFolder = Environment.SpecialFolder.MyComputer;
+            fbd.ShowNewFolderButton = true;
+            if (fbd.ShowDialog() != DialogResult.OK)
                 return;
-            string path = openFileDialog1.FileName;
-            this.txtRule.Text = path;
+            string path = fbd.SelectedPath;
+            txtRule.Text = path;
         }
 
         private void btnConvert_Click(object sender, EventArgs e)
@@ -89,18 +98,41 @@ namespace Win
                 return;
             }
             #endregion
+
+            Dictionary<string, string> rulelist = new Dictionary<string, string>();
+            #region 查看是否存在Rule文件, 并添加到列表中
+            if (Directory.Exists(txtRule.Text))
+            {
+                foreach (string r in Directory.GetFileSystemEntries(txtRule.Text))
+                {
+                    var key = System.IO.Path.GetFileNameWithoutExtension(r);
+                    rulelist.Add(key, r);
+                }
+            }
+            else
+            {
+                return;
+            }
+            #endregion
             //查看
-            IRule rule = new Persistence.Rule();
-            rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);
-            //ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));
+            IRule rule = null;
+            //rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);//20121207-sst注释
+            //ruleassembly = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text));//20121012-sst注释
             DBOper.IDBOper dbopr = new DBOper.DBOper();
             for (int i = 0; i < htmllist.Count; i++)
             {
+                //20121207-new
+                var html_type = (System.IO.Path.GetFileNameWithoutExtension(htmllist[i])).Split('-')[0];
+                var rule_type = rulelist[html_type];
+                rule = new Persistence.Rule();
+                rule.PersistencePath = Path.GetDirectoryName(rule_type);
+                //20121207-old
                 se = new DBOper.Entity.ScenicEntity();
                 te = new DBOper.Entity.TicketEntity();
                 tlist = new List<DBOper.Entity.TicketEntity>();
                 string html = htmlHandler.ReadHtml(htmllist[i]);
-                string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text)).FilterUsingAssembly(html, false);
+
+                string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(rule_type)).FilterUsingAssembly(html, false);
                 if (string.IsNullOrEmpty(htmlPragraph)) continue;
                 string[] result = htmlPragraph.Split(new string[] { "$#$" }, 14, StringSplitOptions.None);
                 for (int j = 0; j < result.Length; j++)
@@ -144,7 +176,11 @@ namespace Win
                     }
                     if (j == 12)
                     {
-                        result[j] = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                        var tmp = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries);
+                        if (tmp.Length > 0)
+                        {
+                            result[j] = tmp[0];
+                        }
                     }
                     #endregion
                 }

@@ -2,3 +2,4 @@
 obj
 *.suo
 TddTest/bin/
+Win/App.config
