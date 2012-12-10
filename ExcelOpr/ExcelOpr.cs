@@ -363,6 +363,157 @@ namespace ExcelOpr
                     //如果excel中的行不为空,添加
                     weblist.Add(dt.Rows[i][0].ToString().Replace("\n", "").Trim());
                 }
+
+                string sql2 = "select 网址 from [宁波$]";
+                OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
+                OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
+                DataSet ds2 = new DataSet();
+                System.Data.DataTable dt2 = new System.Data.DataTable();
+                ad2.Fill(dt2);
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt2.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql3 = "select 网址 from [温州$]";
+                OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
+                OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
+                DataSet ds3 = new DataSet();
+                System.Data.DataTable dt3 = new System.Data.DataTable();
+                ad3.Fill(dt3);
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt3.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt3.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql4 = "select 网址 from [嘉兴$]";
+                OleDbCommand cmd4 = new OleDbCommand(sql4, new OleDbConnection(conn));
+                OleDbDataAdapter ad4 = new OleDbDataAdapter(cmd4);
+                DataSet ds4 = new DataSet();
+                System.Data.DataTable dt4 = new System.Data.DataTable();
+                ad4.Fill(dt4);
+                for (int i = 0; i < dt4.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt4.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt4.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql5 = "select 网址 from [湖州$]";
+                OleDbCommand cmd5 = new OleDbCommand(sql5, new OleDbConnection(conn));
+                OleDbDataAdapter ad5 = new OleDbDataAdapter(cmd5);
+                DataSet ds5 = new DataSet();
+                System.Data.DataTable dt5 = new System.Data.DataTable();
+                ad5.Fill(dt5);
+                for (int i = 0; i < dt5.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt5.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt5.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql6 = "select 网址 from [绍兴$]";
+                OleDbCommand cmd6 = new OleDbCommand(sql6, new OleDbConnection(conn));
+                OleDbDataAdapter ad6 = new OleDbDataAdapter(cmd6);
+                DataSet ds6 = new DataSet();
+                System.Data.DataTable dt6 = new System.Data.DataTable();
+                ad6.Fill(dt6);
+                for (int i = 0; i < dt6.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt6.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt6.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql7 = "select 网址 from [金华$]";
+                OleDbCommand cmd7 = new OleDbCommand(sql7, new OleDbConnection(conn));
+                OleDbDataAdapter ad7 = new OleDbDataAdapter(cmd7);
+                DataSet ds7 = new DataSet();
+                System.Data.DataTable dt7 = new System.Data.DataTable();
+                ad7.Fill(dt7);
+                for (int i = 0; i < dt7.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt7.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt7.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql8 = "select 网址 from [衢州$]";
+                OleDbCommand cmd8 = new OleDbCommand(sql8, new OleDbConnection(conn));
+                OleDbDataAdapter ad8 = new OleDbDataAdapter(cmd8);
+                DataSet ds8 = new DataSet();
+                System.Data.DataTable dt8 = new System.Data.DataTable();
+                ad8.Fill(dt8);
+                for (int i = 0; i < dt8.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt8.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt8.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql9 = "select 网址 from [舟山$]";
+                OleDbCommand cmd9 = new OleDbCommand(sql9, new OleDbConnection(conn));
+                OleDbDataAdapter ad9 = new OleDbDataAdapter(cmd9);
+                DataSet ds9 = new DataSet();
+                System.Data.DataTable dt9 = new System.Data.DataTable();
+                ad9.Fill(dt9);
+                for (int i = 0; i < dt9.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt9.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt9.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql10 = "select 网址 from [台州$]";
+                OleDbCommand cmd10 = new OleDbCommand(sql10, new OleDbConnection(conn));
+                OleDbDataAdapter ad10 = new OleDbDataAdapter(cmd10);
+                DataSet ds10 = new DataSet();
+                System.Data.DataTable dt10 = new System.Data.DataTable();
+                ad10.Fill(dt10);
+                for (int i = 0; i < dt10.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt10.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt10.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
+                string sql11 = "select 网址 from [丽水$]";
+                OleDbCommand cmd11 = new OleDbCommand(sql11, new OleDbConnection(conn));
+                OleDbDataAdapter ad11 = new OleDbDataAdapter(cmd11);
+                DataSet ds11 = new DataSet();
+                System.Data.DataTable dt11 = new System.Data.DataTable();
+                ad11.Fill(dt11);
+                for (int i = 0; i < dt11.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt11.Rows[i][0].ToString())) continue;
+
+                    //如果excel中的行不为空,添加
+                    weblist.Add(dt11.Rows[i][0].ToString().Replace("\n", "").Trim());
+                }
+
                 return weblist;
             }
             catch (Exception ex)

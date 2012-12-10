@@ -64,7 +64,7 @@
             this.txtHtml.Name = "txtHtml";
             this.txtHtml.Size = new System.Drawing.Size(636, 21);
             this.txtHtml.TabIndex = 32;
-            this.txtHtml.Text = "E:\\download2";
+            this.txtHtml.Text = "E:\\download";
             // 
             // label3
             // 

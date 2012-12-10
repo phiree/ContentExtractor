@@ -22,7 +22,7 @@ namespace CE.Crawler
 
     public enum DownloaderEventType
     {
-        
+
     }
 
     public class Downloader
@@ -30,7 +30,7 @@ namespace CE.Crawler
         #region params
 
         public event DownloaderStatusChangedEventHandler StatusChanged;
-        
+
         // foamliu, 2009/12/27.
         // 尚未访问的URL列表, 使用先进先出 （First-in-first-out, FIFO) 的队列， 
         // 对应的爬虫就是宽度优先爬虫 (Breadth-first crawler).
@@ -46,9 +46,9 @@ namespace CE.Crawler
         public IList<CrawlHistroyEntry> m_history;
 
         public long TotalSize { get; set; }
-        public object TotalSizelock = new object();         
+        public object TotalSizelock = new object();
 
-        public long Errors = 0L;        
+        public long Errors = 0L;
 
         private Collection<CrawlerThread> m_crawlerThreads;
 
@@ -126,9 +126,9 @@ namespace CE.Crawler
         /// 输出html的规则
         /// </summary>
         public string Regexcon
-        { 
-            get; 
-            set; 
+        {
+            get;
+            set;
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace CE.Crawler
             get;
             set;
         }
-        
+
         #endregion
 
         #region initialize
@@ -162,7 +162,7 @@ namespace CE.Crawler
         /// <param name="seeds">
         /// 通常爬虫是从一系列种子(Seed)网页开始,然后使用这些网页中的链接去获取其他页面.
         /// </param>
-        public void InitSeeds(string[] seeds,string regexcon,string regexcon2)
+        public void InitSeeds(string[] seeds, string regexcon, string regexcon2)
         {
             Regexcon = regexcon;
             Regexcon2 = regexcon2;
@@ -181,7 +181,7 @@ namespace CE.Crawler
 
             for (int i = 0; i < MemCache.ThreadCount; i++)
             {
-                CrawlerThread crawler = new CrawlerThread(this,Regexcon,Regexcon2);
+                CrawlerThread crawler = new CrawlerThread(this, Regexcon, Regexcon2);
                 crawler.StatusChanged += new CrawlerStatusChangedEventHandler(CrawlerStatusChanged);
                 crawler.Start();
 
@@ -214,7 +214,7 @@ namespace CE.Crawler
                 crawler.Resume();
             }
 
-            this.Status = DownloaderStatusType.Running;            
+            this.Status = DownloaderStatusType.Running;
         }
 
         public void Abort()
@@ -224,12 +224,12 @@ namespace CE.Crawler
             foreach (CrawlerThread crawler in m_crawlerThreads)
             {
                 crawler.Abort();
-            }                     
+            }
         }
 
         private void CrawlerStatusChanged(object sender, CrawlerStatusChangedEventArgs e)
         {
-            this.m_dirty = true;            
+            this.m_dirty = true;
         }
 
         public double GetDownloadSpeed()

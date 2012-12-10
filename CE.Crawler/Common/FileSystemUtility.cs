@@ -69,8 +69,8 @@ namespace CE.Crawler.Common
 
         public static void StoreWebFile(string url, byte[] resource,string prefixtag)
         {
-            string[] prefixtags = prefixtag.Split('.');
-            if (prefixtags.Length < 2) {
+            string[] prefixtags = prefixtag.Split(new char[] { '.', '/' },StringSplitOptions.RemoveEmptyEntries);
+            if (prefixtags.Length < 3) {
                 StoreWebFile(url, resource);
             }
             FileStream fs = null;
@@ -78,8 +78,9 @@ namespace CE.Crawler.Common
             {
                 Directory.CreateDirectory(fileFolder);
             }
-            string filePath = fileFolder + "\\r" +prefixtags[1]+"-"+ Math.Abs(url.GetHashCode()) + ".html";
-            if (File.Exists(filePath)) return;
+            string filePath = fileFolder + "\\r" + prefixtags[2] + prefixtags[3] + "-" + Math.Abs(url.GetHashCode()) + ".html";
+            if (File.Exists(filePath)) 
+                return;
             try
             {
 

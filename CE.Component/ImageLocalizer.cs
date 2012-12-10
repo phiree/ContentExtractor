@@ -73,9 +73,7 @@ namespace CE.Component
                     string filePathPhy = SavePathPhy + fileName;
                     filePath = SavePath + fileName;
                     SaveBinaryFile(response.GetResponseStream(), filePathPhy);
-
                 }
-
             }
             catch (Exception err)
             {
