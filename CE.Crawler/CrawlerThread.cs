@@ -56,8 +56,6 @@ namespace CE.Crawler
         private CrawlerStatusType m_statusType;
         private string m_url;
         private Downloader m_downloader;
-        private string m_regex;
-        private string m_regex2;
         private bool m_dirty;
 
         #region Props
@@ -74,7 +72,6 @@ namespace CE.Crawler
                 m_name = value;
             }
         }
-
 
         public CrawlerStatusType Status
         {
@@ -115,28 +112,22 @@ namespace CE.Crawler
             }
         }
 
-        public string Regx
-        {
-            get
-            {
-                return m_regex;
-            }
-            set
-            {
-                m_regex = value;
-            }
-        }
+        public string Regx { get; set; }
+
+        public string Regx2 { get; set; }
+
+        public string Srcprefix { get; set; }
 
         #endregion
 
         #region ctor
 
-        public CrawlerThread(Downloader d, string regexcon, string regexcon2)
+        public CrawlerThread(Downloader d, string regexcon, string regexcon2 )
         {
             m_thread = new Thread(CrawlerThread.DoWork);
             m_name = m_thread.ManagedThreadId.ToString();
-            m_regex = regexcon;
-            m_regex2 = regexcon2;
+            Regx = regexcon;
+            Regx2 = regexcon2;
             this.m_downloader = d;
             this.m_dirty = false;
         }
@@ -179,8 +170,9 @@ namespace CE.Crawler
             {
                 CrawlerThread crawler = (CrawlerThread)data;
                 Downloader downloader = crawler.m_downloader;
-                string regex = crawler.m_regex;
-                string regex2 = crawler.m_regex2;
+                string regex = crawler.Regx;
+                string regex2 = crawler.Regx2;
+                string srcprefix = crawler.Srcprefix;
                 UrlQueueManager queue = downloader.UrlsQueueFrontier;
 
 
@@ -230,6 +222,7 @@ namespace CE.Crawler
         /// <param name="url">起始URL</param>
         /// <param name="regexOutput">抓取URL的规则</param>
         /// <param name="regexFollow"></param>
+        /// <param name="srcprefix">src前缀</param>
         private static void Fetch(CrawlerThread crawler, string url, string regexOutput, string regexFollow)
         {
             try
@@ -277,6 +270,11 @@ namespace CE.Crawler
 
                 string html = Encoding.UTF8.GetString(buffer);
                 string baseUri = Utility.GetBaseUri(url);
+
+                //需要替换imgsrc的选项,用相对路径的都改成绝对路径
+                html=html.Replace("src=\"/", "src=\"" + baseUri);
+                buffer = System.Text.UnicodeEncoding.UTF8.GetBytes(html);
+
                 string[] links = null;
                 if (!string.IsNullOrEmpty(regexOutput) && !string.IsNullOrEmpty(regexFollow))
                 { Parser.ExtractLinks(baseUri, html, regexOutput, regexFollow); }
@@ -301,7 +299,7 @@ namespace CE.Crawler
                     }
                     if (Regex.IsMatch(url, regexOutput))
                     {
-                        FileSystemUtility.StoreWebFile(url, buffer,url);
+                        FileSystemUtility.StoreWebFile(url, buffer, url);
                     }
                 }
 

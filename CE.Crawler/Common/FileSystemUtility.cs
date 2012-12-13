@@ -67,6 +67,13 @@ namespace CE.Crawler.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url">抓去url</param>
+        /// <param name="resource"></param>
+        /// <param name="prefixtag"></param>
+        /// <param name="imgsrcprefix"></param>
         public static void StoreWebFile(string url, byte[] resource,string prefixtag)
         {
             string[] prefixtags = prefixtag.Split(new char[] { '.', '/' },StringSplitOptions.RemoveEmptyEntries);

@@ -77,7 +77,7 @@ namespace CE.Component
             }
             catch (Exception err)
             {
-                throw err;
+                //throw err;
             }
             return filePath;
         }

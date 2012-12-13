@@ -162,7 +162,7 @@ namespace CE.Crawler
         /// <param name="seeds">
         /// 通常爬虫是从一系列种子(Seed)网页开始,然后使用这些网页中的链接去获取其他页面.
         /// </param>
-        public void InitSeeds(string[] seeds, string regexcon, string regexcon2)
+        public void InitSeeds(string[] seeds, string regexcon, string regexcon2 )
         {
             Regexcon = regexcon;
             Regexcon2 = regexcon2;

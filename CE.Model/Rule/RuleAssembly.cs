@@ -33,7 +33,7 @@ namespace CE.Domain.Rule
                     return null;
                 if (ruleset.Name == "主图")
                 {
-                    mainimgdir = ruleset.ImagePath + result.Split(new string[] { "$#$" }, StringSplitOptions.RemoveEmptyEntries)[0] + @"\";
+                    mainimgdir = ruleset.ImagePath + result.Split(new string[] { "$#$" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim() + @"\";
                     if (!Directory.Exists(mainimgdir))
                     {
                         Directory.CreateDirectory(mainimgdir);

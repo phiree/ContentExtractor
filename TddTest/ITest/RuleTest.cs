@@ -70,8 +70,7 @@ namespace TddTest.ITest
             #region 模拟11个ruleset
 
             //第1个条件
-            BaseRule rule1 = new BeginEndRule(@"<div class=""proDetail"">
-        	<h1>", "</h1>", false, false, true, true);
+            BaseRule rule1 = new BeginEndRule(@"<h1>", "</h1>", false, false, true, true);
             rule1.RuleNo = 10;
             rule1.Name = "标题rule";
             RuleSet ruleset = new RuleSet();
@@ -159,28 +158,29 @@ namespace TddTest.ITest
             ruleset8.Name = "交通指南";
             ruleset8.Rules.Add(rule8);
             ruleset8.Code = "trafficeintro";
-            ruleset8.OldRegex = new List<string>(){"同程"};
-            ruleset8.NewRegex = new List<string>(){"旅游在线"};
+            ruleset8.OldRegex = new List<string>() { "驴妈妈" };
+            ruleset8.NewRegex = new List<string>() { "旅游在线" };
             //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule(@"<div class=""tictke_notes"">
                     <ul>
-                       <li>", @"</li>
+                       <li>
+                        ", @"</li>
                     </ul>
-                  </div>", true, false, true, true);
+                  </div>", false, false, true, true);
             rule9.RuleNo = 10;
             rule9.Name = "订票说明rule";
             RuleSet ruleset9 = new RuleSet();
             ruleset9.Name = "订票说明";
             ruleset9.Rules.Add(rule9);
             ruleset9.Code = "bookintro";
-            ruleset9.OldRegex = new List<string>() { "同程",@"入园凭证：.*\s*.*\s*.*" };
-            ruleset9.NewRegex = new List<string>() { "旅游在线",@"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
+            ruleset9.OldRegex = new List<string>() { "同程", @"入园凭证：.*\s*.*\s*.*" };
+            ruleset9.NewRegex = new List<string>() { "旅游在线", @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
             //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
-            BaseRule rule10 = new BeginEndRule(@"<div class=""pane pane_Introduction_in"" id=""Introduction"">", "</div>", true, false, true, true);
+            BaseRule rule10 = new BeginEndRule(@"<div class=""pane pane_Introduction_in"" id=""Introduction"">", @"<div class=""pane "">", true, false, true, true);
             rule10.RuleNo = 10;
             rule10.Name = "景区详情rule";
             RuleSet ruleset10 = new RuleSet();
@@ -188,8 +188,8 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
-            ruleset10.OldRegex = new List<string>() { "同程"};
-            ruleset10.NewRegex = new List<string>() { "旅游在线"};
+            ruleset10.OldRegex = new List<string>() { "同程" };
+            ruleset10.NewRegex = new List<string>() { "旅游在线" };
             ruleset10.ImagePath = @"e:\testDetailimgLocalizer\";
             ruleset10.VirtualPath = "/scenicimg/detailimg";
 
@@ -201,8 +201,8 @@ namespace TddTest.ITest
             ruleset11.Name = "景区简介";
             ruleset11.Rules.Add(rule11);
             ruleset11.Code = "scenicintro";
-            ruleset11.OldRegex = new List<string>() { "同程"};
-            ruleset11.NewRegex = new List<string>() { "旅游在线"};
+            ruleset11.OldRegex = new List<string>() { "同程" };
+            ruleset11.NewRegex = new List<string>() { "旅游在线" };
             //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
@@ -301,8 +301,8 @@ namespace TddTest.ITest
             #region 模拟11个ruleset
 
             //第1个条件
-            BaseRule rule1 = new BeginEndRule(@"<div id=""jqlast_maincontent"" class=""jqlast_main_title"">
-    <h1>", "</h1>", false, false, true, true);
+            BaseRule rule1 = new BeginEndRule(@"<h1>
+        ", "</h1>", false, false, true, true);
             rule1.RuleNo = 10;
             rule1.Name = "标题rule";
             RuleSet ruleset = new RuleSet();
@@ -407,8 +407,7 @@ namespace TddTest.ITest
             //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
-            BaseRule rule10 = new BeginEndRule("<H4 class=intro_head><FONT size=+0>(*)</FONT>详情</H4>",
-                "<H4 class=intro_head><FONT size=+0>百山祖景区</FONT>温馨提示</H4>", true, false, true, true);
+            BaseRule rule10 = new BeginEndRule(@"<DL class=intro_information>", @"<H4 class=intro_head>", true, false, true, true);
             rule10.RuleNo = 10;
             rule10.Name = "景区详情rule";
             RuleSet ruleset10 = new RuleSet();
@@ -1198,7 +1197,7 @@ namespace TddTest.ITest
             //测试,第12行是否相同
             //Assert.AreEqual("<RuleNo>10</RuleNo>", filelines[11].Trim());
         }
-         
+
         [Test]
         public void ReadRule()
         {

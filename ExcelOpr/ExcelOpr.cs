@@ -373,7 +373,7 @@ namespace ExcelOpr
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrEmpty(dt2.Rows[i][0].ToString())) continue;
 
                     //如果excel中的行不为空,添加
                     weblist.Add(dt2.Rows[i][0].ToString().Replace("\n", "").Trim());
