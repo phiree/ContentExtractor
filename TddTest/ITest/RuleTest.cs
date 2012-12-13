@@ -1077,9 +1077,7 @@ namespace TddTest.ITest
             //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
-            BaseRule rule9 = new BeginEndRule("<h2 id=\"ydxz\" class=\"detail_h2\"><span>(*)</span></h2>",
-                @"</div>
-          <div", true, false, true, true);
+            BaseRule rule9 = new BeginEndRule("ds",@"fdsf", true, false, true, true);
             rule9.RuleNo = 10;
             rule9.Name = "订票说明rule";
             RuleSet ruleset9 = new RuleSet();
@@ -1091,9 +1089,8 @@ namespace TddTest.ITest
             //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
-            BaseRule rule10 = new BeginEndRule(@"<dd id=""ShopTab0"">",
-                @"</dd>
-          <div", true, false, true, true);
+            BaseRule rule10 = new BeginEndRule(@"<dd id=""ShopTab0"" style>",
+                @"</dd>", true, false, true, true);
             rule10.RuleNo = 10;
             rule10.Name = "景区详情rule";
             RuleSet ruleset10 = new RuleSet();
@@ -1129,16 +1126,7 @@ namespace TddTest.ITest
             ruleset12.Code = "scenicprice";
             //ruleset12.NeedImageLocalizer = true;
 
-            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
-            //rule13.RuleNo = 10;
-            //rule13.Name = "主图rule";
-            //RuleSet ruleset13 = new RuleSet();
-            //ruleset13.Name = "主图";
-            //ruleset13.Rules.Add(rule13);
-            //ruleset13.Code = "mainimg";
-            //ruleset13.NeedImageLocalizer = true;
-
-            BaseRule rule13 = new BeginEndRule(@"<div class=""p_font_PicUrl"">", @"</div>", false, false, true, true);
+            BaseRule rule13 = new BeginEndRule(@"<div class=""p_font_PicUrl"">", @"</div>", false, false, false, false);
             rule13.RuleNo = 10;
             rule13.Name = "主图rule";
             RuleSet ruleset13 = new RuleSet();

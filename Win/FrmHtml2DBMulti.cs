@@ -174,14 +174,15 @@ namespace Win
                             }
                         }
                     }
-                    if (j == 12)
-                    {
-                        var tmp = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries);
-                        if (tmp.Length > 0)
-                        {
-                            result[j] = tmp[0];
-                        }
-                    }
+                    //if (j == 12)
+                    //{
+                    //    //var tmp = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries);
+                    //    var tmp = result[j].Split(new string[] { @""" />" }, StringSplitOptions.RemoveEmptyEntries);
+                    //    if (tmp.Length > 0)
+                    //    {
+                    //        result[j] = tmp[0];
+                    //    }
+                    //}
                     #endregion
                 }
                 #region 景区转化&存储
