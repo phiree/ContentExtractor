@@ -77,7 +77,6 @@ namespace TddTest.ITest
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
-            //ruleset.NeedImageLocalizer = true;
 
 
             //第2个条件
@@ -88,7 +87,6 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
-            //ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -100,7 +98,6 @@ namespace TddTest.ITest
             ruleset3.Code = "scenicadd";
             ruleset3.OldRegex = new List<string>() { @"入园凭证：.*\s*.*\s*.*" };
             ruleset3.NewRegex = new List<string>() { @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
             BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
@@ -110,7 +107,6 @@ namespace TddTest.ITest
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
-            //ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
             BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
@@ -128,7 +124,6 @@ namespace TddTest.ITest
             ruleset5.Rules.Add(rule51);
             ruleset5.Rules.Add(rule52);
             ruleset5.Code = "seoname";
-            //ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule(@"<a href=""http://www.lvmama.com/search/ticket-subject-", @".html""", false, false, true, true);
@@ -138,7 +133,6 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
-            //ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -148,7 +142,6 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
-            //ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule(@"<div class=""traffic_line"">", "</div>", false, false, true, true);
@@ -160,7 +153,6 @@ namespace TddTest.ITest
             ruleset8.Code = "trafficeintro";
             ruleset8.OldRegex = new List<string>() { "驴妈妈" };
             ruleset8.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule(@"<div class=""tictke_notes"">
@@ -177,7 +169,6 @@ namespace TddTest.ITest
             ruleset9.Code = "bookintro";
             ruleset9.OldRegex = new List<string>() { "同程", @"入园凭证：.*\s*.*\s*.*" };
             ruleset9.NewRegex = new List<string>() { "旅游在线", @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
             BaseRule rule10 = new BeginEndRule(@"<div class=""pane pane_Introduction_in"" id=""Introduction"">", @"<div class=""pane "">", true, false, true, true);
@@ -188,6 +179,7 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImageLocalizerType = "detailimg";
             ruleset10.OldRegex = new List<string>() { "同程" };
             ruleset10.NewRegex = new List<string>() { "旅游在线" };
             ruleset10.ImagePath = @"e:\testDetailimgLocalizer\";
@@ -203,7 +195,6 @@ namespace TddTest.ITest
             ruleset11.Code = "scenicintro";
             ruleset11.OldRegex = new List<string>() { "同程" };
             ruleset11.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
             string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
@@ -214,18 +205,8 @@ namespace TddTest.ITest
             ruleset12.Name = "价格";
             ruleset12.Rules.Add(rule12);
             ruleset12.Code = "scenicprice";
-            //ruleset12.NeedImageLocalizer = true;
 
-            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
-            //rule13.RuleNo = 10;
-            //rule13.Name = "主图rule";
-            //RuleSet ruleset13 = new RuleSet();
-            //ruleset13.Name = "主图";
-            //ruleset13.Rules.Add(rule13);
-            //ruleset13.Code = "mainimg";
-            //ruleset13.NeedImageLocalizer = true;
-
-            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>", false, false, true, true);
+            BaseRule rule13 = new BeginEndRule(@"<ul class=""Slides"">", @"</ul>", false, false, true, true);
             rule13.RuleNo = 10;
             rule13.Name = "主图rule";
             RuleSet ruleset13 = new RuleSet();
@@ -233,18 +214,9 @@ namespace TddTest.ITest
             ruleset13.Rules.Add(rule13);
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImageLocalizerType = "detailimg";
             ruleset13.ImagePath = @"e:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
-
-            //BaseRule rule14 = new ReplaceRule("同程网", "旅游在线");
-            //rule14.RuleNo = 10;
-            //rule14.Name = "替换rule";
-            //RuleSet ruleset14 = new RuleSet();
-            //ruleset14.Name = "替换";
-            //ruleset14.Rules.Add(rule14);
-            //ruleset14.Code = "rename";
-            //ruleset14.NeedImageLocalizer = false;
-
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -309,7 +281,6 @@ namespace TddTest.ITest
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
-            //ruleset.NeedImageLocalizer = true;
 
 
             //第2个条件
@@ -320,7 +291,6 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
-            //ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -332,8 +302,7 @@ namespace TddTest.ITest
             ruleset3.Code = "scenicadd";
             ruleset3.OldRegex = new List<string>() { @"入园凭证：.*\s*.*\s*.*" };
             ruleset3.NewRegex = new List<string>() { @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset3.NeedImageLocalizer = true;
-
+            
             //第4个条件
             BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
             rule4.RuleNo = 10;
@@ -342,7 +311,6 @@ namespace TddTest.ITest
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
-            //ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
             BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
@@ -360,7 +328,6 @@ namespace TddTest.ITest
             ruleset5.Rules.Add(rule51);
             ruleset5.Rules.Add(rule52);
             ruleset5.Code = "seoname";
-            //ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -370,7 +337,6 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
-            //ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -380,7 +346,6 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
-            //ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule("<!-- 交通指南 start -->", "<!-- 交通指南 end -->", false, false, true, true);
@@ -392,7 +357,6 @@ namespace TddTest.ITest
             ruleset8.Code = "trafficeintro";
             ruleset8.OldRegex = new List<string>() { "同程" };
             ruleset8.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule("<div class=\"point_intro\" id=\"xuzhi\">", "<div class=\"point_intro\" id=\"jieshao\">", true, false, true, true);
@@ -404,8 +368,7 @@ namespace TddTest.ITest
             ruleset9.Code = "bookintro";
             ruleset9.OldRegex = new List<string>() { "同程", @"入园凭证：.*\s*.*\s*.*" };
             ruleset9.NewRegex = new List<string>() { "旅游在线", @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset9.NeedImageLocalizer = true;
-
+            
             //第10个条件
             BaseRule rule10 = new BeginEndRule(@"<DL class=intro_information>", @"<H4 class=intro_head>", true, false, true, true);
             rule10.RuleNo = 10;
@@ -415,6 +378,7 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImageLocalizerType = "detailimg";
             ruleset10.OldRegex = new List<string>() { "同程" };
             ruleset10.NewRegex = new List<string>() { "旅游在线" };
             ruleset10.ImagePath = @"e:\testDetailimgLocalizer\";
@@ -430,7 +394,6 @@ namespace TddTest.ITest
             ruleset11.Code = "scenicintro";
             ruleset11.OldRegex = new List<string>() { "同程" };
             ruleset11.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
             string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
@@ -441,18 +404,8 @@ namespace TddTest.ITest
             ruleset12.Name = "价格";
             ruleset12.Rules.Add(rule12);
             ruleset12.Code = "scenicprice";
-            //ruleset12.NeedImageLocalizer = true;
 
-            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
-            //rule13.RuleNo = 10;
-            //rule13.Name = "主图rule";
-            //RuleSet ruleset13 = new RuleSet();
-            //ruleset13.Name = "主图";
-            //ruleset13.Rules.Add(rule13);
-            //ruleset13.Code = "mainimg";
-            //ruleset13.NeedImageLocalizer = true;
-
-            BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>", false, false, true, true);
+            BeginEndRule rule13 = new BeginEndRule(@"<div id=""comSlide_main"" class=""slide_main""  >",@"/div>",false,false,true,true);
             rule13.RuleNo = 10;
             rule13.Name = "主图rule";
             RuleSet ruleset13 = new RuleSet();
@@ -460,18 +413,9 @@ namespace TddTest.ITest
             ruleset13.Rules.Add(rule13);
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImageLocalizerType = "mainimg";
             ruleset13.ImagePath = @"e:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
-
-            //BaseRule rule14 = new ReplaceRule("同程网", "旅游在线");
-            //rule14.RuleNo = 10;
-            //rule14.Name = "替换rule";
-            //RuleSet ruleset14 = new RuleSet();
-            //ruleset14.Name = "替换";
-            //ruleset14.Rules.Add(rule14);
-            //ruleset14.Code = "rename";
-            //ruleset14.NeedImageLocalizer = false;
-
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -535,7 +479,6 @@ namespace TddTest.ITest
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
-            //ruleset.NeedImageLocalizer = true;
 
 
             //第2个条件
@@ -546,7 +489,6 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
-            //ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -558,7 +500,7 @@ namespace TddTest.ITest
             ruleset3.Code = "scenicadd";
             ruleset3.OldRegex = new List<string>() { @"入园凭证：.*\s*.*\s*.*" };
             ruleset3.NewRegex = new List<string>() { @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset3.NeedImageLocalizer = true;
+            
 
             //第4个条件
             BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
@@ -568,7 +510,6 @@ namespace TddTest.ITest
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
-            //ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
             BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
@@ -586,7 +527,6 @@ namespace TddTest.ITest
             ruleset5.Rules.Add(rule51);
             ruleset5.Rules.Add(rule52);
             ruleset5.Code = "seoname";
-            //ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -596,7 +536,6 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
-            //ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -606,7 +545,6 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
-            //ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule("<div class=\"drive_way\">", "</div>", false, false, true, true);
@@ -618,7 +556,6 @@ namespace TddTest.ITest
             ruleset8.Code = "trafficeintro";
             ruleset8.OldRegex = new List<string>() { "同程" };
             ruleset8.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule("<div class=\"bd\">", "<div class=\"point_intro\" id=\"jieshao\">", true, false, true, true);
@@ -630,7 +567,6 @@ namespace TddTest.ITest
             ruleset9.Code = "bookintro";
             ruleset9.OldRegex = new List<string>() { "同程", @"入园凭证：.*\s*.*\s*.*" };
             ruleset9.NewRegex = new List<string>() { "旅游在线", @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
             BaseRule rule10 = new BeginEndRule("<DL class=intro_information>", "<H4 class=intro_head>", true, false, true, true);
@@ -641,6 +577,7 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImageLocalizerType = "detailimg";
             ruleset10.OldRegex = new List<string>() { "同程" };
             ruleset10.NewRegex = new List<string>() { "旅游在线" };
             ruleset10.ImagePath = @"e:\testDetailimgLocalizer\";
@@ -656,7 +593,6 @@ namespace TddTest.ITest
             ruleset11.Code = "scenicintro";
             ruleset11.OldRegex = new List<string>() { "同程" };
             ruleset11.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
             string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
@@ -667,16 +603,6 @@ namespace TddTest.ITest
             ruleset12.Name = "价格";
             ruleset12.Rules.Add(rule12);
             ruleset12.Code = "scenicprice";
-            //ruleset12.NeedImageLocalizer = true;
-
-            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
-            //rule13.RuleNo = 10;
-            //rule13.Name = "主图rule";
-            //RuleSet ruleset13 = new RuleSet();
-            //ruleset13.Name = "主图";
-            //ruleset13.Rules.Add(rule13);
-            //ruleset13.Code = "mainimg";
-            //ruleset13.NeedImageLocalizer = true;
 
             BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>", false, false, true, true);
             rule13.RuleNo = 10;
@@ -686,18 +612,9 @@ namespace TddTest.ITest
             ruleset13.Rules.Add(rule13);
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImageLocalizerType = "mainimg";
             ruleset13.ImagePath = @"e:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
-
-            //BaseRule rule14 = new ReplaceRule("同程网", "旅游在线");
-            //rule14.RuleNo = 10;
-            //rule14.Name = "替换rule";
-            //RuleSet ruleset14 = new RuleSet();
-            //ruleset14.Name = "替换";
-            //ruleset14.Rules.Add(rule14);
-            //ruleset14.Code = "rename";
-            //ruleset14.NeedImageLocalizer = false;
-
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -761,8 +678,6 @@ namespace TddTest.ITest
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
-            //ruleset.NeedImageLocalizer = true;
-
 
             //第2个条件
             BaseRule rule2 = new BeginEndRule("<span class=\"orange02\" >", "</span>", false, false, true, true);
@@ -772,7 +687,6 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
-            //ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -784,7 +698,6 @@ namespace TddTest.ITest
             ruleset3.Code = "scenicadd";
             ruleset3.OldRegex = new List<string>() { @"入园凭证：.*\s*.*\s*.*" };
             ruleset3.NewRegex = new List<string>() { @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
             BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
@@ -794,7 +707,6 @@ namespace TddTest.ITest
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
-            //ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
             BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
@@ -812,7 +724,6 @@ namespace TddTest.ITest
             ruleset5.Rules.Add(rule51);
             ruleset5.Rules.Add(rule52);
             ruleset5.Code = "seoname";
-            //ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -822,7 +733,6 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
-            //ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -832,7 +742,6 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
-            //ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule("<ul class=\"traffic_infor\">", "</ul>", false, false, true, true);
@@ -844,7 +753,6 @@ namespace TddTest.ITest
             ruleset8.Code = "trafficeintro";
             ruleset8.OldRegex = new List<string>() { "同程" };
             ruleset8.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule("<h2 id=\"ydxz\" class=\"detail_h2\"><span>(*)</span></h2>",
@@ -858,7 +766,6 @@ namespace TddTest.ITest
             ruleset9.Code = "bookintro";
             ruleset9.OldRegex = new List<string>() { "同程", @"入园凭证：.*\s*.*\s*.*" };
             ruleset9.NewRegex = new List<string>() { "旅游在线", @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
             BaseRule rule10 = new BeginEndRule("<h2 id=\"jqjs\" class=\"detail_h2\"><span>(*)</span></h2>",
@@ -871,6 +778,7 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImageLocalizerType = "detailimg";
             ruleset10.OldRegex = new List<string>() { "同程" };
             ruleset10.NewRegex = new List<string>() { "旅游在线" };
             ruleset10.ImagePath = @"e:\testDetailimgLocalizer\";
@@ -886,7 +794,6 @@ namespace TddTest.ITest
             ruleset11.Code = "scenicintro";
             ruleset11.OldRegex = new List<string>() { "同程" };
             ruleset11.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
             string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
@@ -897,16 +804,6 @@ namespace TddTest.ITest
             ruleset12.Name = "价格";
             ruleset12.Rules.Add(rule12);
             ruleset12.Code = "scenicprice";
-            //ruleset12.NeedImageLocalizer = true;
-
-            //BaseRule rule13 = new BeginEndRule(@"<div class=""imgBag"" style=""opacity: 1; "">", @"</div>",false,false,true,true);
-            //rule13.RuleNo = 10;
-            //rule13.Name = "主图rule";
-            //RuleSet ruleset13 = new RuleSet();
-            //ruleset13.Name = "主图";
-            //ruleset13.Rules.Add(rule13);
-            //ruleset13.Code = "mainimg";
-            //ruleset13.NeedImageLocalizer = true;
 
             BaseRule rule13 = new BeginEndRule(@"<ul class=""oUl"">", @"</ul>", false, false, true, true);
             rule13.RuleNo = 10;
@@ -916,18 +813,9 @@ namespace TddTest.ITest
             ruleset13.Rules.Add(rule13);
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImageLocalizerType = "mainimg";
             ruleset13.ImagePath = @"e:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
-
-            //BaseRule rule14 = new ReplaceRule("同程网", "旅游在线");
-            //rule14.RuleNo = 10;
-            //rule14.Name = "替换rule";
-            //RuleSet ruleset14 = new RuleSet();
-            //ruleset14.Name = "替换";
-            //ruleset14.Rules.Add(rule14);
-            //ruleset14.Code = "rename";
-            //ruleset14.NeedImageLocalizer = false;
-
 
             RuleAssembly assm = new RuleAssembly();
             assm.CodeName = "Ass";
@@ -991,8 +879,6 @@ namespace TddTest.ITest
             ruleset.Name = "标题";
             ruleset.Rules.Add(rule1);
             ruleset.Code = "title";
-            //ruleset.NeedImageLocalizer = true;
-
 
             //第2个条件
             BaseRule rule2 = new BeginEndRule("<span class=\"orange02\" >", "</span>", false, false, true, true);
@@ -1002,7 +888,6 @@ namespace TddTest.ITest
             ruleset2.Name = "等级";
             ruleset2.Code = "level";
             ruleset2.Rules.Add(rule2);
-            //ruleset2.NeedImageLocalizer = true;
 
             //第3个条件
             BaseRule rule3 = new BeginEndRule("<span class=\"misp2\">景点地址：", "</span>", false, false, true, true);
@@ -1014,7 +899,6 @@ namespace TddTest.ITest
             ruleset3.Code = "scenicadd";
             ruleset3.OldRegex = new List<string>() { @"入园凭证：.*\s*.*\s*.*" };
             ruleset3.NewRegex = new List<string>() { @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset3.NeedImageLocalizer = true;
 
             //第4个条件
             BaseRule rule4 = new BeginEndRule("fdsafsd", "fdasfsd", false, false, true, true);
@@ -1024,7 +908,6 @@ namespace TddTest.ITest
             ruleset4.Name = "seoname";
             ruleset4.Rules.Add(rule4);
             ruleset4.Code = "seoname";
-            //ruleset4.NeedImageLocalizer = true;
 
             //第5个条件
             BaseRule rule5 = new BeginEndRule("<a name=\"nav_open\" class=\"n_nav_common\" href=\"javascript:void(0);\">", "<s></s>", false, false, true, true);
@@ -1042,7 +925,6 @@ namespace TddTest.ITest
             ruleset5.Rules.Add(rule51);
             ruleset5.Rules.Add(rule52);
             ruleset5.Code = "seoname";
-            //ruleset5.NeedImageLocalizer = true;
 
             //第6个条件
             BaseRule rule6 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -1052,7 +934,6 @@ namespace TddTest.ITest
             ruleset6.Name = "景区主题";
             ruleset6.Rules.Add(rule6);
             ruleset6.Code = "scenictopic";
-            //ruleset6.NeedImageLocalizer = true;
 
             //第7个条件
             BaseRule rule7 = new BeginEndRule("fdsafsdfsd", "fdsafsdfsd", false, false, true, true);
@@ -1062,7 +943,6 @@ namespace TddTest.ITest
             ruleset7.Name = "topicseo";
             ruleset7.Rules.Add(rule7);
             ruleset7.Code = "fdsafsdfsd";
-            //ruleset7.NeedImageLocalizer = true;
 
             //第8个条件
             BaseRule rule8 = new BeginEndRule(@"<dd id=""ShopTab1"" style=""display:none;"">", "</dd>", false, false, true, true);
@@ -1074,7 +954,6 @@ namespace TddTest.ITest
             ruleset8.Code = "trafficeintro";
             ruleset8.OldRegex = new List<string>() { "同程" };
             ruleset8.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset8.NeedImageLocalizer = true;
 
             //第9个条件
             BaseRule rule9 = new BeginEndRule("ds",@"fdsf", true, false, true, true);
@@ -1086,10 +965,9 @@ namespace TddTest.ITest
             ruleset9.Code = "bookintro";
             ruleset9.OldRegex = new List<string>() { "同程", @"入园凭证：.*\s*.*\s*.*" };
             ruleset9.NewRegex = new List<string>() { "旅游在线", @"取票凭证：</span><span class=""info_content""><p>凭身份证到景区售票窗口取票入园。</p>" };
-            //ruleset9.NeedImageLocalizer = true;
 
             //第10个条件
-            BaseRule rule10 = new BeginEndRule(@"<dd id=""ShopTab0"" style>",
+            BaseRule rule10 = new BeginEndRule(@"<dd id=""ShopTab0"">",
                 @"</dd>", true, false, true, true);
             rule10.RuleNo = 10;
             rule10.Name = "景区详情rule";
@@ -1098,6 +976,7 @@ namespace TddTest.ITest
             ruleset10.Rules.Add(rule10);
             ruleset10.Code = "scenicdetail";
             ruleset10.NeedImageLocalizer = true;
+            ruleset10.ImageLocalizerType = "detailimg";
             ruleset10.OldRegex = new List<string>() { "同程" };
             ruleset10.NewRegex = new List<string>() { "旅游在线" };
             ruleset10.ImagePath = @"e:\testDetailimgLocalizer\";
@@ -1113,7 +992,6 @@ namespace TddTest.ITest
             ruleset11.Code = "scenicintro";
             ruleset11.OldRegex = new List<string>() { "同程" };
             ruleset11.NewRegex = new List<string>() { "旅游在线" };
-            //ruleset11.NeedImageLocalizer = true;
 
             //第12个条件
             string regexExp = @"id=""se_title_\d+"">.*?<span>(?<t_name>.*?)</span>.*?""parGd"">.?(?<t_price1>\d+)</span>.*?""Mne"">.</span>(?<price2>\d+)</dt>";
@@ -1124,7 +1002,6 @@ namespace TddTest.ITest
             ruleset12.Name = "价格";
             ruleset12.Rules.Add(rule12);
             ruleset12.Code = "scenicprice";
-            //ruleset12.NeedImageLocalizer = true;
 
             BaseRule rule13 = new BeginEndRule(@"<div class=""p_font_PicUrl"">", @"</div>", false, false, false, false);
             rule13.RuleNo = 10;
@@ -1134,6 +1011,7 @@ namespace TddTest.ITest
             ruleset13.Rules.Add(rule13);
             ruleset13.Code = "mainimg";
             ruleset13.NeedImageLocalizer = true;
+            ruleset13.ImageLocalizerType = "detailimg";
             ruleset13.ImagePath = @"e:\testMainimgLocalizer\";
             ruleset13.VirtualPath = "/scenicimg/mainimg";
 

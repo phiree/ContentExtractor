@@ -50,6 +50,10 @@ namespace Persistence
                     XmlElement xesub4 = xmlDoc.CreateElement("NeedImageLocalizer");
                     xesub4.InnerText = ruleset.NeedImageLocalizer.ToString();
                     xe1.AppendChild(xesub4);
+                    //
+                    XmlElement xesub10 = xmlDoc.CreateElement("ImageLocalizerType");
+                    xesub10.InnerText = ruleset.ImageLocalizerType??"";
+                    xe1.AppendChild(xesub10);
                     //ImagePath
                     XmlElement xesub6 = xmlDoc.CreateElement("ImagePath");
                     xesub6.InnerText = ruleset.ImagePath ?? "";
@@ -287,6 +291,11 @@ namespace Persistence
                     if (item2.Name == "NeedImageLocalizer")
                     {
                         rset.NeedImageLocalizer = bool.Parse(item2.InnerText);
+                        continue;
+                    }
+                    if (item2.Name == "ImageLocalizerType")
+                    {
+                        rset.ImageLocalizerType = item2.InnerText;
                         continue;
                     }
                     if (item2.Name == "ImagePath")

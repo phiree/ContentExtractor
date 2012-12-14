@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\PriceEntity.cs" />
     <Compile Include="Entity\ScenicEntity.cs" />
     <Compile Include="ExcelOpr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

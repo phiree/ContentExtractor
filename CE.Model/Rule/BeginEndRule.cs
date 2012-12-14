@@ -63,7 +63,9 @@ namespace CE.Domain.Rule
             {
                 return string.Empty;
             }
-            int endIndex = rawContent.IndexOf(this.EndMark,startIndex);
+            //原等式,起始点错误,如下修改
+            //int endIndex = rawContent.IndexOf(this.EndMark, startIndex);
+            int endIndex = rawContent.IndexOf(this.EndMark, startIndex + this.BeginMark.Length);
             if (endIndex == -1)
                 return string.Empty;
             filteredContent = rawContent.Substring(startIndex + this.BeginMark.Length, endIndex - startIndex - this.BeginMark.Length);

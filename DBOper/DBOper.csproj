@@ -55,6 +55,10 @@
       <Project>{03AEA773-AAA8-419C-A067-A62F8E2876E1}</Project>
       <Name>DB.Helper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExcelOpr\ExcelOpr.csproj">
+      <Project>{DC507D37-61A1-4AA5-B1D8-6109B8B266E2}</Project>
+      <Name>ExcelOpr</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

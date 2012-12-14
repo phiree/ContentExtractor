@@ -26,6 +26,10 @@ namespace CE.Domain.Rule
         /// </summary>
         public bool NeedImageLocalizer { get; set; }
         /// <summary>
+        /// 是否需要将远程图片保存至本地
+        /// </summary>
+        public string ImageLocalizerType { get; set; }
+        /// <summary>
         /// 图片路径
         /// </summary>
         public string ImagePath { get; set; }
@@ -105,7 +109,7 @@ namespace CE.Domain.Rule
             }
             if (NeedImageLocalizer)
             {
-                string[] imageUrls = TextHelper.GetImageUrl(completeResult);
+                string[] imageUrls = TextHelper.GetImageUrl(completeResult, ImageLocalizerType);
                 foreach (string imageUrl in imageUrls)
                 {
                     ImageLocalizer localizer = new ImageLocalizer(imageUrl

@@ -43,6 +43,16 @@ namespace DBOper
             return dbhelper.ExecSql(sql1) && dbhelper.ExecSql(sql2);
         }
 
+        public bool Persistence2DB(IList<ExcelOpr.Entity.PriceEntity> pricelist)
+        {
+            var sql = string.Empty;
+            foreach (var item in pricelist)
+            {
+                sql += "insert into TicketPrice values('" + item.scenicname + "','" + item.ticketname + "','" + item.orgprice + "','" + item.olprice + "');";
+            }
+            return dbhelper.ExecSql(sql);
+        }
+
         public bool Persistence2DB4topic(ScenicEntity se)
         {
             String sql1 = string.Empty;
@@ -77,6 +87,7 @@ Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro,Smainimg from Scenic where S
                 return true;
             }
         }
+
 
     }
 }

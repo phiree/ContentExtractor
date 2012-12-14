@@ -10,6 +10,7 @@ using System.IO;
 using IPersistence;
 using CE.Domain.Rule;
 using CE.Component;
+using System.Text.RegularExpressions;
 
 namespace Win
 {
@@ -18,6 +19,7 @@ namespace Win
         DBOper.IDBOper dboper = new DBOper.DBOper();
         public RuleAssembly ruleassembly { get; set; }
         private HtmlHandler htmlHandler = new HtmlHandler();
+        private ExcelOpr.ExcelOpr excelOpr = new ExcelOpr.ExcelOpr();
 
         public FrmHtml2DBMulti()
         {
@@ -174,15 +176,22 @@ namespace Win
                             }
                         }
                     }
-                    //if (j == 12)
-                    //{
-                    //    //var tmp = result[j].Split(new string[] { @"scenicimg/", @""" />" }, StringSplitOptions.RemoveEmptyEntries);
-                    //    var tmp = result[j].Split(new string[] { @""" />" }, StringSplitOptions.RemoveEmptyEntries);
-                    //    if (tmp.Length > 0)
-                    //    {
-                    //        result[j] = tmp[0];
-                    //    }
-                    //}
+                    if (j == 12)
+                    {
+                        //var tmp = result[j].split(new string[] { @"scenicimg/", @""" />" }, stringsplitoptions.removeemptyentries);
+                        //var tmp = result[j].Split(new string[] { @""" />" }, StringSplitOptions.RemoveEmptyEntries);
+                        //if (tmp.Length > 0)
+                        //{
+                        //    result[j] = tmp[0];
+                        //}
+                        string pattern = @"(?<=src="").*?(?="")";
+                        Regex rex = new Regex(pattern);
+                        MatchCollection matchs = rex.Matches(result[j]);
+                        if (matchs.Count > 0)
+                        {
+                            result[j] = matchs[0].Value;
+                        }
+                    }
                     #endregion
                 }
                 #region 景区转化&存储
@@ -244,71 +253,15 @@ namespace Win
 
         private void btnConvert2_Click(object sender, EventArgs e)
         {
-            bool bresult = true;
-
-            #region 验证
-            if (string.IsNullOrEmpty(txtHtml2.Text))
+            var pricelist = excelOpr.getPricelist();
+            var reseult=dboper.Persistence2DB(pricelist);
+            if (reseult)
             {
-                MessageBox.Show("请选择Html文件夹.");
-                return;
-            }
-            if (string.IsNullOrEmpty(txtRule2.Text))
-            {
-                MessageBox.Show("请选择相应的规则.");
-                return;
-            }
-            #endregion
-
-            #region html转化成实体
-            List<DBOper.Entity.ScenicEntity> selist = new List<DBOper.Entity.ScenicEntity>();
-            List<DBOper.Entity.TicketEntity> tlist;
-            DBOper.Entity.ScenicEntity se;
-            DBOper.Entity.TicketEntity te;
-
-            List<string> htmllist = new List<string>();
-            #region 查看是否存在html文件, 并添加到列表中
-            if (Directory.Exists(txtHtml.Text))
-            {
-                foreach (string d in Directory.GetFileSystemEntries(txtHtml.Text))
-                {
-                    htmllist.Add(d);
-                }
+                MessageBox.Show("ok");
             }
             else
             {
-                return;
-            }
-            #endregion
-            //查看
-            IRule rule = new Persistence.Rule();
-            rule.PersistencePath = Path.GetDirectoryName(txtRule.Text);
-            DBOper.IDBOper dbopr = new DBOper.DBOper();
-            for (int i = 0; i < htmllist.Count; i++)
-            {
-                se = new DBOper.Entity.ScenicEntity();
-                te = new DBOper.Entity.TicketEntity();
-                tlist = new List<DBOper.Entity.TicketEntity>();
-                string html = htmlHandler.ReadHtml(htmllist[i]);
-                string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(txtRule.Text)).FilterUsingAssembly(html, false);
-                if (string.IsNullOrEmpty(htmlPragraph)) continue;
-                string[] result = htmlPragraph.Split(new string[] { "$#$" }, 3, StringSplitOptions.None);
-
-                #region topic转化&存储
-                se.name = result[0].ToString();
-                se.topic = result[1].ToString();
-                se.ticketlist = tlist;
-                bresult &= dbopr.Persistence2DB4topic(se);
-                #endregion
-            }
-            #endregion
-
-            if (bresult)
-            {
-                MessageBox.Show("转化成功");
-            }
-            else
-            {
-                MessageBox.Show("转化失败");
+                MessageBox.Show("failed");
             }
         }
     }

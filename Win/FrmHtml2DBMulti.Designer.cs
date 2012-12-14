@@ -176,7 +176,7 @@
             this.groupBox1.Size = new System.Drawing.Size(763, 234);
             this.groupBox1.TabIndex = 41;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "主题转换";
+            this.groupBox1.Text = "票价";
             // 
             // groupBox2
             // 

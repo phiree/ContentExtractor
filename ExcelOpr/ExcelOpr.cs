@@ -66,7 +66,7 @@ namespace ExcelOpr
         /// <param name="row"></param>
         /// <param name="htmlPragraph"></param>
         /// <param name="savePath"></param>
-        public void Persistence2Excel(int row, string htmlPragraph, string savePath,string savePricePath)
+        public void Persistence2Excel(int row, string htmlPragraph, string savePath, string savePricePath)
         {
             SavePath = savePath;
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
@@ -188,7 +188,7 @@ namespace ExcelOpr
             System.GC.Collect();
         }
 
-        public void PersistenceDB2Excel4Scenic(DataSet ds,string path)
+        public void PersistenceDB2Excel4Scenic(DataSet ds, string path)
         {
             Microsoft.Office.Interop.Excel.Application excel1 = new Microsoft.Office.Interop.Excel.Application();
             Workbook workbook1 = null;
@@ -222,7 +222,7 @@ namespace ExcelOpr
             }
             for (int row = 0; row < ds.Tables[0].Rows.Count; row++)
             {
-                for (int column = 1; column <= ds.Tables[0].Columns.Count-1; column++)
+                for (int column = 1; column <= ds.Tables[0].Columns.Count - 1; column++)
                 {
                     worksheet1.Cells[row + 2, column] = ds.Tables[0].Rows[row][column].ToString();
                 }
@@ -266,7 +266,7 @@ namespace ExcelOpr
             }
             for (int row = 0; row < ds.Tables[0].Rows.Count; row++)
             {
-                for (int column = 1; column <= ds.Tables[0].Columns.Count-1; column++)
+                for (int column = 1; column <= ds.Tables[0].Columns.Count - 1; column++)
                 {
                     worksheet1.Cells[row + 2, column] = ds.Tables[0].Rows[row][column].ToString();
                 }
@@ -334,7 +334,6 @@ namespace ExcelOpr
                 return null;
             }
         }
-
 
         /// <summary>
         /// 获取-景区表website-内容 v.20121205
@@ -515,6 +514,344 @@ namespace ExcelOpr
                 }
 
                 return weblist;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取excel上的价格 v.20121214
+        /// </summary>
+        public List<Entity.PriceEntity> getPricelist()
+        {
+            try
+            {
+                //一个现象, wps的excel文件是et结尾.  微软的excel是以elsx结尾
+                //path即是excel文档的路径。
+                string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\浙江省景区.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
+                //Sheet1为excel中表的名字
+                string sql = "select 景区,门票名称,门市价,网上现售价 from [杭州$]";
+                OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
+                OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                System.Data.DataTable dt = new System.Data.DataTable();
+                ad.Fill(dt);
+                List<Entity.PriceEntity> pricelist = new List<Entity.PriceEntity>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt.Rows[i][0].ToString()))
+                    {
+                        dt.Rows[i][0] = dt.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql2 = "select 景区,门票名称,门市价,网上现售价 from [宁波$]";
+                OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
+                OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
+                DataSet ds2 = new DataSet();
+                System.Data.DataTable dt2 = new System.Data.DataTable();
+                ad2.Fill(dt2);
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt2.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt2.Rows[i][0].ToString()))
+                    {
+                        dt2.Rows[i][0] = dt2.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt2.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt2.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt2.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt2.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql3 = "select 景区,门票名称,门市价,网上现售价 from [温州$]";
+                OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
+                OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
+                DataSet ds3 = new DataSet();
+                System.Data.DataTable dt3 = new System.Data.DataTable();
+                ad3.Fill(dt3);
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt3.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt3.Rows[i][0].ToString()))
+                    {
+                        dt3.Rows[i][0] = dt3.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt3.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt3.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt3.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt3.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql4 = "select 景区,门票名称,门市价,网上现售价 from [嘉兴$]";
+                OleDbCommand cmd4 = new OleDbCommand(sql4, new OleDbConnection(conn));
+                OleDbDataAdapter ad4 = new OleDbDataAdapter(cmd4);
+                DataSet ds4 = new DataSet();
+                System.Data.DataTable dt4 = new System.Data.DataTable();
+                ad4.Fill(dt4);
+                for (int i = 0; i < dt4.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt4.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt4.Rows[i][0].ToString()))
+                    {
+                        dt4.Rows[i][0] = dt4.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt4.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt4.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt4.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt4.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql5 = "select 景区,门票名称,门市价,网上现售价 from [湖州$]";
+                OleDbCommand cmd5 = new OleDbCommand(sql5, new OleDbConnection(conn));
+                OleDbDataAdapter ad5 = new OleDbDataAdapter(cmd5);
+                DataSet ds5 = new DataSet();
+                System.Data.DataTable dt5 = new System.Data.DataTable();
+                ad5.Fill(dt5);
+                for (int i = 0; i < dt5.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt5.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt5.Rows[i][0].ToString()))
+                    {
+                        dt5.Rows[i][0] = dt5.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt5.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt5.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt5.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt5.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql6 = "select 景区,门票名称,门市价,网上现售价 from [绍兴$]";
+                OleDbCommand cmd6 = new OleDbCommand(sql6, new OleDbConnection(conn));
+                OleDbDataAdapter ad6 = new OleDbDataAdapter(cmd6);
+                DataSet ds6 = new DataSet();
+                System.Data.DataTable dt6 = new System.Data.DataTable();
+                ad6.Fill(dt6);
+                for (int i = 0; i < dt6.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt6.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt6.Rows[i][0].ToString()))
+                    {
+                        dt6.Rows[i][0] = dt6.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt6.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt6.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt6.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt6.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql7 = "select 景区,门票名称,门市价,网上现售价 from [金华$]";
+                OleDbCommand cmd7 = new OleDbCommand(sql7, new OleDbConnection(conn));
+                OleDbDataAdapter ad7 = new OleDbDataAdapter(cmd7);
+                DataSet ds7 = new DataSet();
+                System.Data.DataTable dt7 = new System.Data.DataTable();
+                ad7.Fill(dt7);
+                for (int i = 0; i < dt7.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt7.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt7.Rows[i][0].ToString()))
+                    {
+                        dt7.Rows[i][0] = dt7.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt7.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt7.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt7.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt7.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql8 = "select 景区,门票名称,门市价,网上现售价 from [衢州$]";
+                OleDbCommand cmd8 = new OleDbCommand(sql8, new OleDbConnection(conn));
+                OleDbDataAdapter ad8 = new OleDbDataAdapter(cmd8);
+                DataSet ds8 = new DataSet();
+                System.Data.DataTable dt8 = new System.Data.DataTable();
+                ad8.Fill(dt8);
+                for (int i = 0; i < dt8.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt8.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt8.Rows[i][0].ToString()))
+                    {
+                        dt8.Rows[i][0] = dt8.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt8.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt8.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt8.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt8.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql9 = "select 景区,门票名称,门市价,网上现售价 from [舟山$]";
+                OleDbCommand cmd9 = new OleDbCommand(sql9, new OleDbConnection(conn));
+                OleDbDataAdapter ad9 = new OleDbDataAdapter(cmd9);
+                DataSet ds9 = new DataSet();
+                System.Data.DataTable dt9 = new System.Data.DataTable();
+                ad9.Fill(dt9);
+                for (int i = 0; i < dt9.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt9.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt9.Rows[i][0].ToString()))
+                    {
+                        dt9.Rows[i][0] = dt9.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt9.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt9.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt9.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt9.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql10 = "select 景区,门票名称,门市价,网上现售价 from [台州$]";
+                OleDbCommand cmd10 = new OleDbCommand(sql10, new OleDbConnection(conn));
+                OleDbDataAdapter ad10 = new OleDbDataAdapter(cmd10);
+                DataSet ds10 = new DataSet();
+                System.Data.DataTable dt10 = new System.Data.DataTable();
+                ad10.Fill(dt10);
+                for (int i = 0; i < dt10.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt10.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt10.Rows[i][0].ToString()))
+                    {
+                        dt10.Rows[i][0] = dt10.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt10.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt10.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt10.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt10.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                string sql11 = "select 景区,门票名称,门市价,网上现售价 from [丽水$]";
+                OleDbCommand cmd11 = new OleDbCommand(sql11, new OleDbConnection(conn));
+                OleDbDataAdapter ad11 = new OleDbDataAdapter(cmd11);
+                DataSet ds11 = new DataSet();
+                System.Data.DataTable dt11 = new System.Data.DataTable();
+                ad11.Fill(dt11);
+                for (int i = 0; i < dt11.Rows.Count; i++)
+                {
+                    //如果excel中的某行为空,跳过
+                    if (string.IsNullOrEmpty(dt11.Rows[i][1].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrEmpty(dt11.Rows[i][0].ToString()))
+                    {
+                        dt11.Rows[i][0] = dt11.Rows[i - j][0];
+                        j++;
+                    }
+
+                    //如果excel中的行不为空,添加
+                    //如果excel中的行不为空,添加
+                    pricelist.Add(new Entity.PriceEntity()
+                    {
+                        scenicname = dt11.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        ticketname = dt11.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        orgprice = dt11.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        olprice = dt11.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
+                }
+
+                return pricelist;
             }
             catch (Exception ex)
             {
