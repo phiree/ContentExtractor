@@ -264,5 +264,19 @@ namespace Win
                 MessageBox.Show("failed");
             }
         }
+
+        private void btnCity_Click(object sender, EventArgs e)
+        {
+            List<ExcelOpr.ExcelOpr.Webentity> websites = excelOpr.getWebsitelist();
+            var result = dboper.PersistenceCity2DB(websites) & dboper.PersistenceSeo2DB(websites);
+            if (result)
+            {
+                MessageBox.Show("ok");
+            }
+            else
+            {
+                MessageBox.Show("failed");
+            }
+        }
     }
 }

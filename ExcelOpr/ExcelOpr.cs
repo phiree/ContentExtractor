@@ -25,7 +25,7 @@ namespace ExcelOpr
         {
             get
             {
-                if (!string.IsNullOrEmpty(savepath))
+                if (!string.IsNullOrWhiteSpace(savepath))
                 {
                     return savepath;
                 }
@@ -45,7 +45,7 @@ namespace ExcelOpr
         {
             get
             {
-                if (!string.IsNullOrEmpty(savepricepath))
+                if (!string.IsNullOrWhiteSpace(savepricepath))
                 {
                     return savepricepath;
                 }
@@ -105,7 +105,7 @@ namespace ExcelOpr
             {
                 if (i == 1)
                 {
-                    if (!string.IsNullOrEmpty(result[i]))
+                    if (!string.IsNullOrWhiteSpace(result[i]))
                     {
                         int count = result[i].Length;
                         result[i] = count.ToString() + "A";
@@ -113,7 +113,7 @@ namespace ExcelOpr
                 }
                 if (i == 4)
                 {
-                    if (!string.IsNullOrEmpty(result[i]))
+                    if (!string.IsNullOrWhiteSpace(result[i]))
                     {
                         string[] area = result[i].Split(new string[] { "景区门票" }, StringSplitOptions.RemoveEmptyEntries);
                         result[i] = area[0] + "省" + area[1] + "市";
@@ -306,7 +306,7 @@ namespace ExcelOpr
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt.Rows[i][1].ToString())) continue;
 
                     //对景区详情处理
                     string scdetail = dt.Rows[i][6].ToString().Replace("\n", "").Trim();
@@ -339,7 +339,7 @@ namespace ExcelOpr
         /// 获取-景区表website-内容 v.20121205
         /// </summary>
         /// <returns></returns>
-        public List<string> getWebsitelist()
+        public List<Webentity> getWebsitelist()
         {
             try
             {
@@ -347,23 +347,36 @@ namespace ExcelOpr
                 //path即是excel文档的路径。
                 string conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= d:\浙江省景区.xlsx;Extended Properties=""Excel 12.0;HDR=YES""";
                 //Sheet1为excel中表的名字
-                string sql = "select 网址 from [杭州$]";
+                string sql = "select 景区,城市,网址,seo from [杭州$]";
                 OleDbCommand cmd = new OleDbCommand(sql, new OleDbConnection(conn));
                 OleDbDataAdapter ad = new OleDbDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 System.Data.DataTable dt = new System.Data.DataTable();
                 ad.Fill(dt);
-                List<string> weblist = new List<string>();
+                List<Webentity> weblist = new List<Webentity>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt.Rows[i][0].ToString()))
+                    {
+                        dt.Rows[i][0] = dt.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "杭州" : dt.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql2 = "select 网址 from [宁波$]";
+                string sql2 = "select 景区,城市,网址,seo from [宁波$]";
                 OleDbCommand cmd2 = new OleDbCommand(sql2, new OleDbConnection(conn));
                 OleDbDataAdapter ad2 = new OleDbDataAdapter(cmd2);
                 DataSet ds2 = new DataSet();
@@ -372,13 +385,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt2.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt2.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt2.Rows[i][0].ToString()))
+                    {
+                        dt2.Rows[i][0] = dt2.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt2.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt2.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt2.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "宁波" : dt2.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt2.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt2.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql3 = "select 网址 from [温州$]";
+                string sql3 = "select 景区,城市,网址,seo from [温州$]";
                 OleDbCommand cmd3 = new OleDbCommand(sql3, new OleDbConnection(conn));
                 OleDbDataAdapter ad3 = new OleDbDataAdapter(cmd3);
                 DataSet ds3 = new DataSet();
@@ -387,13 +413,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt3.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt3.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt3.Rows[i][0].ToString()))
+                    {
+                        dt3.Rows[i][0] = dt3.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt3.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt3.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt3.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "温州" : dt3.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt3.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt3.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql4 = "select 网址 from [嘉兴$]";
+                string sql4 = "select 景区,城市,网址,seo from [嘉兴$]";
                 OleDbCommand cmd4 = new OleDbCommand(sql4, new OleDbConnection(conn));
                 OleDbDataAdapter ad4 = new OleDbDataAdapter(cmd4);
                 DataSet ds4 = new DataSet();
@@ -402,13 +441,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt4.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt4.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt4.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt4.Rows[i][0].ToString()))
+                    {
+                        dt4.Rows[i][0] = dt4.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt4.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt4.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt4.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "嘉兴" : dt4.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt4.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt4.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql5 = "select 网址 from [湖州$]";
+                string sql5 = "select 景区,城市,网址,seo from [湖州$]";
                 OleDbCommand cmd5 = new OleDbCommand(sql5, new OleDbConnection(conn));
                 OleDbDataAdapter ad5 = new OleDbDataAdapter(cmd5);
                 DataSet ds5 = new DataSet();
@@ -417,13 +469,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt5.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt5.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt5.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt5.Rows[i][0].ToString()))
+                    {
+                        dt5.Rows[i][0] = dt5.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt5.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt5.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt5.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "湖州" : dt5.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt5.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt5.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql6 = "select 网址 from [绍兴$]";
+                string sql6 = "select 景区,城市,网址,seo from [绍兴$]";
                 OleDbCommand cmd6 = new OleDbCommand(sql6, new OleDbConnection(conn));
                 OleDbDataAdapter ad6 = new OleDbDataAdapter(cmd6);
                 DataSet ds6 = new DataSet();
@@ -432,13 +497,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt6.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt6.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt6.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt6.Rows[i][0].ToString()))
+                    {
+                        dt6.Rows[i][0] = dt6.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt6.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt6.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt6.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "绍兴" : dt6.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt6.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt6.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql7 = "select 网址 from [金华$]";
+                string sql7 = "select 景区,城市,网址,seo from [金华$]";
                 OleDbCommand cmd7 = new OleDbCommand(sql7, new OleDbConnection(conn));
                 OleDbDataAdapter ad7 = new OleDbDataAdapter(cmd7);
                 DataSet ds7 = new DataSet();
@@ -447,13 +525,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt7.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt7.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt7.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt7.Rows[i][0].ToString()))
+                    {
+                        dt7.Rows[i][0] = dt7.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt7.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt7.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt7.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "金华" : dt7.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt7.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt7.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql8 = "select 网址 from [衢州$]";
+                string sql8 = "select 景区,城市,网址,seo from [衢州$]";
                 OleDbCommand cmd8 = new OleDbCommand(sql8, new OleDbConnection(conn));
                 OleDbDataAdapter ad8 = new OleDbDataAdapter(cmd8);
                 DataSet ds8 = new DataSet();
@@ -462,13 +553,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt8.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt8.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt8.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt8.Rows[i][0].ToString()))
+                    {
+                        dt8.Rows[i][0] = dt8.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt8.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt8.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt8.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "衢州" : dt8.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt8.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt8.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql9 = "select 网址 from [舟山$]";
+                string sql9 = "select 景区,城市,网址,seo from [舟山$]";
                 OleDbCommand cmd9 = new OleDbCommand(sql9, new OleDbConnection(conn));
                 OleDbDataAdapter ad9 = new OleDbDataAdapter(cmd9);
                 DataSet ds9 = new DataSet();
@@ -477,13 +581,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt9.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt9.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt9.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt9.Rows[i][0].ToString()))
+                    {
+                        dt9.Rows[i][0] = dt9.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt9.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt9.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt9.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "舟山" : dt9.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt9.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt9.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql10 = "select 网址 from [台州$]";
+                string sql10 = "select 景区,城市,网址,seo from [台州$]";
                 OleDbCommand cmd10 = new OleDbCommand(sql10, new OleDbConnection(conn));
                 OleDbDataAdapter ad10 = new OleDbDataAdapter(cmd10);
                 DataSet ds10 = new DataSet();
@@ -492,13 +609,26 @@ namespace ExcelOpr
                 for (int i = 0; i < dt10.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt10.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt10.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt10.Rows[i][0].ToString()))
+                    {
+                        dt10.Rows[i][0] = dt10.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt10.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt10.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt10.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "台州" : dt10.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt10.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt10.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
-                string sql11 = "select 网址 from [丽水$]";
+                string sql11 = "select 景区,城市,网址,seo from [丽水$]";
                 OleDbCommand cmd11 = new OleDbCommand(sql11, new OleDbConnection(conn));
                 OleDbDataAdapter ad11 = new OleDbDataAdapter(cmd11);
                 DataSet ds11 = new DataSet();
@@ -507,10 +637,23 @@ namespace ExcelOpr
                 for (int i = 0; i < dt11.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt11.Rows[i][0].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt11.Rows[i][2].ToString())) continue;
+
+                    var j = 1;
+                    while (string.IsNullOrWhiteSpace(dt11.Rows[i][0].ToString()))
+                    {
+                        dt11.Rows[i][0] = dt11.Rows[i - j][0];
+                        j++;
+                    }
 
                     //如果excel中的行不为空,添加
-                    weblist.Add(dt11.Rows[i][0].ToString().Replace("\n", "").Trim());
+                    weblist.Add(new Webentity()
+                    {
+                        ScenicName = dt11.Rows[i][0].ToString().Replace("\n", "").Trim(),
+                        City = string.IsNullOrWhiteSpace(dt11.Rows[i][1].ToString().Replace("\n", "").Trim()) ? "丽水" : dt11.Rows[i][1].ToString().Replace("\n", "").Trim(),
+                        Website = dt11.Rows[i][2].ToString().Replace("\n", "").Trim(),
+                        Seoname = dt11.Rows[i][3].ToString().Replace("\n", "").Trim()
+                    });
                 }
 
                 return weblist;
@@ -519,6 +662,14 @@ namespace ExcelOpr
             {
                 return null;
             }
+        }
+
+        public class Webentity
+        {
+            public string ScenicName { get; set; }
+            public string City { get; set; }
+            public string Website { get; set; }
+            public string Seoname { get; set; }
         }
 
         /// <summary>
@@ -542,10 +693,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt.Rows[i][0].ToString()))
                     {
                         dt.Rows[i][0] = dt.Rows[i - j][0];
                         j++;
@@ -570,10 +721,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt2.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt2.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt2.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt2.Rows[i][0].ToString()))
                     {
                         dt2.Rows[i][0] = dt2.Rows[i - j][0];
                         j++;
@@ -599,10 +750,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt3.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt3.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt3.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt3.Rows[i][0].ToString()))
                     {
                         dt3.Rows[i][0] = dt3.Rows[i - j][0];
                         j++;
@@ -628,10 +779,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt4.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt4.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt4.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt4.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt4.Rows[i][0].ToString()))
                     {
                         dt4.Rows[i][0] = dt4.Rows[i - j][0];
                         j++;
@@ -657,10 +808,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt5.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt5.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt5.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt5.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt5.Rows[i][0].ToString()))
                     {
                         dt5.Rows[i][0] = dt5.Rows[i - j][0];
                         j++;
@@ -686,10 +837,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt6.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt6.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt6.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt6.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt6.Rows[i][0].ToString()))
                     {
                         dt6.Rows[i][0] = dt6.Rows[i - j][0];
                         j++;
@@ -715,10 +866,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt7.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt7.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt7.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt7.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt7.Rows[i][0].ToString()))
                     {
                         dt7.Rows[i][0] = dt7.Rows[i - j][0];
                         j++;
@@ -744,10 +895,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt8.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt8.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt8.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt8.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt8.Rows[i][0].ToString()))
                     {
                         dt8.Rows[i][0] = dt8.Rows[i - j][0];
                         j++;
@@ -773,10 +924,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt9.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt9.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt9.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt9.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt9.Rows[i][0].ToString()))
                     {
                         dt9.Rows[i][0] = dt9.Rows[i - j][0];
                         j++;
@@ -802,10 +953,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt10.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt10.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt10.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt10.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt10.Rows[i][0].ToString()))
                     {
                         dt10.Rows[i][0] = dt10.Rows[i - j][0];
                         j++;
@@ -831,10 +982,10 @@ namespace ExcelOpr
                 for (int i = 0; i < dt11.Rows.Count; i++)
                 {
                     //如果excel中的某行为空,跳过
-                    if (string.IsNullOrEmpty(dt11.Rows[i][1].ToString())) continue;
+                    if (string.IsNullOrWhiteSpace(dt11.Rows[i][1].ToString())) continue;
 
                     var j = 1;
-                    while (string.IsNullOrEmpty(dt11.Rows[i][0].ToString()))
+                    while (string.IsNullOrWhiteSpace(dt11.Rows[i][0].ToString()))
                     {
                         dt11.Rows[i][0] = dt11.Rows[i - j][0];
                         j++;

@@ -89,5 +89,33 @@ Strafficintro,Sbookintro,Sscenicdetail,Sscenicintro,Smainimg from Scenic where S
         }
 
 
+
+
+        public bool PersistenceCity2DB(IList<ExcelOpr.ExcelOpr.Webentity> websitelist)
+        {
+            var sql = string.Empty;
+            foreach (var item in websitelist)
+            {
+                if (!string.IsNullOrEmpty(item.City))
+                {
+                    sql += "update Scenic set Sarea=(select top 1 Name from Area where name like '%" + item.City
+                        + "%' and id>1018) where Sname like '%" + item.ScenicName + "%';";
+                }
+            }
+            return dbhelper.ExecSql(sql);
+        }
+
+        public bool PersistenceSeo2DB(IList<ExcelOpr.ExcelOpr.Webentity> websitelist)
+        {
+            var sql = string.Empty;
+            foreach (var item in websitelist)
+            {
+                if (!string.IsNullOrEmpty(item.City))
+                {
+                    sql += "update Scenic set Sseoname='" + item.Seoname + "' where Sname like '%" + item.ScenicName + "%';";
+                }
+            }
+            return dbhelper.ExecSql(sql);
+        }
     }
 }

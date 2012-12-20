@@ -44,6 +44,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnRule = new System.Windows.Forms.Button();
             this.txtRule = new System.Windows.Forms.TextBox();
+            this.btnCity = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -212,15 +213,26 @@
             this.txtRule.TabIndex = 34;
             this.txtRule.Text = "E:\\downloadrules";
             // 
+            // btnCity
+            // 
+            this.btnCity.Location = new System.Drawing.Point(699, 241);
+            this.btnCity.Name = "btnCity";
+            this.btnCity.Size = new System.Drawing.Size(75, 23);
+            this.btnCity.TabIndex = 41;
+            this.btnCity.Text = "转化城市名";
+            this.btnCity.UseVisualStyleBackColor = true;
+            this.btnCity.Click += new System.EventHandler(this.btnCity_Click);
+            // 
             // FrmHtml2DBMulti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 522);
+            this.Controls.Add(this.btnCity);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmHtml2DBMulti";
-            this.Text = "FrmHtml2DB";
+            this.Text = "FrmHtml2DBMulti";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -247,5 +259,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnRule;
         private System.Windows.Forms.TextBox txtRule;
+        private System.Windows.Forms.Button btnCity;
     }
 }

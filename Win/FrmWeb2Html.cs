@@ -39,10 +39,10 @@ namespace Win
         private void btnGo_Click(object sender, EventArgs e)
         {
             ExcelOpr.ExcelOpr exceloper = new ExcelOpr.ExcelOpr();
-            List<string> websites = exceloper.getWebsitelist();
+            List<ExcelOpr.ExcelOpr.Webentity> websites = exceloper.getWebsitelist();
             if (websites != null && websites.Count != 0)
             {
-                m_downloader.InitSeeds(websites.ToArray<string>(), string.Empty, string.Empty);
+                m_downloader.InitSeeds(websites.Select(x=>x.Website).ToArray<string>(), string.Empty, string.Empty);
                 m_downloader.Start();
             }
             else
