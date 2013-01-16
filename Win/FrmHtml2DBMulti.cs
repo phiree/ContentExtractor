@@ -81,12 +81,12 @@ namespace Win
             #endregion
 
             #region html转化成实体
-            List<DBOper.Entity.ScenicEntity> selist = new List<DBOper.Entity.ScenicEntity>();
-            List<DBOper.Entity.TicketEntity> tlist;
-            DBOper.Entity.ScenicEntity se;
+            var selist = new List<DBOper.Entity.ScenicEntity>();
+            List<DBOper.Entity.TicketEntity> tlist = new List<DBOper.Entity.TicketEntity>(); ;
+            DBOper.Entity.ScenicEntity se=new DBOper.Entity.ScenicEntity();
             DBOper.Entity.TicketEntity te;
 
-            List<string> htmllist = new List<string>();
+            var htmllist = new List<string>();
             #region 查看是否存在html文件, 并添加到列表中
             if (Directory.Exists(txtHtml.Text))
             {
@@ -101,7 +101,7 @@ namespace Win
             }
             #endregion
 
-            Dictionary<string, string> rulelist = new Dictionary<string, string>();
+            var rulelist = new Dictionary<string, string>();
             #region 查看是否存在Rule文件, 并添加到列表中
             if (Directory.Exists(txtRule.Text))
             {
@@ -124,89 +124,90 @@ namespace Win
             for (int i = 0; i < htmllist.Count; i++)
             {
                 //20121207-new
-                var html_type = (System.IO.Path.GetFileNameWithoutExtension(htmllist[i])).Split('-')[0];
-                var rule_type = rulelist[html_type];
-                rule = new Persistence.Rule();
-                rule.PersistencePath = Path.GetDirectoryName(rule_type);
-                //20121207-old
-                se = new DBOper.Entity.ScenicEntity();
-                te = new DBOper.Entity.TicketEntity();
-                tlist = new List<DBOper.Entity.TicketEntity>();
-                string html = htmlHandler.ReadHtml(htmllist[i]);
-
-                string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(rule_type)).FilterUsingAssembly(html, false);
-                if (string.IsNullOrEmpty(htmlPragraph)) continue;
-                string[] result = htmlPragraph.Split(new string[] { "$#$" }, 14, StringSplitOptions.None);
-                for (int j = 0; j < result.Length; j++)
+                var fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(htmllist[i]);
+                if (fileNameWithoutExtension != null)
                 {
-                    if (string.IsNullOrEmpty(result[0]))
-                        continue;
-                    #region 景区结果分析
-                    if (j == 1)
+                    var html_type = fileNameWithoutExtension.Split('-')[0];
+                    var rule_type = rulelist[html_type];
+                    rule = new Persistence.Rule {PersistencePath = Path.GetDirectoryName(rule_type)};
+                    //20121207-old
+                    te = new DBOper.Entity.TicketEntity();
+                    string html = htmlHandler.ReadHtml(htmllist[i]);
+
+                    string htmlPragraph = rule.ReadRule(Path.GetFileNameWithoutExtension(rule_type)).FilterUsingAssembly(html, false);
+                    if (string.IsNullOrEmpty(htmlPragraph)) continue;
+                    string[] result = htmlPragraph.Split(new string[] { "$#$" }, 14, StringSplitOptions.None);
+                    for (int j = 0; j < result.Length; j++)
                     {
-                        if (!string.IsNullOrEmpty(result[j]))
+                        if (string.IsNullOrEmpty(result[0]))
+                            continue;
+                        #region 景区结果分析
+                        if (j == 1)
                         {
-                            int count = result[j].Length;
-                            result[j] = count.ToString() + "A";
-                        }
-                    }
-                    if (j == 4)
-                    {
-                        if (!string.IsNullOrEmpty(result[j]))
-                        {
-                            string[] area = result[j].Split(new string[] { "景区门票" }, StringSplitOptions.RemoveEmptyEntries);
-                            result[j] = area[0] + "省" + area[1] + "市";
-                        }
-                    }
-                    if (j == 11)
-                    {
-                        if (!string.IsNullOrEmpty(result[j]))
-                        {
-                            var temp = result[j].Replace("$#$", "");
-                            string[] ticketprice = temp.Split(new string[] { "&&" }, StringSplitOptions.RemoveEmptyEntries);
-                            foreach (var item in ticketprice)
+                            if (!string.IsNullOrEmpty(result[j]))
                             {
-                                string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
-                                te = new DBOper.Entity.TicketEntity();
-                                te.scenicname = result[0].ToString();
-                                te.ticketname = data[0].ToString();
-                                te.orgprice = data[1].ToString();
-                                te.olprice = data[2].ToString();
-                                tlist.Add(te);
+                                int count = result[j].Length;
+                                result[j] = count.ToString() + "A";
                             }
                         }
-                    }
-                    if (j == 12)
-                    {
-                        //var tmp = result[j].split(new string[] { @"scenicimg/", @""" />" }, stringsplitoptions.removeemptyentries);
-                        //var tmp = result[j].Split(new string[] { @""" />" }, StringSplitOptions.RemoveEmptyEntries);
-                        //if (tmp.Length > 0)
-                        //{
-                        //    result[j] = tmp[0];
-                        //}
-                        string pattern = @"(?<=src="").*?(?="")";
-                        Regex rex = new Regex(pattern);
-                        MatchCollection matchs = rex.Matches(result[j]);
-                        if (matchs.Count > 0)
+                        if (j == 4)
                         {
-                            result[j] = matchs[0].Value;
+                            if (!string.IsNullOrEmpty(result[j]))
+                            {
+                                string[] area = result[j].Split(new string[] { "景区门票" }, StringSplitOptions.RemoveEmptyEntries);
+                                result[j] = area[0] + "省" + area[1] + "市";
+                            }
                         }
+                        if (j == 11)
+                        {
+                            if (!string.IsNullOrEmpty(result[j]))
+                            {
+                                var temp = result[j].Replace("$#$", "");
+                                string[] ticketprice = temp.Split(new string[] { "&&" }, StringSplitOptions.RemoveEmptyEntries);
+                                foreach (var item in ticketprice)
+                                {
+                                    string[] data = item.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries);
+                                    te = new DBOper.Entity.TicketEntity();
+                                    te.scenicname = result[0].ToString();
+                                    te.ticketname = data[0].ToString();
+                                    te.orgprice = data[1].ToString();
+                                    te.olprice = data[2].ToString();
+                                    tlist.Add(te);
+                                }
+                            }
+                        }
+                        if (j == 12)
+                        {
+                            //var tmp = result[j].split(new string[] { @"scenicimg/", @""" />" }, stringsplitoptions.removeemptyentries);
+                            //var tmp = result[j].Split(new string[] { @""" />" }, StringSplitOptions.RemoveEmptyEntries);
+                            //if (tmp.Length > 0)
+                            //{
+                            //    result[j] = tmp[0];
+                            //}
+                            string pattern = @"(?<=src="").*?(?="")";
+                            Regex rex = new Regex(pattern);
+                            MatchCollection matchs = rex.Matches(result[j]);
+                            if (matchs.Count > 0)
+                            {
+                                result[j] = matchs[0].Value;
+                            }
+                        }
+                        #endregion
                     }
-                    #endregion
+                    #region 景区转化&存储
+                    se.name = result[0].ToString();
+                    se.level = result[1].ToString();
+                    se.address = result[2].ToString();
+                    se.seoname = string.Empty;//result[3].ToString();
+                    se.areaid = result[4].ToString();
+                    se.topic = result[5].ToString();
+                    se.topicseo = result[6].ToString();
+                    se.trafficintro = result[7].ToString();
+                    se.bookintro = result[8].ToString();
+                    se.scenicdetail = result[9].ToString();
+                    se.scenicintro = result[10].ToString();
+                    se.mainimg = result[12].ToString();
                 }
-                #region 景区转化&存储
-                se.name = result[0].ToString();
-                se.level = result[1].ToString();
-                se.address = result[2].ToString();
-                se.seoname = string.Empty;//result[3].ToString();
-                se.areaid = result[4].ToString();
-                se.topic = result[5].ToString();
-                se.topicseo = result[6].ToString();
-                se.trafficintro = result[7].ToString();
-                se.bookintro = result[8].ToString();
-                se.scenicdetail = result[9].ToString();
-                se.scenicintro = result[10].ToString();
-                se.mainimg = result[12].ToString();
                 se.ticketlist = tlist;
                 bresult &= dbopr.Persistence2DB(se);
                 #endregion

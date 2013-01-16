@@ -35,7 +35,7 @@ namespace Win
         private void btnPrice_Click(object sender, EventArgs e)
         {
 
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            var fbd = new FolderBrowserDialog();
             fbd.Description = "选择文件夹";
             fbd.RootFolder = Environment.SpecialFolder.MyComputer;
             fbd.ShowNewFolderButton = true;

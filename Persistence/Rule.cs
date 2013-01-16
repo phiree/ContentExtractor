@@ -36,197 +36,200 @@ namespace Persistence
                 XmlNode root = xmlDoc.SelectSingleNode(ruleAssembly.Name);//查找<root>
                 foreach (var ruleset in ruleAssembly.RuleSets)
                 {
-                    XmlElement xe1 = xmlDoc.CreateElement(ruleset.Name);//创建一个<ruleset>节点
-                    XmlElement xesub1 = xmlDoc.CreateElement("RuleSetId");
-                    xesub1.InnerText = ruleset.Id == 0 ? "" : ruleset.Id.ToString();
-                    xe1.AppendChild(xesub1);
-                    XmlElement xesub2 = xmlDoc.CreateElement("RuleSetName");
-                    xesub2.InnerText = ruleset.Name ?? "";
-                    xe1.AppendChild(xesub2);
-                    XmlElement xesub3 = xmlDoc.CreateElement("RuleSetSetNo");
-                    xesub3.InnerText = ruleset.SetNo.ToString();
-                    xe1.AppendChild(xesub3);
-
-                    XmlElement xesub4 = xmlDoc.CreateElement("NeedImageLocalizer");
-                    xesub4.InnerText = ruleset.NeedImageLocalizer.ToString();
-                    xe1.AppendChild(xesub4);
-                    //
-                    XmlElement xesub10 = xmlDoc.CreateElement("ImageLocalizerType");
-                    xesub10.InnerText = ruleset.ImageLocalizerType??"";
-                    xe1.AppendChild(xesub10);
-                    //ImagePath
-                    XmlElement xesub6 = xmlDoc.CreateElement("ImagePath");
-                    xesub6.InnerText = ruleset.ImagePath ?? "";
-                    xe1.AppendChild(xesub6);
-                    //VirtualPath
-                    XmlElement xesub7 = xmlDoc.CreateElement("VirtualPath");
-                    xesub7.InnerText = ruleset.VirtualPath ?? "";
-                    xe1.AppendChild(xesub7);
-                    //ImagePath
-                    XmlElement xesub8 = xmlDoc.CreateElement("OldRegex");
-                    if (ruleset.OldRegex.Count > 0)
+                    if (ruleset.Name != null)
                     {
-                        foreach (string item in ruleset.OldRegex)
+                        XmlElement xe1 = xmlDoc.CreateElement(ruleset.Name);//创建一个<ruleset>节点
+                        XmlElement xesub1 = xmlDoc.CreateElement("RuleSetId");
+                        xesub1.InnerText = ruleset.Id == 0 ? "" : ruleset.Id.ToString();
+                        xe1.AppendChild(xesub1);
+                        XmlElement xesub2 = xmlDoc.CreateElement("RuleSetName");
+                        xesub2.InnerText = ruleset.Name ?? "";
+                        xe1.AppendChild(xesub2);
+                        XmlElement xesub3 = xmlDoc.CreateElement("RuleSetSetNo");
+                        xesub3.InnerText = ruleset.SetNo.ToString();
+                        xe1.AppendChild(xesub3);
+
+                        XmlElement xesub4 = xmlDoc.CreateElement("NeedImageLocalizer");
+                        xesub4.InnerText = ruleset.NeedImageLocalizer.ToString();
+                        xe1.AppendChild(xesub4);
+                        //
+                        XmlElement xesub10 = xmlDoc.CreateElement("ImageLocalizerType");
+                        xesub10.InnerText = ruleset.ImageLocalizerType??"";
+                        xe1.AppendChild(xesub10);
+                        //ImagePath
+                        XmlElement xesub6 = xmlDoc.CreateElement("ImagePath");
+                        xesub6.InnerText = ruleset.ImagePath ?? "";
+                        xe1.AppendChild(xesub6);
+                        //VirtualPath
+                        XmlElement xesub7 = xmlDoc.CreateElement("VirtualPath");
+                        xesub7.InnerText = ruleset.VirtualPath ?? "";
+                        xe1.AppendChild(xesub7);
+                        //ImagePath
+                        XmlElement xesub8 = xmlDoc.CreateElement("OldRegex");
+                        if (ruleset.OldRegex.Count > 0)
                         {
-                            XmlElement xe2sub = xmlDoc.CreateElement("regexrule");
-                            xe2sub.InnerText = item;
-                            xesub8.AppendChild(xe2sub);
+                            foreach (string item in ruleset.OldRegex)
+                            {
+                                XmlElement xe2sub = xmlDoc.CreateElement("regexrule");
+                                xe2sub.InnerText = item;
+                                xesub8.AppendChild(xe2sub);
+                            }
                         }
+                        xe1.AppendChild(xesub8);
+                        //VirtualPath
+                        XmlElement xesub9 = xmlDoc.CreateElement("NewRegex");
+                        if (ruleset.NewRegex.Count > 0)
+                        {
+                            foreach (string item in ruleset.NewRegex)
+                            {
+                                var xe2sub = xmlDoc.CreateElement("regexrule");
+                                xe2sub.InnerText = item;
+                                xesub9.AppendChild(xe2sub);
+                            }
+                        }
+                        xe1.AppendChild(xesub9);
+                        //RuleSetRules
+                        var xesub5 = xmlDoc.CreateElement("RuleSetRules");
+                        foreach (var item in ruleset.Rules)
+                        {
+                            var br = item as CE.Domain.Rule.BeginEndRule;
+                            var rr = item as CE.Domain.Rule.RegexRule;
+                            var rer = item as CE.Domain.Rule.ReplaceRule;
+                            if (br != null)
+                            {
+                                #region cao!
+                                var xe2 = xmlDoc.CreateElement(br.Name);
+
+                                //baseRule的属性
+                                var xe2sub1 = xmlDoc.CreateElement("Id");
+                                xe2sub1.InnerText = br.Id.ToString();
+                                xe2.AppendChild(xe2sub1);
+
+                                var xe2sub2 = xmlDoc.CreateElement("Name");
+                                xe2sub2.InnerText = br.Name;
+                                xe2.AppendChild(xe2sub2);
+
+                                var xe2sub3 = xmlDoc.CreateElement("RuleNo");
+                                xe2sub3.InnerText = br.RuleNo.ToString();
+                                xe2.AppendChild(xe2sub3);
+
+                                var xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
+                                xe2sub4.InnerText = br.PreAppenddBefore.ToString();
+                                xe2.AppendChild(xe2sub4);
+
+                                var xe2sub5 = xmlDoc.CreateElement("AppendAfter");
+                                xe2sub5.InnerText = br.AppendAfter.ToString();
+                                xe2.AppendChild(xe2sub5);
+
+                                var xe2sub6 = xmlDoc.CreateElement("Enabled");
+                                xe2sub6.InnerText = br.Enabled.ToString();
+                                xe2.AppendChild(xe2sub6);
+
+                                //子类Rule的属性
+
+                                var ber = (CE.Domain.Rule.BeginEndRule)br;
+
+                                var xe2sub11 = xmlDoc.CreateElement("BeginMark");
+                                xe2sub11.InnerText = ber.BeginMark.ToString();
+                                xe2.AppendChild(xe2sub11);
+
+                                var xe2sub12 = xmlDoc.CreateElement("EndMark");
+                                xe2sub12.InnerText = ber.EndMark;
+                                xe2.AppendChild(xe2sub12);
+
+                                var xe2sub13 = xmlDoc.CreateElement("IncludeBeginMark");
+                                xe2sub13.InnerText = ber.IncludeBeginMark.ToString();
+                                xe2.AppendChild(xe2sub13);
+
+                                var xe2sub14 = xmlDoc.CreateElement("IncludeEndMark");
+                                xe2sub14.InnerText = ber.IncludeEndMark.ToString();
+                                xe2.AppendChild(xe2sub14);
+
+                                var xe2sub15 = xmlDoc.CreateElement("RemoveBegin");
+                                xe2sub15.InnerText = ber.RemoveBegin.ToString();
+                                xe2.AppendChild(xe2sub15);
+
+                                var xe2sub16 = xmlDoc.CreateElement("RemoveEnd");
+                                xe2sub16.InnerText = ber.RemoveEnd.ToString();
+                                xe2.AppendChild(xe2sub16);
+
+                                xesub5.AppendChild(xe2);
+
+                                #endregion
+                            }
+                            if (rr != null)
+                            {
+                                #region cao!
+                                XmlElement xe2 = xmlDoc.CreateElement(rr.Name);
+
+                                //baseRule的属性
+                                XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
+                                xe2sub1.InnerText = rr.Id.ToString();
+                                xe2.AppendChild(xe2sub1);
+                                XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
+                                xe2sub2.InnerText = rr.Name;
+                                xe2.AppendChild(xe2sub2);
+                                XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
+                                xe2sub3.InnerText = rr.RuleNo.ToString();
+                                xe2.AppendChild(xe2sub3);
+                                XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
+                                xe2sub4.InnerText = rr.PreAppenddBefore.ToString();
+                                xe2.AppendChild(xe2sub4);
+                                XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
+                                xe2sub5.InnerText = rr.AppendAfter.ToString();
+                                xe2.AppendChild(xe2sub5);
+                                XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
+                                xe2sub6.InnerText = rr.Enabled.ToString();
+                                xe2.AppendChild(xe2sub6);
+
+                                //子类Rule的属性
+
+                                XmlElement xe2sub11 = xmlDoc.CreateElement("RegexExp");
+                                xe2sub11.InnerText = rr.RegexExp.ToString();
+                                xe2.AppendChild(xe2sub11);
+                                xesub5.AppendChild(xe2);
+                                #endregion
+                            }
+                            if (rer != null)
+                            {
+                                #region cao!
+                                var xe2 = xmlDoc.CreateElement(rer.Name);
+
+                                //baseRule的属性
+                                var xe2sub1 = xmlDoc.CreateElement("Id");
+                                xe2sub1.InnerText = rer.Id.ToString();
+                                xe2.AppendChild(xe2sub1);
+                                var xe2sub2 = xmlDoc.CreateElement("Name");
+                                xe2sub2.InnerText = rer.Name;
+                                xe2.AppendChild(xe2sub2);
+                                var xe2sub3 = xmlDoc.CreateElement("RuleNo");
+                                xe2sub3.InnerText = rer.RuleNo.ToString();
+                                xe2.AppendChild(xe2sub3);
+                                var xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
+                                xe2sub4.InnerText = rer.PreAppenddBefore.ToString();
+                                xe2.AppendChild(xe2sub4);
+                                var xe2sub5 = xmlDoc.CreateElement("AppendAfter");
+                                xe2sub5.InnerText = rer.AppendAfter.ToString();
+                                xe2.AppendChild(xe2sub5);
+                                var xe2sub6 = xmlDoc.CreateElement("Enabled");
+                                xe2sub6.InnerText = rer.Enabled.ToString();
+                                xe2.AppendChild(xe2sub6);
+
+                                //子类Rule的属性
+
+                                var xe2sub11 = xmlDoc.CreateElement("OldMark");
+                                xe2sub11.InnerText = rer.OldMark.ToString();
+                                xe2.AppendChild(xe2sub11);
+                                var xe2sub12 = xmlDoc.CreateElement("NewMark");
+                                xe2sub12.InnerText = rer.NewMark.ToString();
+                                xe2.AppendChild(xe2sub12);
+                                xesub5.AppendChild(xe2);
+                                #endregion
+                            }
+                        }
+                        xe1.AppendChild(xesub5);
+                        if (root != null) root.AppendChild(xe1);
                     }
-                    xe1.AppendChild(xesub8);
-                    //VirtualPath
-                    XmlElement xesub9 = xmlDoc.CreateElement("NewRegex");
-                    if (ruleset.NewRegex.Count > 0)
-                    {
-                        foreach (string item in ruleset.NewRegex)
-                        {
-                            XmlElement xe2sub = xmlDoc.CreateElement("regexrule");
-                            xe2sub.InnerText = item;
-                            xesub9.AppendChild(xe2sub);
-                        }
-                    }
-                    xe1.AppendChild(xesub9);
-                    //RuleSetRules
-                    XmlElement xesub5 = xmlDoc.CreateElement("RuleSetRules");
-                    foreach (var item in ruleset.Rules)
-                    {
-                        CE.Domain.Rule.BeginEndRule br = item as CE.Domain.Rule.BeginEndRule;
-                        CE.Domain.Rule.RegexRule rr = item as CE.Domain.Rule.RegexRule;
-                        CE.Domain.Rule.ReplaceRule rer = item as CE.Domain.Rule.ReplaceRule;
-                        if (br != null)
-                        {
-                            #region cao!
-                            XmlElement xe2 = xmlDoc.CreateElement(br.Name);
-
-                            //baseRule的属性
-                            XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
-                            xe2sub1.InnerText = br.Id.ToString();
-                            xe2.AppendChild(xe2sub1);
-
-                            XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
-                            xe2sub2.InnerText = br.Name;
-                            xe2.AppendChild(xe2sub2);
-
-                            XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
-                            xe2sub3.InnerText = br.RuleNo.ToString();
-                            xe2.AppendChild(xe2sub3);
-
-                            XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
-                            xe2sub4.InnerText = br.PreAppenddBefore.ToString();
-                            xe2.AppendChild(xe2sub4);
-
-                            XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
-                            xe2sub5.InnerText = br.AppendAfter.ToString();
-                            xe2.AppendChild(xe2sub5);
-
-                            XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
-                            xe2sub6.InnerText = br.Enabled.ToString();
-                            xe2.AppendChild(xe2sub6);
-
-                            //子类Rule的属性
-
-                            CE.Domain.Rule.BeginEndRule ber = (CE.Domain.Rule.BeginEndRule)br;
-
-                            XmlElement xe2sub11 = xmlDoc.CreateElement("BeginMark");
-                            xe2sub11.InnerText = ber.BeginMark.ToString();
-                            xe2.AppendChild(xe2sub11);
-
-                            XmlElement xe2sub12 = xmlDoc.CreateElement("EndMark");
-                            xe2sub12.InnerText = ber.EndMark;
-                            xe2.AppendChild(xe2sub12);
-
-                            XmlElement xe2sub13 = xmlDoc.CreateElement("IncludeBeginMark");
-                            xe2sub13.InnerText = ber.IncludeBeginMark.ToString();
-                            xe2.AppendChild(xe2sub13);
-
-                            XmlElement xe2sub14 = xmlDoc.CreateElement("IncludeEndMark");
-                            xe2sub14.InnerText = ber.IncludeEndMark.ToString();
-                            xe2.AppendChild(xe2sub14);
-
-                            XmlElement xe2sub15 = xmlDoc.CreateElement("RemoveBegin");
-                            xe2sub15.InnerText = ber.RemoveBegin.ToString();
-                            xe2.AppendChild(xe2sub15);
-
-                            XmlElement xe2sub16 = xmlDoc.CreateElement("RemoveEnd");
-                            xe2sub16.InnerText = ber.RemoveEnd.ToString();
-                            xe2.AppendChild(xe2sub16);
-
-                            xesub5.AppendChild(xe2);
-
-                            #endregion
-                        }
-                        if (rr != null)
-                        {
-                            #region cao!
-                            XmlElement xe2 = xmlDoc.CreateElement(rr.Name);
-
-                            //baseRule的属性
-                            XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
-                            xe2sub1.InnerText = rr.Id.ToString();
-                            xe2.AppendChild(xe2sub1);
-                            XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
-                            xe2sub2.InnerText = rr.Name;
-                            xe2.AppendChild(xe2sub2);
-                            XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
-                            xe2sub3.InnerText = rr.RuleNo.ToString();
-                            xe2.AppendChild(xe2sub3);
-                            XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
-                            xe2sub4.InnerText = rr.PreAppenddBefore.ToString();
-                            xe2.AppendChild(xe2sub4);
-                            XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
-                            xe2sub5.InnerText = rr.AppendAfter.ToString();
-                            xe2.AppendChild(xe2sub5);
-                            XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
-                            xe2sub6.InnerText = rr.Enabled.ToString();
-                            xe2.AppendChild(xe2sub6);
-
-                            //子类Rule的属性
-
-                            XmlElement xe2sub11 = xmlDoc.CreateElement("RegexExp");
-                            xe2sub11.InnerText = rr.RegexExp.ToString();
-                            xe2.AppendChild(xe2sub11);
-                            xesub5.AppendChild(xe2);
-                            #endregion
-                        }
-                        if (rer != null)
-                        {
-                            #region cao!
-                            XmlElement xe2 = xmlDoc.CreateElement(rer.Name);
-
-                            //baseRule的属性
-                            XmlElement xe2sub1 = xmlDoc.CreateElement("Id");
-                            xe2sub1.InnerText = rer.Id.ToString();
-                            xe2.AppendChild(xe2sub1);
-                            XmlElement xe2sub2 = xmlDoc.CreateElement("Name");
-                            xe2sub2.InnerText = rer.Name;
-                            xe2.AppendChild(xe2sub2);
-                            XmlElement xe2sub3 = xmlDoc.CreateElement("RuleNo");
-                            xe2sub3.InnerText = rer.RuleNo.ToString();
-                            xe2.AppendChild(xe2sub3);
-                            XmlElement xe2sub4 = xmlDoc.CreateElement("PreAppenddBefore");
-                            xe2sub4.InnerText = rer.PreAppenddBefore.ToString();
-                            xe2.AppendChild(xe2sub4);
-                            XmlElement xe2sub5 = xmlDoc.CreateElement("AppendAfter");
-                            xe2sub5.InnerText = rer.AppendAfter.ToString();
-                            xe2.AppendChild(xe2sub5);
-                            XmlElement xe2sub6 = xmlDoc.CreateElement("Enabled");
-                            xe2sub6.InnerText = rer.Enabled.ToString();
-                            xe2.AppendChild(xe2sub6);
-
-                            //子类Rule的属性
-
-                            XmlElement xe2sub11 = xmlDoc.CreateElement("OldMark");
-                            xe2sub11.InnerText = rer.OldMark.ToString();
-                            xe2.AppendChild(xe2sub11);
-                            XmlElement xe2sub12 = xmlDoc.CreateElement("NewMark");
-                            xe2sub12.InnerText = rer.NewMark.ToString();
-                            xe2.AppendChild(xe2sub12);
-                            xesub5.AppendChild(xe2);
-                            #endregion
-                        }
-                    }
-                    xe1.AppendChild(xesub5);
-                    root.AppendChild(xe1);
                 }
                 xmlDoc.Save(PersistencePath.EndsWith("\\") ? PersistencePath + ruleAssembly.Name + ".xml" : PersistencePath + "\\" + ruleAssembly.Name + ".xml");
             }
